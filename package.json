@@ -2,10 +2,10 @@
   "name": "parcel-project-template",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://goitacademy.github.io/parcel-project-template",
+  "homepage": "https://usai2005.github.io/filmoteka-js-project-group-2",
   "scripts": {
-    "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /parcel-project-template/"
+    "start": "parcel src/*.html --open",
+    "build": "parcel build src/*.html --public-url /filmoteka-js-project-group-2/"
   },
   "repository": {
     "type": "git",

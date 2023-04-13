@@ -7,5 +7,10 @@
 <symbol id="icon-logo" viewBox="0 0 32 32"><path fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.17" d="M26.427 2.667H5.574a2.907 2.907 0 0 0-2.907 2.907v20.853a2.907 2.907 0 0 0 2.907 2.907h20.853a2.907 2.907 0 0 0 2.907-2.907V5.574a2.907 2.907 0 0 0-2.907-2.907zM9.333 2.667v26.667M22.667 2.667v26.667M2.667 16h26.667M2.667 9.333h6.667M2.667 22.667h6.667M22.667 22.667h6.667M22.667 9.333h6.667" style="stroke:var(--color1, #fff)"/></symbol>
 <symbol id="icon-close" viewBox="0 0 32 32"><path stroke-width="2.133" d="m8.533 8.533 14.933 14.933M8.533 23.467 23.466 8.534"/></symbol>
 <symbol id="icon-search" viewBox="0 0 16 16"><path d="M7.33333 12.6667C10.2789 12.6667 12.6667 10.2789 12.6667 7.33333C12.6667 4.38781 10.2789 2 7.33333 2C4.38781 2 2 4.38781 2 7.33333C2 10.2789 4.38781 12.6667 7.33333 12.6667Z" fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round"/><path fill="none" d="M14 14.0001L11.1 11.1001" stroke="black" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+
+<symbol id="icon-heart" viewBox="0 0 32 32">
+<path fill="#ff4e08" d="M23.6 2c-3.363 0-6.258 2.736-7.599 5.594-1.342-2.858-4.237-5.594-7.601-5.594-4.637 0-8.4 3.764-8.4 8.401 0 9.433 9.516 11.906 16.001 21.232 6.13-9.268 15.999-12.1 15.999-21.232 0-4.637-3.763-8.401-8.4-8.401z"></path>
+
 </defs>
 </svg>
+

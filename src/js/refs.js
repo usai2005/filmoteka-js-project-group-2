@@ -7,6 +7,8 @@ const refs = {
   buttonsList: document.querySelector('.tui-pagination'),
   watchedBtn: document.querySelector('.watched-button'),
   queueBtn: document.querySelector('.queue-button'),
+  loader: document.querySelector('.preloader'),
 };
+
 
 export default refs;

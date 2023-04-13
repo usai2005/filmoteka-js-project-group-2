@@ -3,11 +3,22 @@ import { pagination } from './pagination.js';
 import refs from './refs.js';
 
 async function showPopularMovies() {
+
+  if (refs.loader.classList.contains('done')) {
+    refs.loader.classList.remove('done');
+  }
+
   const movies = await apiClient.getPopularMovie();
-  console.log(movies);
+
+
   pagination.reset(apiClient.totalMovies);
 
   appendMovies(movies);
+
+  if (!refs.loader.classList.contains('done')) {
+    refs.loader.classList.add('done');
+  }
+
 }
 
 function appendMovies(movies) {
@@ -18,7 +29,7 @@ function appendMovies(movies) {
   const markup = movies
     .map(({ title, imgUrl, genres, year, id }) => {
       return `
-          <li class="movie-item" data-id="${id}">
+          <li class="movie-item list" data-id="${id}">
           <img src="${imgUrl}" alt="${title}" class="movie-item__image">
           <p class="movie-item__title">${title}</p>
           <p class="movie-info">${genres} | ${year}</p>

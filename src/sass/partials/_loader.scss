@@ -6,11 +6,12 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 10;
-    transition: 1s all;
-    // opacity: 1;
-    // visibility: visible;
+    transition: 500ms all;
+    opacity: 1;
+    visibility: visible;
   
   .loader {
+    position: absolute;
     width: 75px;
     height: 75px;
     border: 10px solid #ffffff;
@@ -22,10 +23,10 @@
     animation: 1s spin infinite linear;
   }
 
-//   &.done {
-//     opacity: 0;
-//     visibility: hidden;
-//   }
+  &.done {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
 
   @keyframes spin {

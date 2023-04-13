@@ -15,8 +15,5 @@ function appendMovies(movies) {
   </li>`;
     })
     .join('');
-
   refs.moviesGallery.insertAdjacentHTML('beforeend', markup);
 }
-
-export default appendMovies;

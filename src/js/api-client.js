@@ -7,7 +7,7 @@ const DEFAULT_IMG =
 
 class ApiClient {
   constructor() {
-    this.query = '';
+    this.query = null;
     this.curentPage = 1;
     this.totalPages = 0;
     this.totalMovies = 0;
@@ -40,12 +40,17 @@ class ApiClient {
   };
 
   //запит до серверу, що отримує дані популярних фільмів, повертає об'єкт готовий до рендеру
-  getPopularMovie = async () => {
+  getPopularMovie = async pageNumber => {
     // попереднє завантаження жанрів
     await this.getGenres();
+
+    //якщо pageNumber = undefinеd(первинний запит що не задає номеру сторінки) запит переходить на сторінку 1, або поточну за замовчуванням
+    if (pageNumber) {
+      this.curentPage = pageNumber;
+    }
     //власне, сам запит
     const data = await axios(
-      `${BASE_URL}/trending/all/day?api_key=ae38d5c8baf36c9c4ca14e9456f3c0fd`
+      `${BASE_URL}/trending/all/day?api_key=ae38d5c8baf36c9c4ca14e9456f3c0fd&page=${this.curentPage}`
     )
       .then(response => {
         if (response.status !== 200) {
@@ -103,7 +108,11 @@ class ApiClient {
 
   // запит, що підвантажує наступну порцію фільмів, перехід на вказану сторінку (пагінація). прокидується колбеком в методи бібліотеки пагінації
   goToPage = pageNumber => {
-    return this.getMovieByQuery(this.query, pageNumber);
+    if (!this.query) {
+      return this.getPopularMovie(pageNumber);
+    } else {
+      return this.getMovieByQuery(this.query, pageNumber);
+    }
   };
 
   // функція обробник повернення масиву об"єктів даних про фільми. використовується при пошуку по назві завантаженні популярних фільмів, в інших файлах не використовується

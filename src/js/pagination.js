@@ -2,7 +2,6 @@ import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
 import apiClient from './api-client.js';
 import refs from './refs.js';
-import appendMovies from './render-functions.js';
 
 // export const refs = {
 //   searchForm: document.querySelector('form'),
@@ -13,19 +12,19 @@ import appendMovies from './render-functions.js';
 //   buttonsList: document.querySelector('.tui-pagination'),
 // };
 
-const pagination = new Pagination(refs.buttonsList, {
+export const pagination = new Pagination(refs.buttonsList, {
   totalItems: apiClient.totalMovies,
   itemsPerPage: 20,
   visiblePages: 5,
   page: apiClient.curentPage,
 });
 
-apiClient.getPopularMovie().then(movies => {
-  // console.log(movies);
-  // console.log(apiClient.totalMovies);
-  pagination.reset(apiClient.totalMovies);
-  appendMovies(movies);
-});
+// apiClient.getPopularMovie().then(movies => {
+//   // console.log(movies);
+//   // console.log(apiClient.totalMovies);
+//   pagination.reset(apiClient.totalMovies);
+//   appendMovies(movies);
+// });
 
 // import Pagination from 'tui-pagination';
 // import 'tui-pagination/dist/tui-pagination.css';

@@ -1,4 +1,14 @@
+import apiClient from './api-client.js';
+import { pagination } from './pagination.js';
 import refs from './refs.js';
+
+async function showPopularMovies() {
+  const movies = await apiClient.getPopularMovie();
+  console.log(movies);
+  pagination.reset(apiClient.totalMovies);
+
+  appendMovies(movies);
+}
 
 function appendMovies(movies) {
   refs.moviesGallery.innerHTML = '';
@@ -17,3 +27,5 @@ function appendMovies(movies) {
     .join('');
   refs.moviesGallery.insertAdjacentHTML('beforeend', markup);
 }
+
+showPopularMovies();

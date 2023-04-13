@@ -1,0 +1,16 @@
+// $timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+$backdrop: rgba(0, 0, 0, 0.2);
+
+$colors: (
+  'primary-text': #000000,
+  'secondary-text': #B92F2C,
+  'white': #ffffff,
+  'footer-text-color': #545454,
+  'main-bg-color': #F0F0F0,
+  'secondary-bg-color': #F7F7F7,
+  'modal-grey': #8C8C8C,
+);
+@function getColor($key) {
+    @return map-get($colors, $key);
+  }

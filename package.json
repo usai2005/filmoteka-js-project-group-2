@@ -4,7 +4,7 @@
   "description": "",
   "homepage": "https://usai2005.github.io/filmoteka-js-project-group-2",
   "scripts": {
-    "start": "parcel src/*.html --open --port 3000",
+    "start": "parcel src/*.html --open",
     "build": "parcel build src/*.html --public-url /filmoteka-js-project-group-2/"
   },
   "repository": {

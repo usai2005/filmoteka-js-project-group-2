@@ -4,10 +4,12 @@
 @import './utils/variables';
 @import './utils/font-face';
 
-@import './example';
+@import './partials/button';
+@import './partials/navigation';
+@import './partials/film-status-filter';
+@import './partials/header';
 
-
-
-
-
+@import './partials/footer';
 @import './partials/modal';
+@import './partials/loader';
+

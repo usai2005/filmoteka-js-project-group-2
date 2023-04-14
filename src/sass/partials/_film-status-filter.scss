@@ -2,4 +2,18 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    margin-top: 16px;
+
+    &.is-hidden {
+        display: none;
+    }
+
+    @media screen and (min-width: 768px) {
+        position: absolute;
+        top: 0;
+        right: 16px;
+    }
+    @media screen and (min-width: 1280px) {
+        right: 32px;
+    }
 }

@@ -10,9 +10,11 @@ const WATCHED_KEY = 'watched';
 
 refs.watchedBtn.addEventListener('click', markupWatched);
 
-// тимчяасово
-// const watchedMovies = [{ movie1 }, { movie2 }, { movie3 }, { movie4 }];
-//
+
+// тимчасово такий масив(поки немає нічого від local storage)
+const watchedMovies = [{ movie1 }, { movie2 }, { movie3 }, { movie4 }];
+// const watchedMovies = localStorage.load(watched);
+
 
 function markupWatched() {
   const watchedMovies = localStorage.load(WATCHED_KEY);

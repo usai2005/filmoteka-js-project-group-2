@@ -2,7 +2,7 @@ import apiClient from './api-client.js';
 import { pagination } from './pagination.js';
 import refs from './refs.js';
 
-async function showPopularMovies() {
+export async function showPopularMovies() {
 
   if (refs.loader.classList.contains('done')) {
     refs.loader.classList.remove('done');
@@ -38,5 +38,3 @@ export function appendMovies(movies) {
     .join('');
   refs.moviesGallery.insertAdjacentHTML('beforeend', markup);
 }
-
-showPopularMovies();

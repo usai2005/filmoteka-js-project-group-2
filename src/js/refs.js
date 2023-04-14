@@ -7,6 +7,10 @@ const refs = {
   buttonsList: document.querySelector('.tui-pagination'),
   watchedBtn: document.querySelector('#watched-btn'),
   queueBtn: document.querySelector('#queue-btn'),
+  openModalMovieEl: document.querySelector('[data-modal-movie-open]'),
+  closeModalMovieBtn: document.querySelector('[data-modal-movie-close]'),
+  modalMovie: document.querySelector('[data-modal-movie]'),
+  modalMovieInf: document.querySelector('[data-modal-movie-inf]'),
   loader: document.querySelector('.preloader'),
 };
 

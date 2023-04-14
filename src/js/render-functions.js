@@ -21,7 +21,7 @@ async function showPopularMovies() {
 
 }
 
-function appendMovies(movies) {
+export function appendMovies(movies) {
   refs.moviesGallery.innerHTML = '';
 
   if (movies.length === 0) return;

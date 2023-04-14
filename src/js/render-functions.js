@@ -3,7 +3,7 @@ import { pagination } from './pagination.js';
 import refs from './refs.js';
 import {showSpinnerIfPageLoads, hideSpinnerIfPageLoaded} from './loader.js';
 
-async function showPopularMovies() {
+export async function showPopularMovies() {
 
   showSpinnerIfPageLoads();
 
@@ -32,5 +32,3 @@ export function appendMovies(movies) {
     .join('');
   refs.moviesGallery.insertAdjacentHTML('beforeend', markup);
 }
-
-showPopularMovies();

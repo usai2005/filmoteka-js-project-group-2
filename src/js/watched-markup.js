@@ -8,7 +8,7 @@ import { appendMovies } from './render-functions.js';
 
 refs.watchedBtn.addEventListener('click', markupWatched);
 
-// тимчяасово
+// тимчасово такий масив(поки немає нічого від local storage)
 const watchedMovies = [{ movie1 }, { movie2 }, { movie3 }, { movie4 }];
 // const watchedMovies = localStorage.load(watched);
 

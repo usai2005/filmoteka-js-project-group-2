@@ -12,7 +12,7 @@ class ApiClient {
     this.totalPages = 0;
     this.totalMovies = 0;
     this.genres = [];
-    this.currentMoviesList=[];
+    this.currentMoviesList = [];
   }
 
   //додаткова функція що при первинному запиті та отриманні популярних фільмів робить запит на сервер і отримує масив всіх жанрів та їх id
@@ -120,12 +120,14 @@ class ApiClient {
   getMoviesInfo = moviesArr => {
     return moviesArr.map(movie => {
       const movieInfo = {
-        title: movie.title, //назва
+        title: movie.title ? movie.title : movie.name, //назва
         imgUrl: movie.poster_path
           ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
           : DEFAULT_IMG, // постер, або дефолтна картинка за відсутності постера
         genres: this.matchMovieGenres(movie.genre_ids), // жанри
-        year: new Date(movie.release_date).getUTCFullYear(), //рік
+        year: movie.release_date
+          ? movie.release_date.slice(0, 4)
+          : movie.first_air_date.slice(0, 4), //рік
         id: movie.id, // ID не рендериться, використовується для отримання деталей по фільму
       };
       return movieInfo;
@@ -206,14 +208,16 @@ const api = new ApiClient(); //експортуємо екземпляр
 //   const listOfPopularFilms = await api.getPopularMovie(); // популярні фільми
 //   console.log('listOfPopularFilms', listOfPopularFilms);
 
-//   const filmByQuery = await api.getMovieByQuery('cat'); // пошук за ім"ям
-//   console.log('filmByQuery', filmByQuery);
+// const filmByQuery = await api.getMovieByQuery('cat'); // пошук за ім"ям
+// console.log('filmByQuery', filmByQuery);
 
-//   const filmDetailsById = await api.getMovieById('1027159'); // пошук за іd
-//   console.log('filmDetailsById', filmDetailsById);
+// const filmDetailsById = await api.getMovieById('1027159'); // пошук за іd
+// console.log('filmDetailsById', filmDetailsById);
 
-//   const trailerInfo = await api.getMoviesTrailer('1027159'); // пошук трейлеру
-//   console.log('trailerInfo', trailerInfo);
+// const trailerInfo = await api.getMoviesTrailer('1027159'); // пошук трейлеру
+// console.log('trailerInfo', trailerInfo);
+
+//   console.log(api.currentMoviesList);
 // };
 // setTimeout(getData, 200);
 

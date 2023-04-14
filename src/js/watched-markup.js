@@ -4,7 +4,7 @@ import apiClient from './api-client.js';
 
 import localStorage from './local-storage.js';
 
-import appendMovies from './render-functions.js';
+import { appendMovies } from './render-functions.js';
 
 refs.watchedBtn.addEventListener('click', markupWatched);
 

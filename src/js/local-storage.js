@@ -18,15 +18,13 @@ const load = key => {
 
 const remove = key => {
     try {
-      const serializedState = localStorage.removeItem(key);
-      return serializedState === null ? {watched: [], queue: []} : JSON.parse
-      (serializedState);
+      localStorage.removeItem(key);
     } catch (error) {
       console.error("Remove state error: ", error.message);
     }
 };
   
-export const localStorage = {
+export default localStorage = {
     save,
     load,
     remove,

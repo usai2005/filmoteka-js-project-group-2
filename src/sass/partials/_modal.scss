@@ -21,7 +21,7 @@
   }
 }
 
-.modal {
+.modal-movie {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -62,7 +62,7 @@
   }
 }
 
-.modal-close-btn {
+.modal-movie-close-button {
   position: absolute;
   top: 8px;
   right: 8px;
@@ -85,6 +85,21 @@
   }
 }
 
-.modal-close-icon {
+.modal-movie-close-icon {
   stroke: currentColor;
+}
+
+.modal__btn-wrapper {
+  display: flex;
+}
+
+.modal-movie-button {
+  min-width: 110px;
+  padding: 10px;
+  border: 1px solid getColor('primary-text');
+
+  &:hover,
+  &:focus {
+    border-color: getColor('secondary-text');
+  }
 }

@@ -1,6 +1,27 @@
+import apiClient from './api-client.js';
+import { pagination } from './pagination.js';
 import refs from './refs.js';
 
-function appendMovies(movies) {
+async function showPopularMovies() {
+
+  if (refs.loader.classList.contains('done')) {
+    refs.loader.classList.remove('done');
+  }
+
+  const movies = await apiClient.getPopularMovie();
+
+
+  pagination.reset(apiClient.totalMovies);
+
+  appendMovies(movies);
+
+  if (!refs.loader.classList.contains('done')) {
+    refs.loader.classList.add('done');
+  }
+
+}
+
+export function appendMovies(movies) {
   refs.moviesGallery.innerHTML = '';
 
   if (movies.length === 0) return;
@@ -8,7 +29,7 @@ function appendMovies(movies) {
   const markup = movies
     .map(({ title, imgUrl, genres, year, id }) => {
       return `
-          <li class="movie-item" data-id="${id}">
+          <li class="movie-item list" data-id="${id}">
           <img src="${imgUrl}" alt="${title}" class="movie-item__image">
           <p class="movie-item__title">${title}</p>
           <p class="movie-info">${genres} | ${year}</p>
@@ -17,3 +38,5 @@ function appendMovies(movies) {
     .join('');
   refs.moviesGallery.insertAdjacentHTML('beforeend', markup);
 }
+
+showPopularMovies();

@@ -11,6 +11,8 @@ const refs = {
   closeModalMovieBtn: document.querySelector('[data-modal-movie-close]'),
   modalMovie: document.querySelector('[data-modal-movie]'),
   modalMovieInf: document.querySelector('[data-modal-movie-inf]'),
+  loader: document.querySelector('.preloader'),
 };
+
 
 export default refs;

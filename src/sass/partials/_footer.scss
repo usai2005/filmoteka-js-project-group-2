@@ -4,6 +4,9 @@
   align-items: center;
   min-height: 77px;
   background-color: getColor('secondary-bg-color');
+  @media screen and (min-width: 320px) {     
+    min-height: 100px;      
+  } 
 }
 
 .footer-container {

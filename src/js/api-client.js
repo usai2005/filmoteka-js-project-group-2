@@ -12,6 +12,7 @@ class ApiClient {
     this.totalPages = 0;
     this.totalMovies = 0;
     this.genres = [];
+    this.currentMoviesList=[];
   }
 
   //додаткова функція що при первинному запиті та отриманні популярних фільмів робить запит на сервер і отримує масив всіх жанрів та їх id
@@ -59,7 +60,7 @@ class ApiClient {
         // перезапис значень, що використовуються для пагінації
         this.totalMovies = response.data.total_results;
         this.totalPages = response.data.total_pages;
-
+        this.currentMoviesList = this.getMoviesInfo(response.data.results);
         //обробка результату функцією getMoviesInfo прокидання отриманого обʼєкту в функцію обробник щоб витягнути необхідні поля
         return this.getMoviesInfo(response.data.results);
       })
@@ -97,7 +98,7 @@ class ApiClient {
         // перезапис значень, що використовуються для пагінації
         this.totalMovies = response.data.total_results;
         this.totalPages = response.data.total_pages;
-
+        this.currentMoviesList = this.getMoviesInfo(response.data.results);
         //обробка результату, прокидання отриманого респонсу через функцію обробник
         return this.getMoviesInfo(response.data.results);
       })
@@ -140,7 +141,7 @@ class ApiClient {
         if (response.status !== 200) {
           throw new Error(`Error in request: ${response.status}`);
         }
-
+        this.currentMoviesList = this.getMoviesDetails(response.data);
         // обробка результату, прокидання отриманого респонса через функцію обробник
         return this.getMoviesDetails(response.data);
       })

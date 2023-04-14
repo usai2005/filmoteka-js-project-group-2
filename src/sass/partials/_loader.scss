@@ -12,9 +12,9 @@
   
   .preloader__loader {
     position: absolute;
-    width: 75px;
-    height: 75px;
-    border: 10px solid getColor('white');
+    width: 50px;
+    height: 50px;
+    border: 7px solid getColor('secondary-bg-color');
     border-radius: 50%;
     border-top-color: getColor('secondary-text');
     left: 50%;

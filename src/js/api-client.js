@@ -37,7 +37,7 @@ class ApiClient {
     if (movieGenres.length === 0) {
       movieGenres.push('Other');
     }
-    return movieGenres.join(', ');
+    return movieGenres;
   };
 
   //запит до серверу, що отримує дані популярних фільмів, повертає об'єкт готовий до рендеру
@@ -51,7 +51,7 @@ class ApiClient {
     }
     //власне, сам запит
     const data = await axios(
-      `${BASE_URL}/trending/all/day?api_key=ae38d5c8baf36c9c4ca14e9456f3c0fd&page=${this.curentPage}`
+      `${BASE_URL}/trending/movie/day?api_key=ae38d5c8baf36c9c4ca14e9456f3c0fd&page=${this.curentPage}`
     )
       .then(response => {
         if (response.status !== 200) {
@@ -127,7 +127,7 @@ class ApiClient {
         genres: this.matchMovieGenres(movie.genre_ids), // жанри
         year: movie.release_date
           ? movie.release_date.slice(0, 4)
-          : movie.first_air_date.slice(0, 4), //рік
+          : movie?.first_air_date?.slice(0, 4) || '', //рік
         id: movie.id, // ID не рендериться, використовується для отримання деталей по фільму
       };
       return movieInfo;

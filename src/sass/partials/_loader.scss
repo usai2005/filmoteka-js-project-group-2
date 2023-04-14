@@ -4,26 +4,26 @@
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: getColor('spinner-background');
     z-index: 10;
-    transition: 500ms all;
+    transition: 1000ms all;
     opacity: 1;
     visibility: visible;
   
-  .loader {
+  .preloader__loader {
     position: absolute;
     width: 75px;
     height: 75px;
-    border: 10px solid #ffffff;
+    border: 10px solid getColor('white');
     border-radius: 50%;
-    border-top-color: #B92F2C;
+    border-top-color: getColor('secondary-text');
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     animation: 1s spin infinite linear;
   }
 
-  &.done {
+  &.preloader__loader--page-loaded {
     opacity: 0;
     visibility: hidden;
   }

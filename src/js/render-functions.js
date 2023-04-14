@@ -1,12 +1,11 @@
 import apiClient from './api-client.js';
 import { pagination } from './pagination.js';
 import refs from './refs.js';
+import {showSpinnerIfPageLoads, hideSpinnerIfPageLoaded} from './loader.js';
 
 async function showPopularMovies() {
 
-  if (refs.loader.classList.contains('done')) {
-    refs.loader.classList.remove('done');
-  }
+  showSpinnerIfPageLoads();
 
   const movies = await apiClient.getPopularMovie();
 
@@ -14,11 +13,6 @@ async function showPopularMovies() {
   pagination.reset(apiClient.totalMovies);
 
   appendMovies(movies);
-
-  if (!refs.loader.classList.contains('done')) {
-    refs.loader.classList.add('done');
-  }
-
 }
 
 export function appendMovies(movies) {

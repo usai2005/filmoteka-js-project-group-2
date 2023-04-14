@@ -1,7 +1,7 @@
 import refs from './refs.js';
 import api from './api-client.js';
 
-// refs.openModalMovieEl.addEventListener('click', onOpenModalMovie);
+refs.openModalMovieEl.addEventListener('click', onOpenModalMovie);
 refs.closeModalMovieBtn.addEventListener('click', onCloseModalMovie);
 refs.modalMovie.addEventListener('click', onBackdropClick);
 

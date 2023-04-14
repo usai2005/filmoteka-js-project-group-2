@@ -1,21 +1,28 @@
 import apiClient from './api-client.js';
 import { pagination } from './pagination.js';
 import refs from './refs.js';
-import {showSpinnerIfPageLoads, hideSpinnerIfPageLoaded} from './loader.js';
+import {showSpinnerIfPageLoads} from './loader.js';
 
 async function showPopularMovies() {
-
-  showSpinnerIfPageLoads();
-
+  
   const movies = await apiClient.getPopularMovie();
 
 
   pagination.reset(apiClient.totalMovies);
 
   appendMovies(movies);
+
+  
 }
 
 export function appendMovies(movies) {
+  
+  refs.loader.classList.remove('preloader__loader--page-loaded');
+
+  showSpinnerIfPageLoads();
+  
+  setTimeout(() => {
+  
   refs.moviesGallery.innerHTML = '';
 
   if (movies.length === 0) return;
@@ -31,6 +38,7 @@ export function appendMovies(movies) {
     })
     .join('');
   refs.moviesGallery.insertAdjacentHTML('beforeend', markup);
-}
+}, 300);
+};
 
 showPopularMovies();

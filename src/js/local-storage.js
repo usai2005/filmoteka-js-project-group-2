@@ -24,7 +24,7 @@ const remove = key => {
     }
 };
   
-export const localStorage = {
+export default localStorage = {
     save,
     load,
     remove,

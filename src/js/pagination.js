@@ -3,14 +3,8 @@ import 'tui-pagination/dist/tui-pagination.css';
 import apiClient from './api-client.js';
 import refs from './refs.js';
 
-// export const refs = {
-//   searchForm: document.querySelector('form'),
-//   homeBtn: document.querySelector('.btn-home'),
-//   myLibraryBtn: document.querySelector('.btn-library'),
-//   logo: document.querySelector('.page-logo'),
-//   moviesGallery: document.querySelector('.movies-list'),
-//   buttonsList: document.querySelector('.tui-pagination'),
-// };
+//щоб код запрацював(сторінки переключались) потрібно в ./render-functions.js експортувати appendMovies
+import { appendMovies } from './render-functions.js';
 
 export const pagination = new Pagination(refs.buttonsList, {
   totalItems: apiClient.totalMovies,
@@ -19,12 +13,38 @@ export const pagination = new Pagination(refs.buttonsList, {
   page: apiClient.curentPage,
 });
 
-// apiClient.getPopularMovie().then(movies => {
-//   // console.log(movies);
-//   // console.log(apiClient.totalMovies);
-//   pagination.reset(apiClient.totalMovies);
-//   appendMovies(movies);
-// });
+// Додаю слухач подій до екземпляра Pagination
+pagination.on('beforeMove', async event => {
+  // Get the page number that the user clicked on
+  const pageNumber = event.page;
+  console.log('hello');
+
+  // Використовую API, щоб отримати фільми для вибраного номера сторінки
+  const movies = await apiClient.goToPage(pageNumber);
+
+  // Відображаю фільми на сторінці
+  // renderMovies(movies);
+  appendMovies(movies);
+});
+
+// Допоміжна функція для відтворення фільмів на сторінці
+// function renderMovies(movies) {
+// Очищаю наявні фільми зі сторінки
+//   refs.moviesGallery.innerHTML = '';
+
+//   // Відображаю нові фільми на сторінці
+//   movies.forEach(movie => {
+//     // Створюю HTML для картки фільму
+//     const movieCardHtml = `<div class="movie-card">
+//         <img class="movie-card__image" src="${movie.imgUrl}" alt="${movie.title}">
+//         <h2 class="movie-card__title">${movie.title} (${movie.year})</h2>
+//         <p class="movie-card__genres">${movie.genres}</p>
+//       </div>`;
+
+//     // Додаю HTML картки фільму на сторінку
+//     refs.moviesGallery.insertAdjacentHTML('beforeend', movieCardHtml);
+//   });
+// }
 
 // import Pagination from 'tui-pagination';
 // import 'tui-pagination/dist/tui-pagination.css';
@@ -77,7 +97,8 @@ export const pagination = new Pagination(refs.buttonsList, {
 //   renderMovies(movies);
 // });
 
-// //отримую масив фільмів відсортованих по рейтингу, роблю рендер фільмів
+// без використання бібліотеки
+// отримую масив фільмів відсортованих по рейтингу, роблю рендер фільмів
 // function pagination(objMovies) {
 //   const postData = objMovies; //
 //   let currentPage = 1;

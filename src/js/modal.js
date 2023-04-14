@@ -36,27 +36,24 @@ function renderModal(movieById) {
   const { title, popularity, vote, votes, imgUrl, genres, about, id } =
     movieById;
 
-  const markup = `<img
-  class="modal__image"
+  const markup = `<div class="modal__image-wrapper"><img
+  class="img modal__image"
   src="${imgUrl}"
-  alt="movie-img"
-  width="240"
-  height="357"
+  alt="${title}"
   loading="lazy"
-/>
+/></div>
 <div class="modal__description">
   <strong class="modal__title">${title}</strong>
   <ul class="list modal__list list-modal">
     <li class="list-modal__item">
       <p class="list-modal__text list-modal__text--first">Vote / Votes</p>
       <p class="list-modal__text list-modal__text--second">
-        <span class="vote vote--inverse">${vote}</span> /
-        <span class="vote">${votes}</span>
+        <span class="vote vote--inverse">${vote.toFixed(1)}</span><span class="slash-line"> / </span><span class="vote">${votes}</span>
       </p>
     </li>
     <li class="list-modal__item">
       <p class="list-modal__text list-modal__text--first">Popularity</p>
-      <p class="list-modal__text list-modal__text--second">${popularity}</p>
+      <p class="list-modal__text list-modal__text--second">${popularity.toFixed(1)}</p>
     </li>
     <li class="list-modal__item">
       <p class="list-modal__text list-modal__text--first">

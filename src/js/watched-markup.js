@@ -1,18 +1,25 @@
 import refs from './refs.js';
 
-import apiClient from './api-client.js';
+// import apiClient from './api-client.js';
 
 import localStorage from './local-storage.js';
 
 import { appendMovies } from './render-functions.js';
 
+// local storage watched key
+const WATCHED_KEY = 'watched';
+
 refs.watchedBtn.addEventListener('click', markupWatched);
 
-// тимчяасово
+
+// тимчасово такий масив(поки немає нічого від local storage)
 const watchedMovies = [{ movie1 }, { movie2 }, { movie3 }, { movie4 }];
-// const watchedMovies = localStorage.load(watched);
+// const watchedMovies = localStorage.load(WATCHED_KEY);
+
 
 function markupWatched() {
+  const watchedMovies = localStorage.load(WATCHED_KEY);
+
   if (!refs.watchedBtn.classList.contains('watched-queue-button--active')) {
     refs.watchedBtn.classList.add('watched-queue-button--active');
 
@@ -26,7 +33,7 @@ function markupWatched() {
   }
 
   //   placeholder (заглушка)
-  if (!watchedMovies.length) {
+  if (!watchedMovies?.length) {
     refs.moviesGallery.innerHTML = `
               <li class="empty">
                 <img src="${empty}" alt="Empty gallery.Add something)" />

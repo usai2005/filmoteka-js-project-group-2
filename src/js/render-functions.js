@@ -42,3 +42,4 @@ export function appendMovies(movies) {
 };
 
 showPopularMovies();
+

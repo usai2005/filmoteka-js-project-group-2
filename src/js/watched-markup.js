@@ -2,7 +2,7 @@ import refs from './refs.js';
 
 // import apiClient from './api-client.js';
 
-import localStorage from './local-storage.js';
+import { localStorage from } './local-storage.js';
 
 import { appendMovies } from './render-functions.js';
 

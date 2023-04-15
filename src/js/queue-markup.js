@@ -16,7 +16,7 @@ const queueMovies = [{ movie5 }, { movie6 }, { movie7 }, { movie8 }];
 // const queueFilms = localStorage.load(QUEUE_KEY);
 
   
-  function markupQuoue() {
+  export function markupQuoue() {
     if (!refs.queueBtn.classList.contains('watched-queue-button--active')) {
       refs.queueBtn.classList.add('watched-queue-button--active');
       queueRef.disabled = true;

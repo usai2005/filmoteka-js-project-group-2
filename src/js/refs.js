@@ -14,10 +14,10 @@ const refs = {
   modalMovie: document.querySelector('[data-modal-movie]'),
   modalMovieInf: document.querySelector('[data-modal-movie-inf]'),
   loader: document.querySelector('.preloader'),
-
-  addToWatched:  document.querySelector('#add-to-watched-btn'),
-  addToQueue:  document.querySelector('#add-to-queue-btn'),    
+  addToWatched: document.querySelector('#add-to-watched-btn'),
+  addToQueue: document.querySelector('#add-to-queue-btn'),
+  header: document.querySelector('.header'),
+  footerLink: document.querySelector('.footer-link'),
 };
-
 
 export default refs;

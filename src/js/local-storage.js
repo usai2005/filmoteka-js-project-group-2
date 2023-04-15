@@ -1,22 +1,17 @@
-import refs from './refs.js';
-
 const dataStorage = {
   watched: [],
   queue: [],
 };
 
 let filmId = null;
+let saveData = {}; // зберігаються в массив 'Value'
 
 //Перевірити наявність данних у сховищі
 //Створити, якщо данні відсутні
 
 function checkLocalStorage() {
-  if (!localStorage.getItem('watched')) {
-    localStorage.setItem('watched', JSON.stringify(dataStorage.watched));
-  }
-  if (!localStorage.getItem('queue')) {
-    localStorage.setItem('queue', JSON.stringify(dataStorage.queue));
-  }
+  localStorage.setItem('watched', JSON.stringify(dataStorage.watched || []));
+  localStorage.setItem('queue', JSON.stringify(dataStorage.queue || []));
 }
 
 checkLocalStorage();
@@ -24,71 +19,65 @@ checkLocalStorage();
 // Слухачі на кнопки модалки
 
 export function addModalButtonListeners() {
-  // Слухачі подій на кнопки
+  saveData = {
+    modal: document.getElementsByClassName('backdrop')[0],
+    addToWatched: document.getElementById('add-to-watched-btn'),
+    addToQueue: document.getElementById('add-to-queue-btn'),
+  };
 
-  const addToWatched = document.querySelector('#add-to-watched-btn');
-  console.log(addToWatched);
-
-  const addToQueue = document.querySelector('#add-to-queue-btn');
-  console.log(addToQueue);
-
-  addToWatched.addEventListener('click', onAddToWatched);
-  addToQueue.addEventListener('click', onAddToQueue);
-
-  // по кліку на кнопку витянути дата-атрибут з модалки
-  filmId = refs.modalMovie.dataset.id;
+  filmId = saveData.modal.dataset.id;
   console.log(filmId);
 
+  saveData.addToWatched.addEventListener('click', onAddToWatched);
+  saveData.addToQueue.addEventListener('click', onAddToQueue);
+
   if (isMovieExist(filmId, 'queue')) {
-    addToQueue.textContent = "Remove from Queue";
-    addToQueue.classList.add('added');
+    saveData.addToQueue.textContent = "Remove from Queue";
+    saveData.addToQueue.classList.add('added');
   }
   if (isMovieExist(filmId, 'watched')) {
-    addToWatched.textContent = "Remove from Watched";
-    addToWatched.classList.add('added');
+    saveData.addToWatched.textContent = "Remove from Watched";
+    saveData.addToWatched.classList.add('added');
   }
 }
 
 function isMovieExist(id, key) {
   const serializedState = JSON.parse(localStorage.getItem(key)) || [];
-  return serializedState.find(obj => obj.id == id);
-  }
+  return serializedState.some(obj => obj.id == id);
+}
 
 export function removeListeners() {
-  const addToWatched = document.querySelector('#add-to-watched-btn');
-  const addToQueue = document.querySelector('#add-to-queue-btn');
-
-  addToWatched.removeEventListener('click', onAddToWatched);
-  addToQueue.removeEventListener('click', onAddToQueue);
+  saveData.addToWatched.removeEventListener('click', onAddToWatched);
+  saveData.addToQueue.removeEventListener('click', onAddToQueue);
 }
 
 function onAddToWatched() {
+  const filmId = saveData.modal.dataset.id;
   const film = getFilm(filmId); 
 
-  const addToWatched = document.querySelector('#add-to-watched-btn');
-  addToWatched.classList.toggle('added');
+  saveData.addToWatched.classList.toggle('added');
 
-  if (addToWatched.classList.contains("added")) {
+  if (saveData.addToWatched.classList.contains("added")) {
     addMovieToStorage('watched', film);
-    addToWatched.textContent = "Remove from Watched";
+    saveData.addToWatched.textContent = "Remove from Watched";
   } else {
     removeMovieFromStorage('watched', filmId);
-    addToWatched.textContent = "Add to Watched";
+    saveData.addToWatched.textContent = "Add to Watched";
   }
 }
 
 function onAddToQueue() {
+  const filmId = saveData.modal.dataset.id;
   const film = getFilm(filmId); 
 
-  const addToQueue = document.querySelector('#add-to-queue-btn');
-  addToQueue.classList.toggle('added');
+  saveData.addToQueue.classList.toggle('added');
 
-  if (addToQueue.classList.contains("added")) {
+  if (saveData.addToQueue.classList.contains("added")) {
     addMovieToStorage('queue', film);
-    addToQueue.textContent = "Remove from Queue";
+    saveData.addToQueue.textContent = "Remove from Queue";
   } else {
     removeMovieFromStorage('queue', filmId);
-    addToQueue.textContent = "Add to Queue";
+    saveData.addToQueue.textContent = "Add to Queue";
   }
 }
 
@@ -96,10 +85,11 @@ function onAddToQueue() {
 
 function getFilm(id) {
   const films = loadFilms();
-  return films.find(obj => obj.id == id);
+  return films.find(obj => obj.id == id) || {};
 }
 
-export function loadFilms(key) {
+
+export function loadFilms(key = '') {
   try {
     const serializedState = JSON.parse(localStorage.getItem(key)) || [];
     const films = serializedState || [];
@@ -116,7 +106,7 @@ function addMovieToStorage(key, film) {
     serializedState.push(film);
     localStorage.setItem(key, JSON.stringify(serializedState));
   } catch (error) {
-    console.error('Get state error: ', error.message);
+    console.error('Set state error: ', error.message);
   }
 }
 

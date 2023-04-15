@@ -44,6 +44,10 @@
             width: 187px;
             padding: 13px 16px;
         }
+
+        &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: transparent;
+          }
     }
 
     &__btn {

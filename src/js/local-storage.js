@@ -5,7 +5,6 @@ const dataStorage = {
   queue: [],
 };
 
-
 let filmId = null;
 
 //Перевірити наявність данних у сховищі
@@ -26,8 +25,6 @@ checkLocalStorage();
 
 export function addModalButtonListeners() {
   // Слухачі подій на кнопки
-  // refs.addToWatched.addEventListener('click', onAddToWathed);
-  // refs.addToQueue.addEventListener('click', onAddToQueue);
 
   const addToWatched = document.querySelector('#add-to-watched-btn');
   console.log(addToWatched);
@@ -35,7 +32,7 @@ export function addModalButtonListeners() {
   const addToQueue = document.querySelector('#add-to-queue-btn');
   console.log(addToQueue);
 
-  addToWatched.addEventListener('click', onAddToWathed);
+  addToWatched.addEventListener('click', onAddToWatched);
   addToQueue.addEventListener('click', onAddToQueue);
 
   // по кліку на кнопку витянути дата-атрибут з модалки
@@ -43,38 +40,30 @@ export function addModalButtonListeners() {
   console.log(filmId);
 
   if (isMovieExist(filmId, 'queue')) {
-    // refs.addToQueue.textContent = "Remove from Queue";
-    // refs.addToQueue.classList.add('added');
     addToQueue.textContent = "Remove from Queue";
     addToQueue.classList.add('added');
   }
   if (isMovieExist(filmId, 'watched')) {
-    // refs.addToWatched.textContent = "Remove from Watched";
-    // refs.addToWatched.classList.add('added');
     addToWatched.textContent = "Remove from Watched";
     addToWatched.classList.add('added');
   }
 }
 
 function isMovieExist(id, key) {
-  const serializedState = JSON.parse(localStorage.getItem(key));
-  return  serializedState.find(obj => obj.id == id);
-}
+  const serializedState = JSON.parse(localStorage.getItem(key)) || [];
+  return serializedState.find(obj => obj.id == id);
+  }
 
 export function removeListeners() {
   const addToWatched = document.querySelector('#add-to-watched-btn');
   const addToQueue = document.querySelector('#add-to-queue-btn');
 
-  addToWatched.removeEventListener('click', onAddToWathed);
+  addToWatched.removeEventListener('click', onAddToWatched);
   addToQueue.removeEventListener('click', onAddToQueue);
-
-  // refs.addToWatched.removeEventListener('click', onAddToWathed);
-  // refs.addToQueue.removeEventListener('click', onAddToQueue);
 }
 
-function onAddToWathed() {
+function onAddToWatched() {
   const film = getFilm(filmId); 
-  // refs.addToWatched.classList.toggle('added');
 
   const addToWatched = document.querySelector('#add-to-watched-btn');
   addToWatched.classList.toggle('added');
@@ -90,7 +79,6 @@ function onAddToWathed() {
 
 function onAddToQueue() {
   const film = getFilm(filmId); 
-  // refs.addToQueue.classList.toggle('added');
 
   const addToQueue = document.querySelector('#add-to-queue-btn');
   addToQueue.classList.toggle('added');
@@ -113,8 +101,8 @@ function getFilm(id) {
 
 export function loadFilms(key) {
   try {
-    const serializedState = JSON.parse(localStorage.getItem(key));
-    const films = serializedState.results.results;
+    const serializedState = JSON.parse(localStorage.getItem(key)) || [];
+    const films = serializedState || [];
     return films;
   } catch (error) {
     console.error('Get state error: ', error.message);
@@ -122,11 +110,11 @@ export function loadFilms(key) {
 }
 // Додати новий елемент в локальне сховище
 
-function addMovieToStorage(key, value) {
+function addMovieToStorage(key, film) {
   try {
-    const serializedState = JSON.parse(localStorage.getItem(key));
-    serializedState.push(value);
-    localStorage.setItem(key, JSON.stringify(serializedState))
+    const serializedState = JSON.parse(localStorage.getItem(key)) || [];
+    serializedState.push(film);
+    localStorage.setItem(key, JSON.stringify(serializedState));
   } catch (error) {
     console.error('Get state error: ', error.message);
   }
@@ -135,10 +123,9 @@ function addMovieToStorage(key, value) {
 // Видалити фільм
 function removeMovieFromStorage(key, id) {
   try {
-    const serializedState = JSON.parse(localStorage.getItem(key));
-    const newFilms = serializedState.filter(obj => obj.id != id)
-    localStorage.setItem(key, JSON.stringify(newFilms))
-
+    const serializedState = JSON.parse(localStorage.getItem(key)) || [];
+    const newFilms = serializedState.filter(obj => obj.id != id);
+    localStorage.setItem(key, JSON.stringify(newFilms));
   } catch (error) {
     console.error('Get state error: ', error.message);
   }

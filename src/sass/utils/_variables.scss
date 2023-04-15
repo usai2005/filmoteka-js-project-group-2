@@ -10,7 +10,7 @@ $colors: (
   'main-bg-color': #F0F0F0,
   'secondary-bg-color': #F7F7F7,
   'modal-grey': #8C8C8C,
-  'spinner-background': #D4D4D4,
+  'spinner-main-color': #BBBBBB,
 );
 @function getColor($key) {
     @return map-get($colors, $key);

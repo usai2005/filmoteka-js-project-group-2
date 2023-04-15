@@ -5,7 +5,7 @@ const dataStorage = {
   queue: [],
 };
 
-refs = {};
+
 let filmId = null;
 
 //Перевірити наявність данних у сховищі

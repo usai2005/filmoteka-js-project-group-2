@@ -24,15 +24,15 @@ async function onOpenModalMovie(e) {
     // add movie id to modalMovie
     refs.modalMovie.dataset.id = filmDetailsById.id;
 
-    renderModal(filmDetailsById);
-
-    // local storage
-    addModalButtonListeners();
+    renderModal(filmDetailsById);   
   }
 
   window.addEventListener('keydown', onEscKeyPress);
 
   refs.modalMovie.classList.add('show-modal');
+
+  // local storage
+  addModalButtonListeners();
 }
 
 function renderModal(movieById) {

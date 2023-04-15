@@ -13,6 +13,10 @@ async function onOpenModalMovie(e) {
     return;
   }
 
+  if (refs.header.classList.contains('is-sticky')) {
+    refs.header.classList.remove('is-sticky');
+  }
+
   const movieId = e.target.closest('.movie-item').dataset.id;
 
   if (currentId !== movieId) {
@@ -25,9 +29,6 @@ async function onOpenModalMovie(e) {
     refs.modalMovie.dataset.id = filmDetailsById.id;
 
     //hide stiky header
-    if (refs.header.classList.contains('is-sticky')) {
-      refs.header.classList.remove('is-sticky');
-    }
 
     renderModal(filmDetailsById);
   }

@@ -46,6 +46,7 @@
   @media screen and (min-width: 768px) {
     max-width: 704px;
     width: 100%;
+    max-height: calc(100vh - 40px);
     height: 552px;
     padding-top: 40px;
     padding-left: 36px;

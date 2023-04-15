@@ -1,11 +1,19 @@
 .search-form {
     position: relative;
+
     margin-top: 8px;
+    @media screen and (max-width: 767px) {
+        width: 100%;
+        max-width: 252px;
+        }
+
     @media screen and (min-width: 768px) {
+        max-width: 165px;
         margin-top: 0;
         margin-right: 4px;
     }
     @media screen and (min-width: 1280px) {
+        max-width: 187px;
         margin-right: 8px;
     }
 
@@ -15,13 +23,17 @@
 
     &__input {
         display: block;
-        width: 252px;
         padding: 10px 14px;
         font-size: 12px;
         line-height: 1.17;
         border: 0;
         border-radius: 100px;
+        transition: all 0.35s ease-out;
 
+        @media screen and (max-width: 767px) {
+            width: 100%;
+            max-width: 252px;
+            }
         @media screen and (min-width: 768px) {
             width: 165px;
             padding: 11px 16px;
@@ -40,21 +52,20 @@
         justify-content: center;
         align-items: center;
         top: 0;
-        left: 218px;
+        right: 0;
         width: 34px;
         height: 34px;
         border: 0;
         border-radius: 100px;
         background-color: transparent;
         cursor: pointer;
+        transition: all 0.35s ease-out;
 
         @media screen and (min-width: 768px) {
-            left: 127px;
             width: 38px;
             height: 38px;
         }
         @media screen and (min-width: 1280px) {
-            left: 145px;
             width: 42px;
             height: 42px;
         }

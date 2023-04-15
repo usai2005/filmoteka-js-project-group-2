@@ -228,7 +228,7 @@
 .modal-movie-button {
   min-width: 118px;
   padding: 10px 6px;
-  border: 1px solid transparent;
+  border: 1px solid getColor('primary-text');
 
   @media screen and (min-width: 768px) {
     min-width: 128px;
@@ -241,18 +241,8 @@
   }
 
   &:first-child {
-    color: getColor('white');
-    background-color: getColor('secondary-text');
-    border-color: getColor('secondary-text');
-
     @media screen and (min-width: 768px) {
       margin-right: 8px;
     }
-  }
-
-  &:last-child {
-    color: getColor('secondary-text');
-    background-color: getColor('white');
-    border-color: getColor('primary-text');
   }
 }

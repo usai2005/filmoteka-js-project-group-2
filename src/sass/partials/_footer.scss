@@ -4,15 +4,18 @@
   align-items: center;
   min-height: 77px;
   background-color: getColor('secondary-bg-color');
-  @media screen and (min-width: 320px) {     
+  @media screen and (max-width: 768px) {     
+    min-height: 79px;      
+  } 
+  @media screen and (max-width: 320px) {     
     min-height: 100px;      
   } 
 }
 
 .footer-container {
   height: auto;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  // padding-top: 20px;
+  // padding-bottom: 20px;
   @media screen and (min-width: 768px) {
     display: flex;
     justify-content: center;
@@ -41,6 +44,7 @@
   font-size: 19px;
   line-height: 16px;
   text-align: center;
+  margin-left: 4px;
 
   @media screen and (min-width: 320px) {    
     font-size: 14px;   
@@ -53,7 +57,7 @@
   &:hover,
   &:focus {
     text-shadow: #6b6f72 1px 0 10px;
-    color: #ff4e08;
+    color: getColor('secondary-text');
   }
 }
 

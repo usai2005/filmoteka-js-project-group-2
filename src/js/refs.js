@@ -14,6 +14,9 @@ const refs = {
   modalMovie: document.querySelector('[data-modal-movie]'),
   modalMovieInf: document.querySelector('[data-modal-movie-inf]'),
   loader: document.querySelector('.preloader'),
+
+  addToWatched:  document.querySelector('#btn-add-to-watched'),
+  addToQueue:  document.querySelector('#btn-add-to-queue'),  
 };
 
 

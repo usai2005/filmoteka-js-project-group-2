@@ -27,7 +27,7 @@ async function onOpenModalMovie(e) {
     renderModal(filmDetailsById);
 
     // local storage
-    // addModalButtonListeners();
+    addModalButtonListeners();
   }
 
   window.addEventListener('keydown', onEscKeyPress);

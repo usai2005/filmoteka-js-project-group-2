@@ -1,11 +1,12 @@
 import refs from './refs.js';
 
-import apiClient from './api-client.js';
+// import apiClient from './api-client.js';
 
 import localStorage from './local-storage.js';
 
 import { appendMovies } from './render-functions.js';
 
+// local storage watched key
 const WATCHED_KEY = 'watched';
 
 refs.watchedBtn.addEventListener('click', markupWatched);
@@ -13,7 +14,7 @@ refs.watchedBtn.addEventListener('click', markupWatched);
 
 // тимчасово такий масив(поки немає нічого від local storage)
 const watchedMovies = [{ movie1 }, { movie2 }, { movie3 }, { movie4 }];
-// const watchedMovies = localStorage.load(watched);
+// const watchedMovies = localStorage.load(WATCHED_KEY);
 
 
 function markupWatched() {

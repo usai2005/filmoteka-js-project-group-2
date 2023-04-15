@@ -2,28 +2,40 @@ import refs from "./refs";
 import { showPopularMovies } from "./render-functions";
 // Вставити iмпорт фунції, що рендерить розмітку з даними від localstorage
 
+let currentPage = '';
 loadHomePage();
+
 
 refs.logo.addEventListener('click', loadHomePage);
 refs.homeBtn.addEventListener('click', loadHomePage);
 refs.myLibraryBtn.addEventListener('click', loadLibraryPage);
 
 export function loadHomePage() {
+    if (currentPage === 'home') {
+        return
+    };
     refs.moviesGallery.innerHTML = '';
     showSearchForm();
     removeFilmStatusFilter();
     makeInactiveLibraryButton();
     makeActiveHomeButton();
     showPopularMovies();
+    currentPage = 'home';
 }
 
 export function loadLibraryPage() {
+    if (currentPage === 'library') {
+        return
+    };
     refs.moviesGallery.innerHTML = '';
     showFilmStatusFilter();
     removeSearchForm();
     makeInactiveHomeButton();
     makeActiveLibraryButton();
+
     // Вставити виклик фунції, що рендерить розмітку з даними від localstorage
+
+    currentPage = 'library';
 }
 
 function showSearchForm() {

@@ -35,8 +35,10 @@
     }
 
     &__btn {
-        display: block;
         position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         top: 0;
         left: 218px;
         width: 34px;
@@ -44,6 +46,7 @@
         border: 0;
         border-radius: 100px;
         background-color: transparent;
+        cursor: pointer;
 
         @media screen and (min-width: 768px) {
             left: 127px;
@@ -55,9 +58,10 @@
             width: 42px;
             height: 42px;
         }
-        
-        
+    }
 
+    &__btn:hover {
+        transform: scale(1.4);
     }
 
     &__icon {

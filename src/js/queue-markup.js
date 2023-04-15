@@ -1,14 +1,19 @@
 import refs from './refs.js';
 
+// import apiClient from './api-client.js';
+
 import localStorage from './local-storage.js';
 
 import { appendMovies } from './render-functions.js';
+
+// local storage queue key
+const QUEUE_KEY = 'queue';
 
 refs.queueBtn.addEventListener('click', markupQuoue);
 
 // тимчасово такий масив(поки немає нічого від local storage)
 const queueMovies = [{ movie5 }, { movie6 }, { movie7 }, { movie8 }];
-// const queueFilms = localStorage.load(queue);
+// const queueFilms = localStorage.load(QUEUE_KEY);
 
   
   function markupQuoue() {

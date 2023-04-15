@@ -1,3 +1,4 @@
+// спінер з бекграундом
 .preloader {
     position: fixed;
     left: 0;
@@ -6,7 +7,7 @@
     height: 100%;
     background-color: getColor('spinner-background');
     z-index: 10;
-    transition: 1000ms all;
+    transition: 250ms linear;
     opacity: 1;
     visibility: visible;
   
@@ -29,6 +30,7 @@
   }
 }
 
+// анимація
   @keyframes spin {
     from {
       transform: translate(-50%, -50%) rotate(0deg);

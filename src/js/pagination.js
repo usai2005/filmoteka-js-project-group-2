@@ -17,7 +17,6 @@ export const pagination = new Pagination(refs.buttonsList, {
 pagination.on('beforeMove', async event => {
   // Get the page number that the user clicked on
   const pageNumber = event.page;
-  console.log('hello');
 
   // Використовую API, щоб отримати фільми для вибраного номера сторінки
   const movies = await apiClient.goToPage(pageNumber);

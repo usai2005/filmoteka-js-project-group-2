@@ -1,6 +1,8 @@
 .footer {
+  position: relative;
   display: flex;
   justify-content: center;
+  z-index: 15;
   align-items: center;
   min-height: 77px;
   background-color: getColor('secondary-bg-color');

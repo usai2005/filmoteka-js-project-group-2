@@ -7,12 +7,12 @@ $colors: (
   'secondary-text': #b92f2c,
   'white': #ffffff,
   'footer-text-color': #545454,
-  'main-bg-color': #f0f0f0,
-  'secondary-bg-color': #f7f7f7,
-  'modal-grey': #8c8c8c,
-  'spinner-background': #d4d4d4,
+  'main-bg-color': #F0F0F0,
+  'secondary-bg-color': #F7F7F7,
+  'modal-grey': #8C8C8C,
+  'spinner-main-color': #BBBBBB,
+  'pagination-btn': #FFD700,
 
-  'pagination-btn': #ffd700,
 );
 @function getColor($key) {
   @return map-get($colors, $key);

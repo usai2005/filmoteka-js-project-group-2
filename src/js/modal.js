@@ -1,5 +1,6 @@
 import refs from './refs.js';
 import api from './api-client.js';
+import { addModalButtonListeners, removeListeners} from './local-storage.js';
 
 refs.openModalMovieEl.addEventListener('click', onOpenModalMovie);
 refs.closeModalMovieBtn.addEventListener('click', onCloseModalMovie);
@@ -20,7 +21,13 @@ async function onOpenModalMovie(e) {
     const filmDetailsById = await api.getMovieById(movieId);
     // console.log('filmDetailsById', filmDetailsById);
 
+    // add movie id to modalMovie
+    refs.modalMovie.dataset.id = filmDetailsById.id;
+
     renderModal(filmDetailsById);
+
+    // local storage
+    // addModalButtonListeners();
   }
 
   window.addEventListener('keydown', onEscKeyPress);
@@ -48,12 +55,16 @@ function renderModal(movieById) {
     <li class="list-modal__item">
       <p class="list-modal__text list-modal__text--first">Vote / Votes</p>
       <p class="list-modal__text list-modal__text--second">
-        <span class="vote vote--inverse">${vote.toFixed(1)}</span><span class="slash-line"> / </span><span class="vote">${votes}</span>
+        <span class="vote vote--inverse">${vote.toFixed(
+          1
+        )}</span><span class="slash-line"> / </span><span class="vote">${votes}</span>
       </p>
     </li>
     <li class="list-modal__item">
       <p class="list-modal__text list-modal__text--first">Popularity</p>
-      <p class="list-modal__text list-modal__text--second">${popularity.toFixed(1)}</p>
+      <p class="list-modal__text list-modal__text--second">${popularity.toFixed(
+        1
+      )}</p>
     </li>
     <li class="list-modal__item">
       <p class="list-modal__text list-modal__text--first">
@@ -73,8 +84,8 @@ function renderModal(movieById) {
     ${about}
   </p>
   <div class="modal__btn-wrapper">
-    <button class="button modal-movie-button button--film-status-filter" id="add-to-watched-btn" type="button" data-watched-id="${id}">add to Watched</button>
-    <button class="button modal-movie-button button--film-status-filter" id="add-to-queue-btn" type="button" data-queue-id="${id}">add to queue</button>
+    <button class="button modal-movie-button button--film-status-filter" id="add-to-watched-btn" type="button">add to Watched</button>
+    <button class="button modal-movie-button button--film-status-filter" id="add-to-queue-btn" type="button">add to queue</button>
   </div>
 </div>`;
 

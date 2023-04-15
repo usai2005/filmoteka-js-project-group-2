@@ -26,17 +26,33 @@ checkLocalStorage();
 
 export function addModalButtonListeners() {
   // Слухачі подій на кнопки
-  refs.addToWatched.addEventListener('click', onAddToWathed);
-  refs.addToQueue.addEventListener('click', onAddToQueue);
+  // refs.addToWatched.addEventListener('click', onAddToWathed);
+  // refs.addToQueue.addEventListener('click', onAddToQueue);
+
+  const addToWatched = document.querySelector('#add-to-watched-btn');
+  console.log(addToWatched);
+
+  const addToQueue = document.querySelector('#add-to-queue-btn');
+  console.log(addToQueue);
+
+  addToWatched.addEventListener('click', onAddToWathed);
+  addToQueue.addEventListener('click', onAddToQueue);
+
   // по кліку на кнопку витянути дата-атрибут з модалки
   filmId = refs.modalMovie.dataset.id;
+  console.log(filmId);
+
   if (isMovieExist(filmId, 'queue')) {
-    refs.addToQueue.textContent = "Remove from Queue";
-    refs.addToQueue.classList.add('added');
+    // refs.addToQueue.textContent = "Remove from Queue";
+    // refs.addToQueue.classList.add('added');
+    addToQueue.textContent = "Remove from Queue";
+    addToQueue.classList.add('added');
   }
   if (isMovieExist(filmId, 'watched')) {
-    refs.addToWatched.textContent = "Remove from Watched";
-    refs.addToWatched.classList.add('added');
+    // refs.addToWatched.textContent = "Remove from Watched";
+    // refs.addToWatched.classList.add('added');
+    addToWatched.textContent = "Remove from Watched";
+    addToWatched.classList.add('added');
   }
 }
 
@@ -46,31 +62,45 @@ function isMovieExist(id, key) {
 }
 
 export function removeListeners() {
-  refs.addToWatched.removeEventListener('click', onAddToWathed);
-  refs.addToQueue.removeEventListener('click', onAddToQueue);
+  const addToWatched = document.querySelector('#add-to-watched-btn');
+  const addToQueue = document.querySelector('#add-to-queue-btn');
+
+  addToWatched.removeEventListener('click', onAddToWathed);
+  addToQueue.removeEventListener('click', onAddToQueue);
+
+  // refs.addToWatched.removeEventListener('click', onAddToWathed);
+  // refs.addToQueue.removeEventListener('click', onAddToQueue);
 }
 
 function onAddToWathed() {
   const film = getFilm(filmId); 
-  refs.addToWatched.classList.toggle('added');
-  if (refs.addToWatched.classList.contains("added")) {
+  // refs.addToWatched.classList.toggle('added');
+
+  const addToWatched = document.querySelector('#add-to-watched-btn');
+  addToWatched.classList.toggle('added');
+
+  if (addToWatched.classList.contains("added")) {
     addMovieToStorage('watched', film);
-    refs.addToWatched.textContent = "Remove from Watched";
+    addToWatched.textContent = "Remove from Watched";
   } else {
     removeMovieFromStorage('watched', filmId);
-    refs.addToWatched.textContent = "Add to Watched";
+    addToWatched.textContent = "Add to Watched";
   }
 }
 
 function onAddToQueue() {
   const film = getFilm(filmId); 
-  refs.addToQueue.classList.toggle('added');
-  if (refs.addToQueue.classList.contains("added")) {
+  // refs.addToQueue.classList.toggle('added');
+
+  const addToQueue = document.querySelector('#add-to-queue-btn');
+  addToQueue.classList.toggle('added');
+
+  if (addToQueue.classList.contains("added")) {
     addMovieToStorage('queue', film);
-    refs.addToQueue.textContent = "Remove from Queue";
+    addToQueue.textContent = "Remove from Queue";
   } else {
     removeMovieFromStorage('queue', filmId);
-    refs.addToQueue.textContent = "Add to Queue";
+    addToQueue.textContent = "Add to Queue";
   }
 }
 

@@ -1,18 +1,27 @@
+.gallery{
+  padding-top: 500px;
+  @media screen and (min-width: 768px) {
+    padding-top: 286px;
+    }
+  @media screen and (min-width: 1280px) {
+    padding-top:380px;
+
+  }
+}
+
 .movies-list {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding-top: 500px;
+
 
   @media screen and (min-width: 768px) {
     flex-direction: row;
     flex-wrap: wrap;
     gap: 32px;
-    padding-top: 286px;
     }
   @media screen and (min-width: 1280px) {
     gap: 32px 16px;
-    padding-top:380px;
 
   }
 }

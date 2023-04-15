@@ -88,34 +88,35 @@
             flex-direction: column;
             align-items: center;
         }
-
         @media screen and (min-width: 768px) {
             position: fixed;
             top:0;
             z-index: 100;
-            justify-content: space-between;
             box-shadow: 0 5px 16px rgba(0, 0, 0, 0.1);
             opacity: 0.9;
-            padding: 8px 0;
             backdrop-filter: blur(10px);
             margin-bottom: 0;
-            height: 90px;
-        
-        animation: slideDown 0.35s ease-out;
+            height: 60px;
+            padding: 0 20px;
+            justify-content: center;
+            animation: slideDown 0.35s ease-out;
+
             & .logo__icon-anchor{
                 display: flex;
                 align-items: center;
                 margin-left: auto;
             }
 
-            height: 80px;
-            padding: 0 20px;
-            justify-content: center;
             & .header__top-thumb{
                 flex-direction: row-reverse;
                 align-items: center;
                 justify-content: start;
             }
+            & .logo{
+                display: none;
+            }
+        } 
+        @media (min-width: 768px) and (max-width: 1279px) {
             & .search-form{
 
                 &:hover, &:focus-within, &:focus{
@@ -136,15 +137,14 @@
                 border-radius: 50%;
                 }
 
-                }
+                
             }
 
-            & .logo{
-                display: none;
-            }
-        } 
-        @media screen and (min-width: 1280) {
-            & .search-form{
+
+        }
+
+        @media screen and (min-width: 1280px) {
+            & .search-form {
                 & .search-form__input{
                     width:42px;
                 } 
@@ -159,29 +159,30 @@
                 & .search-form__input:not(:placeholder-shown){
                         width: 187px;
                         border-radius: 100px;
-                   
                 }
+            }
         }
     }
 
-.logo__icon-anchor{
-    display: none;
+    .logo__icon-anchor{
+        display: none;
 
-    & .logo__icon--scroll{
-        width: 45px;
-        height: 45px;
-        margin: 0;
-        transition: all 0.35s ease-out;
-
-    }
-    &:hover, &:focus {
         & .logo__icon--scroll{
-            transform: scale(1.05);
+            width: 45px;
+            height: 45px;
+            margin: 0;
+            transition: all 0.35s ease-out;
+
+        }
+        &:hover, &:focus {
+            & .logo__icon--scroll{
+                transform: scale(1.05);
+            }
         }
     }
 }
 
-}
+
 
 @keyframes slideDown {
 from {

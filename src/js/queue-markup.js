@@ -17,10 +17,10 @@ const queueMovies = [{ movie5 }, { movie6 }, { movie7 }, { movie8 }];
 
   
   export function markupQuoue() {
-    if (!refs.queueBtn.classList.contains('watched-queue-button--active')) {
-      refs.queueBtn.classList.add('watched-queue-button--active');
+    if (!refs.queueBtn.classList.contains('button--film-status-filter.is-active')) {
+      refs.queueBtn.classList.add('button--film-status-filter.is-active');
       queueRef.disabled = true;
-      refs.watchedBtn.classList.remove('watched-queue-button--active');
+      refs.watchedBtn.classList.remove('button--film-status-filter.is-active');
       refs.watchedBtn.disabled = false;
     }
 

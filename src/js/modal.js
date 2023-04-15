@@ -1,6 +1,6 @@
 import refs from './refs.js';
 import api from './api-client.js';
-import { addModalButtonListeners, removeListeners} from './local-storage.js';
+import { addModalButtonListeners, removeListeners } from './local-storage.js';
 
 refs.openModalMovieEl.addEventListener('click', onOpenModalMovie);
 refs.closeModalMovieBtn.addEventListener('click', onCloseModalMovie);
@@ -24,7 +24,12 @@ async function onOpenModalMovie(e) {
     // add movie id to modalMovie
     refs.modalMovie.dataset.id = filmDetailsById.id;
 
-    renderModal(filmDetailsById);   
+    //hide stiky header
+    if (refs.header.classList.contains('is-sticky')) {
+      refs.header.classList.remove('is-sticky');
+    }
+
+    renderModal(filmDetailsById);
   }
 
   window.addEventListener('keydown', onEscKeyPress);
@@ -96,6 +101,11 @@ function onCloseModalMovie() {
   window.removeEventListener('keydown', onEscKeyPress);
 
   refs.modalMovie.classList.remove('show-modal');
+
+  //show stiky header
+  if (!refs.header.classList.contains('is-sticky')) {
+    refs.header.classList.add('is-sticky');
+  }
 }
 
 function onBackdropClick(e) {

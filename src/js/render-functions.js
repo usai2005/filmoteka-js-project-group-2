@@ -3,7 +3,7 @@ import { pagination } from './pagination.js';
 import refs from './refs.js';
 import {showSpinnerIfPageLoads} from './loader.js';
 
-async function showPopularMovies() {
+export async function showPopularMovies() {
   
   const movies = await apiClient.getPopularMovie();
 

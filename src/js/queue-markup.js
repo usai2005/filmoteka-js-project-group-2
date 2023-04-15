@@ -34,7 +34,8 @@ const queueMovies = [{ movie5 }, { movie6 }, { movie7 }, { movie8 }];
     if (!queueMovies.length) {
       refs.moviesGallery.innerHTML = `
               <li class="empty">
-                <img src="${empty}" alt="There's nothing to see here" />
+              <img class="empty-library-image" src="https://gifdb.com/gif/popcorn-brown-claymation-0sz0dt7bhumu7ifv.html?embed=true" alt="Empty gallery.Add something)" />
+              <p class="empty-library-notification">No movies here. Please add something to queue.</p>
               </li>`;
                // should add styles for .empty!!!
       return;

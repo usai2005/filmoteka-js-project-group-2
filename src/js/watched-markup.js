@@ -36,7 +36,8 @@ function markupWatched() {
   if (!watchedMovies?.length) {
     refs.moviesGallery.innerHTML = `
               <li class="empty">
-                <img src="${empty}" alt="Empty gallery.Add something)" />
+                <img class="empty-library-image" src="https://gifdb.com/gif/popcorn-brown-claymation-0sz0dt7bhumu7ifv.html?embed=true" alt="Empty gallery.Add something)" />
+                <p class="empty-library-notification">No movies here. Please mark something like watched.</p>
               </li>`;
     return;
   }

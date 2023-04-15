@@ -1,6 +1,8 @@
 import refs from "./refs";
 import { showPopularMovies } from "./render-functions";
-// Вставити iмпорт фунції, що рендерить розмітку з даними від localstorage
+
+// Імпорт функції, що рендерить Queue(чергу, так вирішили на міті) фільмів після кліку по кнопці Library
+import markupQuoue from "./queue-markup"
 
 let currentPage = '';
 loadHomePage();
@@ -33,7 +35,8 @@ export function loadLibraryPage() {
     makeInactiveHomeButton();
     makeActiveLibraryButton();
 
-    // Вставити виклик фунції, що рендерить розмітку з даними від localstorage
+    // виклик фунції, що рендерить розмітку Queue з  даними від localstorage
+    markupQuoue()
 
     currentPage = 'library';
 }

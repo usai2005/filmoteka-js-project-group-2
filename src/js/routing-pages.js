@@ -2,7 +2,7 @@ import refs from "./refs";
 import { showPopularMovies } from "./render-functions";
 
 // Імпорт функції, що рендерить Queue(чергу, так вирішили на міті) фільмів після кліку по кнопці Library
-import markupQuoue from "./queue-markup"
+import { markupQuoue } from "./queue-markup"
 
 let currentPage = '';
 loadHomePage();

@@ -11,16 +11,16 @@ const WATCHED_KEY = 'watched';
 
 refs.watchedBtn.addEventListener('click', markupWatched);
 
-
 // тимчасово такий масив(поки немає нічого від local storage)
-const watchedMovies = [{ movie1 }, { movie2 }, { movie3 }, { movie4 }];
+// const watchedMovies = [{ movie1 }, { movie2 }, { movie3 }, { movie4 }];
 // const watchedMovies = localStorage.load(WATCHED_KEY);
-
 
 function markupWatched() {
   const watchedMovies = localStorage.load(WATCHED_KEY);
 
-  if (!refs.watchedBtn.classList.contains('button--film-status-filter.is-active')) {
+  if (
+    !refs.watchedBtn.classList.contains('button--film-status-filter.is-active')
+  ) {
     refs.watchedBtn.classList.add('button--film-status-filter.is-active');
 
     console.log(1);

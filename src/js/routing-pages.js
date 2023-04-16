@@ -1,6 +1,6 @@
 import refs from "./refs";
 import { showPopularMovies } from "./render-functions";
-import { markupQuoue } from "./queue-markup";
+import { loadLibrary } from "./routing-library-pages";
 import { clearSearchInput } from "./search-by-query";
 
 let currentPage = '';
@@ -30,19 +30,11 @@ export function loadLibraryPage() {
     if (currentPage === 'library') {
         return
     };
-    refs.moviesGallery.innerHTML = '';
     showFilmStatusFilter();
     removeSearchForm();
     makeInactiveHomeButton();
     makeActiveLibraryButton();
-
-    // Тимчасовий try catch поки в повній мірі не запрацює localhost render
-    try {
-        markupQuoue();
-    }
-    catch {
-        console.log('localhost render error');
-    }
+    loadLibrary();
     updateCurrentPage('library');
 }
 

@@ -9,9 +9,7 @@ import { appendMovies } from './render-functions.js';
 // local storage watched key
 const WATCHED_KEY = 'watched';
 
-refs.watchedBtn.addEventListener('click', markupWatched);
-
-async function markupWatched() {
+export async function markupWatched() {
   const watchedMoviesIds = loadFilms(WATCHED_KEY);
 
   let watchedMovies = [];

@@ -1,8 +1,7 @@
 import refs from "./refs";
 import { showPopularMovies } from "./render-functions";
-
-// Імпорт функції, що рендерить Queue(чергу, так вирішили на міті) фільмів після кліку по кнопці Library
 import { markupQuoue } from "./queue-markup";
+import { clearSearchInput } from "./search-by-query";
 
 let currentPage = '';
 loadHomePage();
@@ -13,6 +12,7 @@ refs.homeBtn.addEventListener('click', loadHomePage);
 refs.myLibraryBtn.addEventListener('click', loadLibraryPage);
 
 export function loadHomePage() {
+    clearSearchInput();
     if (currentPage === 'home') {
         return
     };
@@ -26,6 +26,7 @@ export function loadHomePage() {
 }
 
 export function loadLibraryPage() {
+    clearSearchInput();
     if (currentPage === 'library') {
         return
     };

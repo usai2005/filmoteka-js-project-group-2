@@ -94,7 +94,7 @@ function getFilm(id) {
   return films.find(obj => obj.id == id) || { id };
 }
 
-export function loadFilms(key = '') {
+export function loadFilms(key) {
   try {
     const serializedState = JSON.parse(localStorage.getItem(key)) || [];
     const films = serializedState || [];
@@ -109,7 +109,7 @@ export function loadFilms(key = '') {
 function addMovieToStorage(key, film) {
   try {
     const serializedState = JSON.parse(localStorage.getItem(key)) || [];
-    serializedState.push({ id: film.id });
+    serializedState.push(film);
     localStorage.setItem(key, JSON.stringify(serializedState));
   } catch (error) {
     console.error('Set state error: ', error.message);

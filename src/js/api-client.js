@@ -164,7 +164,10 @@ class ApiClient {
         : DEFAULT_IMG, // постер, або дефолтна картинка за відсутності постера
       genres: this.matchMovieGenres(movie.genres), // жанри
       about: movie.overview,
-      id: movie.id, // ID не рендериться, використовується для отримання деталей по фільму/трейлеру,
+      id: movie.id,
+      year: movie.release_date
+        ? movie.release_date.slice(0, 4)
+        : movie?.first_air_date?.slice(0, 4) || '', // ID не рендериться, використовується для отримання деталей по фільму/трейлеру,
     };
   };
 
@@ -202,7 +205,7 @@ class ApiClient {
 }
 const api = new ApiClient(); //експортуємо екземпляр
 
-//приклад функції імітація запиту.  (у фінальному варіанті видалити)
+// приклад функції імітація запиту.  (у фінальному варіанті видалити)
 
 // const getData = async () => {
 //   const listOfPopularFilms = await api.getPopularMovie(); // популярні фільми

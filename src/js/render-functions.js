@@ -24,7 +24,18 @@ export function appendMovies(movies) {
   
   refs.moviesGallery.innerHTML = '';
 
-  if (movies.length === 0) return;
+    if (movies.length === 0 || movies === undefined) {
+
+      refs.moviesGallery.insertAdjacentHTML('afterend',
+        `<div class="main-gallery-oops">
+          <div>
+            <img src="https://cdn.icon-icons.com/icons2/576/PNG/512/icon_imovie_icon-icons.com_54880.png">
+          </div>
+            <p><strong><span>Oops!</span> Something went wrong</strong></p>
+        </div>`);
+      return;
+
+    }
 
   const markup = movies
     .map(({ title, imgUrl, genres, year, id }) => {

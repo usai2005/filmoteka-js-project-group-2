@@ -43,12 +43,21 @@ export function appendMovies(movies) {
         title.length <= 30 ? title : `${title.slice(0, 30)} ...`;
       return `
           <li class="movie-item list" data-id="${id}">
+          <a class="card__link" id = "${id}" href="#">
           <img src="${imgUrl}" alt="${title}" class="movie-item__image">
-          <div class="movie-info-wrapper">
-          <p class="movie-item__title">${shortTitle}</p>
-          <p class="movie-info">${genres.slice(0, 2).join(', ')} | ${year}</p>
-          </div>
-          </li>`;
+// <<<<<<< Updated upstream
+//           <div class="movie-info-wrapper">
+//           <p class="movie-item__title">${shortTitle}</p>
+//           <p class="movie-info">${genres.slice(0, 2).join(', ')} | ${year}</p>
+//           </div>
+//           </li>`;
+// ======
+//           <p class="movie-item__title">${title}</p>
+//           <p class="movie-info">${genres} | ${year}</p>
+//           </a>
+//   </li>
+//   `;
+// >>>>>>> Stashed changes
     })
     .join('');
   refs.moviesGallery.insertAdjacentHTML('beforeend', markup);

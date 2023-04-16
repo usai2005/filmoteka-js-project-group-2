@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
-  let gototop = document.querySelector('.ufive_uptop');
-  let body = document.documentElement;
+  const gototop = document.querySelector('.ufive_uptop');
+  const body = document.documentElement;
+  const logo = document.querySelector('.logo__icon--scroll');
 
   window.addEventListener('scroll', check);
 
@@ -16,7 +17,13 @@ document.addEventListener('DOMContentLoaded', function () {
       draw: progress => (body.scrollTop = body.scrollTop * (1 - progress / 7)),
     });
   };
-
+  logo.onclick = function () {
+    animate({
+      duration: 700,
+      timing: gogototopEaseOut,
+      draw: progress => (body.scrollTop = body.scrollTop * (1 - progress / 7)),
+    });
+  };
   let circ = timeFraction =>
     1 -
     Math.sin(Math.acos(timeFraction > 1 ? (timeFraction = 1) : timeFraction));

@@ -11,7 +11,7 @@
 
   background-color: $backdrop;
 
-  z-index: 1;
+  z-index: 999;
   overflow-y: scroll;
 
   transition: opacity 400ms cubic-bezier(0.4, 0, 0.2, 1), visibility 400ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -186,6 +186,14 @@
 
   &--second {
     max-width: 132px;
+
+    @media screen and (min-width: 768px) {
+      max-width: 156px;
+    }
+
+    @media screen and (min-width: 1280px) {
+      max-width: 283px;
+    }
   }
 }
 
@@ -247,6 +255,7 @@
 
   @media screen and (min-width: 1280px) {
     min-width: 150px;
+    max-width: 160px;
     padding: 14px 24px;
   }
 
@@ -255,4 +264,10 @@
       margin-right: 8px;
     }
   }
+}
+
+.modal-movie-button.added {
+  color: getColor('white');
+    background-color: getColor('secondary-text');
+    border-color: getColor('secondary-text');
 }

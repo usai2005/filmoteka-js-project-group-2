@@ -4,14 +4,16 @@ $backdrop: rgba(0, 0, 0, 0.2);
 
 $colors: (
   'primary-text': #000000,
-  'secondary-text': #B92F2C,
+  'secondary-text': #b92f2c,
   'white': #ffffff,
   'footer-text-color': #545454,
   'main-bg-color': #F0F0F0,
   'secondary-bg-color': #F7F7F7,
   'modal-grey': #8C8C8C,
-  'spinner-background': #D4D4D4,
+  'spinner-main-color': #BBBBBB,
+  'pagination-btn': #FFD700,
+
 );
 @function getColor($key) {
-    @return map-get($colors, $key);
-  }
+  @return map-get($colors, $key);
+}

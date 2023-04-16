@@ -9,10 +9,9 @@ import { appendMovies } from './render-functions.js';
 // local storage queue key
 const QUEUE_KEY = 'queue';
 
-refs.queueBtn.addEventListener('click', markupQuoue);
 
 
-export async function markupQuoue() {
+export async function markupQueue() {
 
   const queueMoviesIds = loadFilms(QUEUE_KEY);
 

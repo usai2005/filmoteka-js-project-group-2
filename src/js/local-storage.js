@@ -94,7 +94,7 @@ function getFilm(id) {
   return films.find(obj => obj.id == id) || { id };
 }
 
-export function loadFilms(key = '') {
+export function loadFilms(key) {
   try {
     const serializedState = JSON.parse(localStorage.getItem(key)) || [];
     const films = serializedState || [];

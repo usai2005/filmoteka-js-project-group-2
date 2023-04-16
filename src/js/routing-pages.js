@@ -22,7 +22,7 @@ export function loadHomePage() {
     makeInactiveLibraryButton();
     makeActiveHomeButton();
     showPopularMovies();
-    currentPage = 'home';
+    updateCurrentPage('home');
 }
 
 export function loadLibraryPage() {
@@ -42,7 +42,7 @@ export function loadLibraryPage() {
     catch {
         console.log('localhost render error');
     }
-    currentPage = 'library';
+    updateCurrentPage('library');
 }
 
 function showSearchForm() {
@@ -99,4 +99,8 @@ function makeInactiveLibraryButton() {
         return
     };
     refs.myLibraryBtn.classList.remove('is-active');
+}
+
+export function updateCurrentPage(pageName) {
+    currentPage = pageName;
 }

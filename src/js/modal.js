@@ -13,6 +13,7 @@ async function onOpenModalMovie(e) {
     return;
   }
 
+  //hide stiky header
   if (refs.header.classList.contains('is-sticky')) {
     refs.header.classList.remove('is-sticky');
   }
@@ -23,12 +24,9 @@ async function onOpenModalMovie(e) {
     currentId = movieId;
 
     const filmDetailsById = await api.getMovieById(movieId);
-    // console.log('filmDetailsById', filmDetailsById);
 
     // add movie id to modalMovie
     refs.modalMovie.dataset.id = filmDetailsById.id;
-
-    //hide stiky header
 
     renderModal(filmDetailsById);
   }
@@ -44,9 +42,7 @@ async function onOpenModalMovie(e) {
 function renderModal(movieById) {
   refs.modalMovieInf.innerHTML = '';
 
-  // console.log('movies', movieById);
-
-  const { title, popularity, vote, votes, imgUrl, genres, about, id } =
+  const { title, titleOriginal, popularity, vote, votes, imgUrl, genres, about} =
     movieById;
 
   const markup = `<div class="modal__image-wrapper"><img
@@ -77,7 +73,7 @@ function renderModal(movieById) {
         Original Title
       </p>
       <p class="list-modal__text list-modal__text--second">
-        ${title}
+        ${titleOriginal}
       </p>
     </li>
     <li class="list-modal__item">

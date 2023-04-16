@@ -31,13 +31,13 @@ export function appendMovies(movies) {
       const shortTitle =
         title.length <= 30 ? title : `${title.slice(0, 30)} ...`;
       return `<li class="movie-item list" data-id="${id}">
-          <a class="card__link link" id = "${id}" href="#">
+          
           <img src="${imgUrl}" alt="${title}" class="movie-item__image">
           <div class="movie-info-wrapper">
            <p class="movie-item__title">${shortTitle}</p>
            <p class="movie-info">${genres.slice(0, 2).join(', ')} | ${year}</p>
           </div>
-          </a>       
+                 
           </li>`;
     })
     .join('');

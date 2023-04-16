@@ -41,12 +41,12 @@ function renderModal(movieById) {
   const { title, popularity, vote, votes, imgUrl, genres, about, id } =
     movieById;
 
-  const markup = `<div class="modal__image-wrapper"><img
+  const markup = `<div class="modal__image-wrapper"><a class="card__link link" id = "${id}" href="#"><img
   class="img modal__image"
   src="${imgUrl}"
   alt="${title}"
   loading="lazy"
-/>
+/></a>
 
 <button class='btn-trailer' type='button' aria-label='play movie trailer'>
       <svg class='btn-trailer__svg' width='68' height='48' viewBox='0 0 68 48'>

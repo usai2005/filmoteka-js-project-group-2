@@ -8,6 +8,7 @@ import { updateCurrentPage } from './routing-pages';
 let searchRequest = '';
 
 refs.searchForm.addEventListener('submit', formSubmitHandler);
+refs.searchInput.addEventListener('focus', clearSearchInput);
 
 function formSubmitHandler(event) {
     event.preventDefault();
@@ -30,4 +31,8 @@ async function showMoviesByQuery (query) {
     }
     pagination.reset(ApiClient.totalMovies);
     appendMovies(moviesByQueryRequest);
+}
+
+export function clearSearchInput() {
+    refs.searchForm.searchQuery.value ='';
 }

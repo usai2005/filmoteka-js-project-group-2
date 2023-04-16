@@ -1,5 +1,6 @@
 const refs = {
   searchForm: document.querySelector('.search-form'),
+  searchInput: document.querySelector('.search-form__input'),
   formFailureMessage: document.querySelector('.search-form__message'),
   homeBtn: document.querySelector('#home-btn'),
   myLibraryBtn: document.querySelector('#library-btn'),

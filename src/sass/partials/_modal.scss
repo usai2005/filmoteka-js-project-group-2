@@ -205,10 +205,16 @@
 
 .modal__text {
   margin-top: 8px;
-  max-height: 220px;
-  overflow-y: auto;
-
   line-height: calc(20 / 12);
+
+  @media screen and (min-width: 768px) {
+    max-height: 180px;
+    overflow-y: auto;
+  }
+
+  @media screen and (min-width: 1280px) {
+    max-height: 175px;
+  }
 }
 
 .vote {
@@ -235,6 +241,8 @@
 }
 
 .slash-line {
+  margin-left: 3px;
+  margin-right: 3px;
   color: getColor('modal-grey');
 }
 

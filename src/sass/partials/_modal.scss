@@ -208,7 +208,7 @@
   line-height: calc(20 / 12);
 
   @media screen and (min-width: 768px) {
-    max-height: 180px;
+    max-height: 170px;
     overflow-y: auto;
   }
 
@@ -252,19 +252,20 @@
 }
 
 .modal-movie-button {
-  min-width: 118px;
-  padding: 10px 6px;
+  width: 118px;
+  height: 34px;
+  padding: 1px 2px;
   border: 1px solid getColor('primary-text');
 
   @media screen and (min-width: 768px) {
-    min-width: 128px;
-    padding: 12px 12px;
+    width: 128px;
+    height: 38px;
+    padding: 1px 6px;
   }
 
   @media screen and (min-width: 1280px) {
-    min-width: 150px;
-    max-width: 160px;
-    padding: 14px 24px;
+    width: 134px;
+    height: 42px;
   }
 
   &:first-child {

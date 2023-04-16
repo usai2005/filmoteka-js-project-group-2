@@ -155,7 +155,8 @@ class ApiClient {
   // функція обробник повертає об"єкт з детальною інформацією по фільму, в інших файлах не використовується
   getMoviesDetails = movie => {
     return {
-      title: movie.original_title, //назва
+      title: movie.title ? movie.title : movie.name, //назва
+      titleOriginal: movie.original_title, // оригінальна назва
       popularity: movie.popularity, //популярність
       vote: movie.vote_average, // середній рейтинг
       votes: movie.vote_count, // кількість голосів

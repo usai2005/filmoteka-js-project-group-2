@@ -30,17 +30,15 @@ export function appendMovies(movies) {
     .map(({ title, imgUrl, genres, year, id }) => {
       const shortTitle =
         title.length <= 30 ? title : `${title.slice(0, 30)} ...`;
-      return `
-          <li class="movie-item list" data-id="${id}">
-          <a class="card__link" id = "${id}" href="#">
+      return `<li class="movie-item list" data-id="${id}">
+          <a class="card__link link" id = "${id}" href="#">
           <img src="${imgUrl}" alt="${title}" class="movie-item__image">
-
           <div class="movie-info-wrapper">
            <p class="movie-item__title">${shortTitle}</p>
            <p class="movie-info">${genres.slice(0, 2).join(', ')} | ${year}</p>
-           </div>         
-          </a>
-   </li>`;
+          </div>
+          </a>       
+          </li>`;
     })
     .join('');
   refs.moviesGallery.insertAdjacentHTML('beforeend', markup);

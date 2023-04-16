@@ -1,7 +1,7 @@
 import refs from './refs.js';
 import axios from 'axios';
 
-import * as basicLightbox from 'basiclightbox'
+// import * as basicLightbox from 'basiclightbox'
 
 
 let trailer;

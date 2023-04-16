@@ -17,7 +17,7 @@
   margin-bottom: 40px;
 
   @media screen and (min-width: 768px) {
-     margin-bottom: 60px;   
+    margin-bottom: 60px;
   }
 }
 
@@ -30,7 +30,7 @@
   @media (min-width: 768px) {
     display: grid;
     grid-template-columns: repeat(2, 336px);
-    grid-template-rows: repeat(10, 498px);
+    grid-template-rows: repeat(auto-fit, 498px);
     grid-column-gap: 32px;
     grid-row-gap: 32px;
   }
@@ -38,7 +38,7 @@
   @media (min-width: 1280px) {
     display: grid;
     grid-template-columns: repeat(3, 395px);
-    grid-template-rows: repeat(7, 640px);
+    grid-template-rows: repeat(auto-fit, 640px);
     grid-column-gap: 16px;
     grid-row-gap: 32px;
   }

@@ -15,7 +15,7 @@ export function appendMovies(movies) {
   refs.loader.classList.remove('preloader__loader--page-loaded');
 
   showSpinnerIfPageLoads();
-
+  
   setTimeout(() => {
     if (movies.length === 0 || movies === undefined) {
       refs.moviesGallery.insertAdjacentHTML(
@@ -40,11 +40,30 @@ export function appendMovies(movies) {
         return `<li class="movie-item list" data-id="${id}">
           
           <img src="${imgUrl}" alt="${title}" class="movie-item__image">
+
+}
+
+  const markup = movies
+    .map(({ title, w300imgUrl, w500imgUrl, genres, year, id }) => {
+
+
+      const moveiGenres = typeof genres === 'string'? genres : genres.join(', ') 
+
+      const shortTitle =
+        title.length <= 30 ? title : `${title.slice(0, 30)} ...`;
+      return `<li class="movie-item list" data-id="${id}">
+          <img
+            srcset="${w300imgUrl} 300w, ${w500imgUrl} 500w"
+            sizes="(max-width: 767px) 300px, (min-width: 768px) 500px"
+            src="${w500imgUrl}"
+            alt="${title}"
+            class="movie-item__image"
+            loading = "lazy"
+          />
           <div class="movie-info-wrapper">
            <p class="movie-item__title">${shortTitle}</p>
            <p class="movie-info">${moveiGenres} | ${year}</p>
           </div>
-                 
           </li>`;
       })
       .join('');

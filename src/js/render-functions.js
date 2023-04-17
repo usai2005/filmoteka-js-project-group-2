@@ -62,5 +62,3 @@ if (movies.length === 0 || movies === undefined) {
 
 }, 300);
 };
-
-showPopularMovies();

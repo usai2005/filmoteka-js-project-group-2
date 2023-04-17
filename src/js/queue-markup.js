@@ -30,15 +30,16 @@ export async function markupQueue() {
 
   appendMovies(queueMovies);
 
-    //   placeholder (заглушка)
-  setTimeout(placeholderIfQueueEmpty, 500)
+      // placeholder (заглушка)
+  //     setTimeout(placeholderQueue,1000)
 
-  function placeholderIfEmpty(){
-    if (!queueMovies.length) {
-      refs.moviesGallery.innerHTML = `<li class="empty">
-    <img class="empty-library-image" src="https://cdn.icon-icons.com/icons2/576/PNG/512/icon_imovie_icon-icons.com_54880.png" alt="Empty gallery.Add something)" />
-    <p class="empty-library-notification">No movies here. Please add something to queue.</p>
-    </li>`
-    }
-}
+  //     function placeholderQueue(){
+  //   if (!queueMovies.length) {
+  //     refs.moviesGallery.innerHTML = ''
+  //     refs.moviesGallery.innerHTML = `<li class="empty">
+  //   <img class="empty-library-image" src="https://cdn.icon-icons.com/icons2/576/PNG/512/icon_imovie_icon-icons.com_54880.png" alt="Empty gallery.Add something)" />
+  //   <p class="empty-library-notification">No movies here. Please add something to queue.</p>
+  //   </li>`
+  //   }
+  // }
 }

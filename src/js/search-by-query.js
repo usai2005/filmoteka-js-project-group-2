@@ -16,6 +16,7 @@ function formSubmitHandler(event) {
     searchRequest = refs.searchForm.searchQuery.value.toLowerCase().trim();
 
     if (searchRequest === '') {
+        document.getElementById('pagination').classList.add('visually-hidden');
         showFailureMessage();
         return
     };
@@ -25,11 +26,24 @@ function formSubmitHandler(event) {
 
 async function showMoviesByQuery (query) {
     const moviesByQueryRequest = await ApiClient.getMovieByQuery(query);
+    // console.log(ApiClient.totalMovies, ApiClient.totalPages)
+    document.getElementById('pagination').classList.remove('visually-hidden')
+
+    // if (ApiClient.totalPages <= 1) {
+    //     console.log('hi')
+    //     document.getElementById('pagination').classList.add('visually-hidden')
+    // }
+
     if (moviesByQueryRequest.length === 0) {
         showFailureMessage();
         return;
     }
+
     pagination.reset(ApiClient.totalMovies);
+    
+    
+
+
     appendMovies(moviesByQueryRequest);
 }
 

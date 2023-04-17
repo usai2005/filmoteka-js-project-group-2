@@ -87,8 +87,6 @@ async function onAddToQueue() {
   }
 }
 
-// Завантажити фільм з таким же айді з лoкального сховища
-
 async function getMovieDetails(id) {
   try {
     const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=ae38d5c8baf36c9c4ca14e9456f3c0fd`);
@@ -105,15 +103,18 @@ async function getMovieDetails(id) {
   }
 }
 
+// Завантажити фільм з таким же айді з лoкального сховища
+
 export function loadFilms(key) {
   try {
     const serializedState = JSON.parse(localStorage.getItem(key)) || [];
-    const films = serializedState || [];
-    return films;
+    const filmIds = serializedState.map(film => ({ id: film.id }));
+    return filmIds;
   } catch (error) {
     console.error('Get state error: ', error.message);
   }
 }
+
 
 // Додати новий елемент в локальне сховище
 

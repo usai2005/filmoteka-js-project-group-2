@@ -30,7 +30,7 @@ export async function markupQueue() {
 
   appendMovies(queueMovies);
 
-      // placeholder (заглушка)
+  // placeholder (заглушка)
   //     setTimeout(placeholderQueue,1000)
 
   //     function placeholderQueue(){
@@ -43,3 +43,4 @@ export async function markupQueue() {
   //   }
   // }
 }
+

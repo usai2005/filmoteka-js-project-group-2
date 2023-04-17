@@ -1,11 +1,12 @@
 import refs from './refs.js';
 import api from './api-client.js';
 import { addModalButtonListeners, removeListeners } from './local-storage.js';
-import { key, trailer, trailerIfraim } from './trailer.js';
+
 import onTrailerClick from './trailer';
 import * as basicLightbox from 'basiclightbox';
 
 onTrailerClick();
+  
 
 refs.openModalMovieEl.addEventListener('click', onOpenModalMovie);
 refs.closeModalMovieBtn.addEventListener('click', onCloseModalMovie);

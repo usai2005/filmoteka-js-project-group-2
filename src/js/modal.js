@@ -39,6 +39,7 @@ async function onOpenModalMovie(e) {
   window.addEventListener('keydown', onEscKeyPress);
 
   refs.modalMovie.classList.add('show-modal');
+  document.querySelector('body').classList.add('modal-open'); //Віка
 
   // local storage
   addModalButtonListeners();
@@ -70,19 +71,23 @@ function renderModal(movieById) {
     popularity,
     vote,
     votes,
-    imgUrl,
+    w300imgUrl,
+    w500imgUrl,
     genres,
     about,
   } = movieById;
 
-  const markup = `<div class="modal__image-wrapper"><img  
-  class="img modal__image"
-  src="${imgUrl}"
-  alt="${title}"
-  loading="lazy"
-/>
-
-<button class='btn-trailer' type='button' aria-label='play movie trailer'>
+  const markup = `<div class="modal__image-wrapper">
+  <img
+    srcset="${w300imgUrl} 300w, ${w500imgUrl} 500w"
+    sizes="(max-width: 767px) 300px, (min-width: 768px) 500px"
+    src="${w500imgUrl}"
+    alt="${title}"
+    class="img modal__image"
+    loading = "lazy"
+  />
+  
+  <button class='btn-trailer' type='button' aria-label='play movie trailer'>
       <svg class='btn-trailer__svg' width='68' height='48' viewBox='0 0 68 48'>
         <path
           class='btn-trailer__path'
@@ -91,7 +96,7 @@ function renderModal(movieById) {
         ></path>
         <path d='M 45,24 27,14 27,34' fill='#fff'></path>
       </svg>
-    </button>
+  </button>
 
 
 </div>
@@ -142,9 +147,13 @@ function onCloseModalMovie() {
   window.removeEventListener('keydown', onEscKeyPress);
 
   refs.modalMovie.classList.remove('show-modal');
+  document.querySelector('body').classList.remove('modal-open');
 
   //show stiky header
-  if (!refs.header.classList.contains('is-sticky')) {
+  if (
+    !refs.header.classList.contains('is-sticky') &&
+    window.pageYOffset > 400
+  ) {
     refs.header.classList.add('is-sticky');
   }
 }
@@ -158,6 +167,7 @@ function onBackdropClick(e) {
 function onEscKeyPress(e) {
   const isEscKey = e.code === 'Escape';
   const trailerBox = document.querySelector('.basicLightbox');
+  document.querySelector('body').classList.remove('modal-open');
 
   if (isEscKey && !trailerBox) {
     onCloseModalMovie();

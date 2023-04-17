@@ -1,5 +1,6 @@
 const refs = {
-  searchForm: document.querySelector('form'),
+  searchForm: document.querySelector('.search-form'),
+  searchInput: document.querySelector('.search-form__input'),
   formFailureMessage: document.querySelector('.search-form__message'),
   homeBtn: document.querySelector('#home-btn'),
   myLibraryBtn: document.querySelector('#library-btn'),
@@ -14,10 +15,10 @@ const refs = {
   modalMovie: document.querySelector('[data-modal-movie]'),
   modalMovieInf: document.querySelector('[data-modal-movie-inf]'),
   loader: document.querySelector('.preloader'),
-
-  addToWatched:  document.querySelector('#btn-add-to-watched'),
-  addToQueue:  document.querySelector('#btn-add-to-queue'),  
+  addToWatched: document.querySelector('#add-to-watched-btn'),
+  addToQueue: document.querySelector('#add-to-queue-btn'),
+  header: document.querySelector('.header'),
+  footerLink: document.querySelector('.footer-link'),
 };
-
 
 export default refs;

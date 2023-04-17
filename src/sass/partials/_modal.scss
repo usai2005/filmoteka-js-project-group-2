@@ -11,7 +11,7 @@
 
   background-color: $backdrop;
 
-  z-index: 1;
+  z-index: 999;
   overflow-y: scroll;
 
   transition: opacity 400ms cubic-bezier(0.4, 0, 0.2, 1), visibility 400ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -46,6 +46,7 @@
   @media screen and (min-width: 768px) {
     max-width: 704px;
     width: 100%;
+    max-height: calc(100vh - 40px);
     height: 552px;
     padding-top: 40px;
     padding-left: 36px;
@@ -185,6 +186,14 @@
 
   &--second {
     max-width: 132px;
+
+    @media screen and (min-width: 768px) {
+      max-width: 156px;
+    }
+
+    @media screen and (min-width: 1280px) {
+      max-width: 283px;
+    }
   }
 }
 
@@ -196,10 +205,16 @@
 
 .modal__text {
   margin-top: 8px;
-  max-height: 220px;
-  overflow-y: auto;
-
   line-height: calc(20 / 12);
+
+  @media screen and (min-width: 768px) {
+    max-height: 170px;
+    overflow-y: auto;
+  }
+
+  @media screen and (min-width: 1280px) {
+    max-height: 175px;
+  }
 }
 
 .vote {
@@ -226,6 +241,8 @@
 }
 
 .slash-line {
+  margin-left: 3px;
+  margin-right: 3px;
   color: getColor('modal-grey');
 }
 
@@ -235,18 +252,20 @@
 }
 
 .modal-movie-button {
-  min-width: 118px;
-  padding: 10px 6px;
+  width: 118px;
+  height: 34px;
+  padding: 1px 2px;
   border: 1px solid getColor('primary-text');
 
   @media screen and (min-width: 768px) {
-    min-width: 128px;
-    padding: 12px 12px;
+    width: 128px;
+    height: 38px;
+    padding: 1px 6px;
   }
 
   @media screen and (min-width: 1280px) {
-    min-width: 150px;
-    padding: 14px 24px;
+    width: 134px;
+    height: 42px;
   }
 
   &:first-child {
@@ -254,4 +273,10 @@
       margin-right: 8px;
     }
   }
+}
+
+.modal-movie-button.added {
+  color: getColor('white');
+    background-color: getColor('secondary-text');
+    border-color: getColor('secondary-text');
 }

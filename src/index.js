@@ -9,3 +9,4 @@ import './js/queue-markup';
 import './js/trailer';
 import './js/backtop';
 import './js/header.scroll';
+import './js/search-by-query';

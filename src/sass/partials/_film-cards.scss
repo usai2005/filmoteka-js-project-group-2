@@ -1,66 +1,171 @@
-.movies-list {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+:root {
+  --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  --animation-duration: 250ms;
+}
+
+.gallery {
   padding-top: 500px;
-
   @media screen and (min-width: 768px) {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 32px;
     padding-top: 286px;
+  }
+  @media screen and (min-width: 1280px) {
+    padding-top: 380px;
+  }
+}
+
+.gallery-wrapper {
+  margin-bottom: 40px;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 60px;
+  }
+}
+
+.movies-list {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(240px, 336px));
+  grid-template-rows: repeat(auto-fit, 445px);
+  grid-row-gap: 20px;
+
+  @media (min-width: 768px) {
+    display: grid;
+    grid-template-columns: repeat(2, 336px);
+    grid-template-rows: repeat(auto-fit, 498px);
+    grid-column-gap: 32px;
+    grid-row-gap: 32px;
+  }
+
+  @media (min-width: 1280px) {
+    display: grid;
+    grid-template-columns: repeat(3, 395px);
+    grid-template-rows: repeat(auto-fit, 640px);
+    grid-column-gap: 16px;
+    grid-row-gap: 32px;
+  }
+
+  & .movie-item {
+    cursor: pointer;
+    transition: all var(--animation-duration) var(--timing-function);
+    // border: 1px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    &:hover {
+      transform: scale(1.02);
+      box-shadow: 0 2 10px rgba(0, 0, 0, 0.4);
+
+      border-radius: 2px;
     }
-  @media screen and (min-width: 1280px) {
-    gap: 32px 16px;
-    padding-top:380px;
+  }
 
+  .movie-info-wrapper {
+    padding-top: 10px;
+
+    @media (min-width: 768px) {
+      padding-top: 8px;
+    }
+    @media (min-width: 1280px) {
+      padding-top: 12px;
+    }
+
+    & .movie-item__title {
+      font-style: normal;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 1.2;
+      text-transform: uppercase;
+      margin-left: 5px;
+
+      @media (min-width: 768px) {
+        line-height: 1.3;
+      }
+      @media (min-width: 1280px) {
+        font-size: 20px;
+        line-height: 1.2;
+      }
+    }
+    & .movie-info {
+      font-style: normal;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 1.33;
+      color: getColor('secondary-text');
+      margin-left: 5px;
+
+      @media (min-width: 1280px) {
+        font-size: 20px;
+        line-height: 1.2;
+      }
+    }
+  }
+
+  & img {
+    display: block;
+    width: 100%;
+    height: 402px;
+    object-fit: cover;
+    border-radius: 5px;
+
+    @media (min-width: 768px) {
+      height: 455px;
+    }
+    @media (min-width: 1280px) {
+      height: 574px;
+    }
   }
 }
-.movie-item {
-  width: 280px;
-  cursor: pointer;
+
+.main-gallery-oops {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  padding-top: 10px;
+  padding-bottom: 20px;
+
+  color: #000000b7;
+  font-family: sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.19;
+  letter-spacing: 0.03em;
+  text-align: center;
 
   @media screen and (min-width: 768px) {
-    width: 336px;
+    padding-top: 60px;
+    padding-bottom: 80px;
+
+    font-size: 24px;
   }
+
   @media screen and (min-width: 1280px) {
-    width: 394px;
+    padding-top: 80px;
+    padding-bottom: 120px;
+
+    font-size: 30px;
   }
 }
 
-.movie-item__image {
-  border-radius: 5px;
-}
-
-.movie-item__title {
-  text-transform: uppercase;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: calc(14 / 12);
-  margin: 10px 0 6px 0;
+.main-gallery-oops img {
+  width: 140px;
 
   @media screen and (min-width: 768px) {
-    line-height: calc(16 / 12);
-    margin-top: 8px;
+    width: 270px;
   }
+
   @media screen and (min-width: 1280px) {
-    font-size: 20px;
-    line-height: calc(24 / 20);
-    margin-top: 12px;
+    width: 320px;
   }
 }
 
-.movie-info {
-  font-weight: 500;
-  font-size: 12px;
-  line-height: calc(14 / 12);
-  color: getColor('secondary-text');
+.main-gallery-oops span {
+  font-style: italic;
+  letter-spacing: 0.03em;
 
   @media screen and (min-width: 768px) {
-    line-height: calc(16 / 12);
+    letter-spacing: 0.1em;
   }
+
   @media screen and (min-width: 1280px) {
-    font-size: 20px;
-    line-height: calc(24 / 20);
+    letter-spacing: 0.2em;
   }
 }

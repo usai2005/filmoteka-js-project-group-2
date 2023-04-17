@@ -75,7 +75,7 @@ function renderModal(movieById) {
     about,
   } = movieById;
 
-  const markup = `<div class="modal__image-wrapper"><img
+  const markup = `<div class="modal__image-wrapper"><img  
   class="img modal__image"
   src="${imgUrl}"
   alt="${title}"

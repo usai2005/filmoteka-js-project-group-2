@@ -15,11 +15,11 @@ export function appendMovies(movies) {
   refs.loader.classList.remove('preloader__loader--page-loaded');
 
   showSpinnerIfPageLoads();
-  
+
   setTimeout(() => {
     if (movies.length === 0 || movies === undefined) {
       refs.moviesGallery.insertAdjacentHTML(
-        'afterend',
+        'beforeend',
         `<div class="main-gallery-oops">
       <div>
         <img src="https://cdn.icon-icons.com/icons2/576/PNG/512/icon_imovie_icon-icons.com_54880.png">
@@ -31,27 +31,14 @@ export function appendMovies(movies) {
     }
 
     const markup = movies
-      .map(({ title, imgUrl, genres, year, id }) => {
+      .map(({ title, w300imgUrl, w500imgUrl, genres, year, id }) => {
         const moveiGenres =
-          typeof genres === 'string' ? genres : genres.slice(0, 2).join(', ');
+          typeof genres === 'string' ? genres : genres.join(', ');
 
         const shortTitle =
           title.length <= 30 ? title : `${title.slice(0, 30)} ...`;
+
         return `<li class="movie-item list" data-id="${id}">
-          
-          <img src="${imgUrl}" alt="${title}" class="movie-item__image">
-
-}
-
-  const markup = movies
-    .map(({ title, w300imgUrl, w500imgUrl, genres, year, id }) => {
-
-
-      const moveiGenres = typeof genres === 'string'? genres : genres.join(', ') 
-
-      const shortTitle =
-        title.length <= 30 ? title : `${title.slice(0, 30)} ...`;
-      return `<li class="movie-item list" data-id="${id}">
           <img
             srcset="${w300imgUrl} 300w, ${w500imgUrl} 500w"
             sizes="(max-width: 767px) 300px, (min-width: 768px) 500px"

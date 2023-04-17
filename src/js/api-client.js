@@ -154,6 +154,7 @@ class ApiClient {
 
   // функція обробник повертає об"єкт з детальною інформацією по фільму, в інших файлах не використовується
   getMoviesDetails = movie => {
+    let genres = movie.genres.map(elem => elem.name);
     return {
       title: movie.title ? movie.title : movie.name, //назва
       titleOriginal: movie.original_title, // оригінальна назва
@@ -163,7 +164,7 @@ class ApiClient {
       imgUrl: movie.poster_path
         ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
         : DEFAULT_IMG, // постер, або дефолтна картинка за відсутності постера
-      genres: this.matchMovieGenres(movie.genres), // жанри
+      genres: genres.length > 0 ? genres.join(', ') : 'Other', // жанри
       about: movie.overview,
       id: movie.id,
       year: movie.release_date

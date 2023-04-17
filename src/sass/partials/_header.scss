@@ -5,7 +5,7 @@
 .header {
     position: absolute;
     z-index: 1;
- height: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     top:20px;
@@ -22,6 +22,9 @@
     background-size: cover;
     background-position: center;
     border-radius: 10px;
+
+    transition: transform 0.35s linear;
+
 
     @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
         background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 65.37%), url(../images/header-image-sm-2x.jpg);
@@ -79,7 +82,9 @@
     }
 
     &.is-sticky {
-    
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+
        & .search-form__btn{
         right: 0;
        }
@@ -100,6 +105,11 @@
             padding: 0 20px;
             justify-content: center;
             animation: slideDown 0.35s ease-out;
+
+            & .film-status-filter{
+                top: -6;
+                right: 100px;
+            }
 
             & .logo__icon-anchor{
                 display: flex;
@@ -144,6 +154,10 @@
         }
 
         @media screen and (min-width: 1280px) {
+            & .film-status-filter{
+                top: -7;
+            }
+
             & .search-form {
                 & .search-form__input{
                     width:42px;
@@ -180,6 +194,14 @@
             }
         }
     }
+
+    .slide-up{
+
+        @media screen and (min-width:768px) {
+            animation: slideUp 0.35s ease-out;
+        }
+            
+    }
 }
 
 
@@ -192,3 +214,12 @@ to {
     transform: translateY(0);
 }
 }
+
+@keyframes slideUp {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-100%);
+    }
+    }

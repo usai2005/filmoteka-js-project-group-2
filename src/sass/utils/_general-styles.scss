@@ -4,9 +4,9 @@ body {
     font-size: 20px;
     // background-color: getColor('bg-color');
     // letter-spacing: 0.04em;
-    // &.modal-open {
-    //   overflow: hidden;
-    // }
+    &.modal-open {
+      overflow: hidden;
+    }
   }
 
   h1,

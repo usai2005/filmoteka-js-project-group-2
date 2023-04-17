@@ -103,7 +103,7 @@ async function getMovieDetails(id) {
   }
 }
 
-// Завантажити фільм з таким же айді з лoкального сховища
+// Завантажити фільм з лoкального сховища
 
 export function loadFilms(key) {
   try {

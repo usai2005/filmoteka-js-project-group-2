@@ -108,7 +108,8 @@ async function getMovieDetails(id) {
 export function loadFilms(key) {
   try {
     const serializedState = JSON.parse(localStorage.getItem(key)) || [];
-    return serializedState;
+    const filmIds = serializedState.map(film => ({ id: film.id }));
+    return filmIds;
   } catch (error) {
     console.error('Get state error: ', error.message);
   }

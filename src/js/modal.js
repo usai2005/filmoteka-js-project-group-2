@@ -39,6 +39,7 @@ async function onOpenModalMovie(e) {
   window.addEventListener('keydown', onEscKeyPress);
 
   refs.modalMovie.classList.add('show-modal');
+  document.querySelector('body').classList.add('modal-open'); //Віка
 
   // local storage
   addModalButtonListeners();
@@ -142,6 +143,7 @@ function onCloseModalMovie() {
   window.removeEventListener('keydown', onEscKeyPress);
 
   refs.modalMovie.classList.remove('show-modal');
+  document.querySelector('body').classList.remove('modal-open');
 
   //show stiky header
   if (
@@ -161,6 +163,7 @@ function onBackdropClick(e) {
 function onEscKeyPress(e) {
   const isEscKey = e.code === 'Escape';
   const trailerBox = document.querySelector('.basicLightbox');
+  document.querySelector('body').classList.remove('modal-open');
 
   if (isEscKey && !trailerBox) {
     onCloseModalMovie();

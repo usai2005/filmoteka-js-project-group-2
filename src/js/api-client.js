@@ -13,6 +13,7 @@ class ApiClient {
     this.totalMovies = 0;
     this.genres = [];
     this.currentMoviesList = [];
+    this.config = null;
   }
 
   //додаткова функція що при первинному запиті та отриманні популярних фільмів робить запит на сервер і отримує масив всіх жанрів та їх id
@@ -22,6 +23,14 @@ class ApiClient {
     );
 
     this.genres = response.data.genres;
+  }
+
+  //додаткова функція для отримання конфігурації зображень
+  async getImgConfig() {
+    const response = await axios.get(
+      `${BASE_URL}/configuration?api_key=ae38d5c8baf36c9c4ca14e9456f3c0fd`
+    );
+    this.config = response.data.images;
   }
 
   // підставляє до знайдених id жанрів його назву, повертає масив жанрів(обʼєднаний в рядок) або "Other", використовується при запиті інформації про фільми
@@ -121,7 +130,10 @@ class ApiClient {
     return moviesArr.map(movie => {
       const movieInfo = {
         title: movie.title ? movie.title : movie.name, //назва
-        imgUrl: movie.poster_path
+        w300imgUrl: movie.poster_path
+          ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
+          : DEFAULT_IMG, // постер, або дефолтна картинка за відсутності постера
+        w500imgUrl: movie.poster_path
           ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
           : DEFAULT_IMG, // постер, або дефолтна картинка за відсутності постера
         genres: this.matchMovieGenres(movie.genre_ids), // жанри
@@ -161,7 +173,10 @@ class ApiClient {
       popularity: movie.popularity, //популярність
       vote: movie.vote_average, // середній рейтинг
       votes: movie.vote_count, // кількість голосів
-      imgUrl: movie.poster_path
+      w300imgUrl: movie.poster_path
+        ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
+        : DEFAULT_IMG, // постер, або дефолтна картинка за відсутності постера
+      w500imgUrl: movie.poster_path
         ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
         : DEFAULT_IMG, // постер, або дефолтна картинка за відсутності постера
       genres: genres.length > 0 ? genres.join(', ') : 'Other', // жанри
@@ -215,21 +230,24 @@ const api = new ApiClient(); //експортуємо екземпляр
 
 // приклад функції імітація запиту.  (у фінальному варіанті видалити)
 
-// const getData = async () => {
-//   const listOfPopularFilms = await api.getPopularMovie(); // популярні фільми
-//   console.log('listOfPopularFilms', listOfPopularFilms);
+const getData = async () => {
+  //   const listOfPopularFilms = await api.getPopularMovie(); // популярні фільми
+  //   console.log('listOfPopularFilms', listOfPopularFilms);
 
-// const filmByQuery = await api.getMovieByQuery('cat'); // пошук за ім"ям
-// console.log('filmByQuery', filmByQuery);
+  // const filmByQuery = await api.getMovieByQuery('cat'); // пошук за ім"ям
+  // console.log('filmByQuery', filmByQuery);
 
-// const filmDetailsById = await api.getMovieById('1027159'); // пошук за іd
-// console.log('filmDetailsById', filmDetailsById);
+  // const filmDetailsById = await api.getMovieById('1027159'); // пошук за іd
+  // console.log('filmDetailsById', filmDetailsById);
 
-// const trailerInfo = await api.getMoviesTrailer('1027159'); // пошук трейлеру
-// console.log('trailerInfo', trailerInfo);
+  // const trailerInfo = await api.getMoviesTrailer('1027159'); // пошук трейлеру
+  // console.log('trailerInfo', trailerInfo);
 
-//   console.log(api.currentMoviesList);
-// };
-// setTimeout(getData, 200);
+  //   console.log(api.currentMoviesList);
+
+  const config = await api.getImgConfig(); // пошук трейлеру
+  console.log('config', api.config);
+};
+setTimeout(getData, 200);
 
 export default api;

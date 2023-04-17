@@ -144,7 +144,10 @@ function onCloseModalMovie() {
   refs.modalMovie.classList.remove('show-modal');
 
   //show stiky header
-  if (!refs.header.classList.contains('is-sticky')) {
+  if (
+    !refs.header.classList.contains('is-sticky') &&
+    window.pageYOffset > 400
+  ) {
     refs.header.classList.add('is-sticky');
   }
 }

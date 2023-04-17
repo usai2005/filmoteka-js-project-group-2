@@ -190,10 +190,16 @@ class ApiClient {
           const trailerObj = result.find(({ name }) =>
             name.toLowerCase().includes('trailer')
           );
+          // if (trailerObj) {
+          //   return `https://www.youtube.com/watch?v=${trailerObj.key}`; //якщо є трейлер, то повертає рядок з адресою трейлера
+          // } else {
+          //   return `https://www.youtube.com/watch?v=${result[0].key}`; //якщо тільки тизер, то відповідно адресу тизера
+          // }
+
           if (trailerObj) {
-            return `https://www.youtube.com/watch?v=${trailerObj.key}`; //якщо є трейлер, то повертає рядок з адресою трейлера
+            return trailerObj.key; //якщо є трейлер, то повертає рядок з адресою трейлера
           } else {
-            return `https://www.youtube.com/watch?v=${result[0].key}`; //якщо тільки тизер, то відповідно адресу тизера
+            return result[0].key; //якщо тільки тизер, то відповідно адресу тизера
           }
         }
 

@@ -1,9 +1,9 @@
 import refs from './refs.js';
 import api from './api-client.js';
 import { addModalButtonListeners, removeListeners } from './local-storage.js';
-
+import { key, trailer, trailerIfraim } from './trailer.js';
 import onTrailerClick from './trailer';
-
+import * as basicLightbox from 'basiclightbox';
 
 onTrailerClick();
 
@@ -42,20 +42,45 @@ async function onOpenModalMovie(e) {
 
   // local storage
   addModalButtonListeners();
+
+  // create video player
+  const trailer = basicLightbox.create(`
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/${key}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  `);
+
+  document.querySelector('.img.modal__image').onclick = () => {
+    console.log(key);
+    trailer.show();
+  };
+
+  window.addEventListener('keydown', e => {
+    if (e.code === 'Escape') {
+      trailer.close();
+      // window.removeEventListener('keydown', trailer.close());
+    }
+  });
 }
 
 function renderModal(movieById) {
   refs.modalMovieInf.innerHTML = '';
 
-  const { title, titleOriginal, popularity, vote, votes, imgUrl, genres, about} =
-    movieById;
+  const {
+    title,
+    titleOriginal,
+    popularity,
+    vote,
+    votes,
+    imgUrl,
+    genres,
+    about,
+  } = movieById;
 
-  const markup = `<div class="modal__image-wrapper"><a class="card__link link" id = "${id}" href="#"><img
+  const markup = `<div class="modal__image-wrapper"><img  
   class="img modal__image"
   src="${imgUrl}"
   alt="${title}"
   loading="lazy"
-/></a>
+/>
 
 <button class='btn-trailer' type='button' aria-label='play movie trailer'>
       <svg class='btn-trailer__svg' width='68' height='48' viewBox='0 0 68 48'>

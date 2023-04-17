@@ -1,8 +1,9 @@
 import refs from './refs.js';
 import api from './api-client.js';
-
+import { addModalButtonListeners, removeListeners } from './local-storage.js';
+import { key, trailer, trailerIfraim } from './trailer.js';
 import onTrailerClick from './trailer';
-
+import * as basicLightbox from 'basiclightbox';
 
 onTrailerClick();
 
@@ -17,13 +18,20 @@ async function onOpenModalMovie(e) {
     return;
   }
 
+  //hide stiky header
+  if (refs.header.classList.contains('is-sticky')) {
+    refs.header.classList.remove('is-sticky');
+  }
+
   const movieId = e.target.closest('.movie-item').dataset.id;
 
   if (currentId !== movieId) {
     currentId = movieId;
 
     const filmDetailsById = await api.getMovieById(movieId);
-    // console.log('filmDetailsById', filmDetailsById);
+
+    // add movie id to modalMovie
+    refs.modalMovie.dataset.id = filmDetailsById.id;
 
     renderModal(filmDetailsById);
   }
@@ -31,22 +39,48 @@ async function onOpenModalMovie(e) {
   window.addEventListener('keydown', onEscKeyPress);
 
   refs.modalMovie.classList.add('show-modal');
+
+  // local storage
+  addModalButtonListeners();
+
+  // create video player
+  const trailer = basicLightbox.create(`
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/${key}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  `);
+
+  document.querySelector('.img.modal__image').onclick = () => {
+    console.log(key);
+    trailer.show();
+  };
+
+  window.addEventListener('keydown', e => {
+    if (e.code === 'Escape') {
+      trailer.close();
+      // window.removeEventListener('keydown', trailer.close());
+    }
+  });
 }
 
 function renderModal(movieById) {
   refs.modalMovieInf.innerHTML = '';
 
-  // console.log('movies', movieById);
+  const {
+    title,
+    titleOriginal,
+    popularity,
+    vote,
+    votes,
+    imgUrl,
+    genres,
+    about,
+  } = movieById;
 
-  const { title, popularity, vote, votes, imgUrl, genres, about, id } =
-    movieById;
-
-  const markup = `<div class="modal__image-wrapper"><a class="card__link link" id = "${id}" href="#"><img
+  const markup = `<div class="modal__image-wrapper"><img
   class="img modal__image"
   src="${imgUrl}"
   alt="${title}"
   loading="lazy"
-/></a>
+/>
 
 <button class='btn-trailer' type='button' aria-label='play movie trailer'>
       <svg class='btn-trailer__svg' width='68' height='48' viewBox='0 0 68 48'>
@@ -67,19 +101,23 @@ function renderModal(movieById) {
     <li class="list-modal__item">
       <p class="list-modal__text list-modal__text--first">Vote / Votes</p>
       <p class="list-modal__text list-modal__text--second">
-        <span class="vote vote--inverse">${vote.toFixed(1)}</span><span class="slash-line"> / </span><span class="vote">${votes}</span>
+        <span class="vote vote--inverse">${vote.toFixed(
+          1
+        )}</span><span class="slash-line"> / </span><span class="vote">${votes}</span>
       </p>
     </li>
     <li class="list-modal__item">
       <p class="list-modal__text list-modal__text--first">Popularity</p>
-      <p class="list-modal__text list-modal__text--second">${popularity.toFixed(1)}</p>
+      <p class="list-modal__text list-modal__text--second">${popularity.toFixed(
+        1
+      )}</p>
     </li>
     <li class="list-modal__item">
       <p class="list-modal__text list-modal__text--first">
         Original Title
       </p>
       <p class="list-modal__text list-modal__text--second">
-        ${title}
+        ${titleOriginal}
       </p>
     </li>
     <li class="list-modal__item">
@@ -92,8 +130,8 @@ function renderModal(movieById) {
     ${about}
   </p>
   <div class="modal__btn-wrapper">
-    <button class="button modal-movie-button button--film-status-filter" id="add-to-watched-btn" type="button" data-watched-id="${id}">add to Watched</button>
-    <button class="button modal-movie-button button--film-status-filter" id="add-to-queue-btn" type="button" data-queue-id="${id}">add to queue</button>
+    <button class="button modal-movie-button button--film-status-filter" id="add-to-watched-btn" type="button">add to Watched</button>
+    <button class="button modal-movie-button button--film-status-filter" id="add-to-queue-btn" type="button">add to queue</button>
   </div>
 </div>`;
 
@@ -104,6 +142,11 @@ function onCloseModalMovie() {
   window.removeEventListener('keydown', onEscKeyPress);
 
   refs.modalMovie.classList.remove('show-modal');
+
+  //show stiky header
+  if (!refs.header.classList.contains('is-sticky')) {
+    refs.header.classList.add('is-sticky');
+  }
 }
 
 function onBackdropClick(e) {

@@ -155,7 +155,8 @@ class ApiClient {
   // функція обробник повертає об"єкт з детальною інформацією по фільму, в інших файлах не використовується
   getMoviesDetails = movie => {
     return {
-      title: movie.original_title, //назва
+      title: movie.title ? movie.title : movie.name, //назва
+      titleOriginal: movie.original_title, // оригінальна назва
       popularity: movie.popularity, //популярність
       vote: movie.vote_average, // середній рейтинг
       votes: movie.vote_count, // кількість голосів
@@ -164,7 +165,10 @@ class ApiClient {
         : DEFAULT_IMG, // постер, або дефолтна картинка за відсутності постера
       genres: this.matchMovieGenres(movie.genres), // жанри
       about: movie.overview,
-      id: movie.id, // ID не рендериться, використовується для отримання деталей по фільму/трейлеру,
+      id: movie.id,
+      year: movie.release_date
+        ? movie.release_date.slice(0, 4)
+        : movie?.first_air_date?.slice(0, 4) || '', // ID не рендериться, використовується для отримання деталей по фільму/трейлеру,
     };
   };
 
@@ -186,10 +190,16 @@ class ApiClient {
           const trailerObj = result.find(({ name }) =>
             name.toLowerCase().includes('trailer')
           );
+          // if (trailerObj) {
+          //   return `https://www.youtube.com/watch?v=${trailerObj.key}`; //якщо є трейлер, то повертає рядок з адресою трейлера
+          // } else {
+          //   return `https://www.youtube.com/watch?v=${result[0].key}`; //якщо тільки тизер, то відповідно адресу тизера
+          // }
+
           if (trailerObj) {
-            return `https://www.youtube.com/watch?v=${trailerObj.key}`; //якщо є трейлер, то повертає рядок з адресою трейлера
+            return trailerObj.key; //якщо є трейлер, то повертає рядок з адресою трейлера
           } else {
-            return `https://www.youtube.com/watch?v=${result[0].key}`; //якщо тільки тизер, то відповідно адресу тизера
+            return result[0].key; //якщо тільки тизер, то відповідно адресу тизера
           }
         }
 
@@ -202,7 +212,7 @@ class ApiClient {
 }
 const api = new ApiClient(); //експортуємо екземпляр
 
-//приклад функції імітація запиту.  (у фінальному варіанті видалити)
+// приклад функції імітація запиту.  (у фінальному варіанті видалити)
 
 // const getData = async () => {
 //   const listOfPopularFilms = await api.getPopularMovie(); // популярні фільми

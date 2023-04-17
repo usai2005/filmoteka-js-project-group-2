@@ -103,13 +103,12 @@ async function getMovieDetails(id) {
   }
 }
 
-// Завантажити фільм з таким же айді з лoкального сховища
+// Завантажити фільм з лoкального сховища
 
 export function loadFilms(key) {
   try {
     const serializedState = JSON.parse(localStorage.getItem(key)) || [];
-    const filmIds = serializedState.map(film => ({ id: film.id }));
-    return filmIds;
+    return serializedState;
   } catch (error) {
     console.error('Get state error: ', error.message);
   }

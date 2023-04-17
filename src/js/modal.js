@@ -157,7 +157,9 @@ function onBackdropClick(e) {
 
 function onEscKeyPress(e) {
   const isEscKey = e.code === 'Escape';
-  if (isEscKey) {
+  const trailerBox = document.querySelector('.basicLightbox');
+
+  if (isEscKey && !trailerBox) {
     onCloseModalMovie();
   }
 }

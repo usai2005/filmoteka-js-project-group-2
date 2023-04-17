@@ -11,11 +11,12 @@ export function loadLibrary() {
     loadQueuePage();
 }
 
-function loadWatchedPage() {
-    if (currentLibraryPage === 'watched') {
-        return
-    };
+function loadWatchedPage() { 
+    // if (currentLibraryPage === 'watched') {
+    //     return
+    // };
     refs.moviesGallery.innerHTML = '';
+    refs.galleryOps.innerHTML = '';
     makeInactiveQueueButton();
     makeActiveWatchedButton();
     //-------------------------------------Тимчасовий try catch поки в повній мірі не запрацює markupWatched
@@ -29,9 +30,9 @@ function loadWatchedPage() {
 }
 
 function loadQueuePage() {
-    if (currentLibraryPage === 'queue') {
-        return
-    };
+    // if (currentLibraryPage === 'queue') {
+    //     return
+    // };
     refs.moviesGallery.innerHTML = '';
     makeInactiveWatchedButton();
     makeActiveQueueButton();

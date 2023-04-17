@@ -57,14 +57,32 @@ export function removeListeners() {
 
 async function onAddToWatched() {
   const addToWatched = document.querySelector('#add-to-watched-btn');
+  // const addToQueue = document.querySelector('#add-to-queue-btn');
   const filmId = document.querySelector('.backdrop').dataset.id;
   const film = await getMovieDetails(filmId);
 
   addToWatched.classList.toggle('added');
 
+  // if (addToQueue.classList.contains("added")) {
+  //   addToQueue.classList.remove('added');
+  //   removeMovieFromStorage('queue', filmId);
+  //   addToQueue.textContent = "Add to Queue";
+  // }
+
   if (addToWatched.classList.contains("added")) {
     addMovieToStorage('watched', film);
     addToWatched.textContent = "Remove from Watched";
+    // addToWatched.textContent = "Added to watched";
+    // addToWatched.disabled = true;
+    // addToQueue.disabled = true;
+
+    // function btnChangeText() {
+    //     addToWatched.disabled = false;
+    //     addToQueue.disabled = false;
+    //     addToWatched.textContent = "Remove from Watched";
+    //   };
+    // setTimeout(btnChangeText, 1000);
+
   } else {
     removeMovieFromStorage('watched', filmId);
     addToWatched.textContent = "Add to Watched";
@@ -72,15 +90,33 @@ async function onAddToWatched() {
 }
 
 async function onAddToQueue() {
+  // const addToWatched = document.querySelector('#add-to-watched-btn');
   const addToQueue = document.querySelector('#add-to-queue-btn');
   const filmId = document.querySelector('.backdrop').dataset.id;
   const film = await getMovieDetails(filmId);
 
   addToQueue.classList.toggle('added');
 
+  // if (addToWatched.classList.contains("added")) {
+  //   addToWatched.classList.remove('added');
+  //   removeMovieFromStorage('watched', filmId);
+  //   addToWatched.textContent = "Add to Watched";
+  // }
+
   if (addToQueue.classList.contains("added")) {
     addMovieToStorage('queue', film);
     addToQueue.textContent = "Remove from Queue";
+    // addToQueue.textContent = "Added to Queue";
+    // addToQueue.disabled = true;
+    // addToWatched.disabled = true;
+
+  //   function btnChangeText() {
+  //     addToQueue.disabled = false;
+  //     addToWatched.disabled = false;
+  //     addToQueue.textContent = "Remove from Queue";
+  //   };
+  // setTimeout(btnChangeText, 1000);
+
   } else {
     removeMovieFromStorage('queue', filmId);
     addToQueue.textContent = "Add to Queue";

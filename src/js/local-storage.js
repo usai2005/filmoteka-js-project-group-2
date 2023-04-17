@@ -55,10 +55,10 @@ export function removeListeners() {
   addToQueue.removeEventListener('click', onAddToQueue);
 }
 
-function onAddToWatched() {
+async function onAddToWatched() {
   const addToWatched = document.querySelector('#add-to-watched-btn');
   const filmId = document.querySelector('.backdrop').dataset.id;
-  const film = getFilm(filmId); 
+  const film = await getMovieDetails(filmId);
 
   addToWatched.classList.toggle('added');
 
@@ -71,10 +71,10 @@ function onAddToWatched() {
   }
 }
 
-function onAddToQueue() {
+async function onAddToQueue() {
   const addToQueue = document.querySelector('#add-to-queue-btn');
   const filmId = document.querySelector('.backdrop').dataset.id;
-  const film = getFilm(filmId); 
+  const film = await getMovieDetails(filmId);
 
   addToQueue.classList.toggle('added');
 
@@ -89,9 +89,20 @@ function onAddToQueue() {
 
 // Завантажити фільм з таким же айді з лoкального сховища
 
-function getFilm(id) {
-  const films = loadFilms();
-  return films.find(obj => obj.id == id) || { id };
+async function getMovieDetails(id) {
+  try {
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=ae38d5c8baf36c9c4ca14e9456f3c0fd`);
+    const data = await response.json();
+    const film = { 
+      id: data.id, 
+      title: data.title, 
+      poster_path: data.poster_path, 
+      release_date: data.release_date 
+    };
+    return film;
+  } catch (error) {
+    console.error('Get movie details error: ', error.message);
+  }
 }
 
 export function loadFilms(key) {

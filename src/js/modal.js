@@ -1,12 +1,11 @@
 import refs from './refs.js';
 import api from './api-client.js';
 import { addModalButtonListeners, removeListeners } from './local-storage.js';
-
+import { key } from './trailer.js';
 import onTrailerClick from './trailer';
 import * as basicLightbox from 'basiclightbox';
 
 onTrailerClick();
-  
 
 refs.openModalMovieEl.addEventListener('click', onOpenModalMovie);
 refs.closeModalMovieBtn.addEventListener('click', onCloseModalMovie);
@@ -40,7 +39,7 @@ async function onOpenModalMovie(e) {
   window.addEventListener('keydown', onEscKeyPress);
 
   refs.modalMovie.classList.add('show-modal');
-  document.querySelector('body').classList.add('modal-open'); //Віка
+
   // local storage
   addModalButtonListeners();
 
@@ -143,7 +142,6 @@ function onCloseModalMovie() {
   window.removeEventListener('keydown', onEscKeyPress);
 
   refs.modalMovie.classList.remove('show-modal');
-  document.querySelector('body').classList.remove('modal-open');
 
   //show stiky header
   if (!refs.header.classList.contains('is-sticky')) {
@@ -160,7 +158,6 @@ function onBackdropClick(e) {
 function onEscKeyPress(e) {
   const isEscKey = e.code === 'Escape';
   const trailerBox = document.querySelector('.basicLightbox');
-  document.querySelector('body').classList.remove('modal-open');
 
   if (isEscKey && !trailerBox) {
     onCloseModalMovie();

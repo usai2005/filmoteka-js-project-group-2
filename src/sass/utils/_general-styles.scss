@@ -31,7 +31,7 @@ body {
     padding-left: 20px;
     padding-right: 20px;
   
-    min-width: 260px;
+    min-width: 320px;
   
     @media screen and (min-width: 320px) {
       width: 320px;
@@ -69,8 +69,8 @@ body {
   
   .visually-hidden {
     position: absolute;
-    width: 1px;
-    height: 1px;
+    width: 0;
+    height: 0;
     margin: -1px;
     border: 0;
     padding: 0;

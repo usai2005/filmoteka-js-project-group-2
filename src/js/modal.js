@@ -1,17 +1,17 @@
 import refs from './refs.js';
 import api from './api-client.js';
 import { addModalButtonListeners, removeListeners } from './local-storage.js';
-import { key } from './trailer.js';
-import onTrailerClick from './trailer';
+// import { key, watchTrailer } from './trailer.js';
+// import onTrailerClick from './trailer';
 import * as basicLightbox from 'basiclightbox';
 
-onTrailerClick();
+// onTrailerClick();
 
 refs.openModalMovieEl.addEventListener('click', onOpenModalMovie);
 refs.closeModalMovieBtn.addEventListener('click', onCloseModalMovie);
 refs.modalMovie.addEventListener('click', onBackdropClick);
 
-let currentId = null;
+export let currentId = null;
 
 async function onOpenModalMovie(e) {
   if (!e.target.closest('.movie-item')) {
@@ -20,16 +20,17 @@ async function onOpenModalMovie(e) {
 
   //hide stiky header
   if (refs.header.classList.contains('is-sticky')) {
-    refs.header.classList.remove('is-sticky');
+    refs.header.classList.remove('slide-down');
   }
 
   const movieId = e.target.closest('.movie-item').dataset.id;
-
+  let trailerKey = '';
   if (currentId !== movieId) {
     currentId = movieId;
+    console.log(currentId);
 
     const filmDetailsById = await api.getMovieById(movieId);
-
+    trailerKey = await api.getMoviesTrailer(movieId);
     // add movie id to modalMovie
     refs.modalMovie.dataset.id = filmDetailsById.id;
 
@@ -39,24 +40,25 @@ async function onOpenModalMovie(e) {
   window.addEventListener('keydown', onEscKeyPress);
 
   refs.modalMovie.classList.add('show-modal');
+  document.querySelector('body').classList.add('modal-open'); //Віка
 
   // local storage
   addModalButtonListeners();
 
   // create video player
+
   const trailer = basicLightbox.create(`
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/${key}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/${trailerKey}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
   `);
 
   document.querySelector('.img.modal__image').onclick = () => {
-    console.log(key);
+    console.log(trailerKey);
     trailer.show();
   };
 
   window.addEventListener('keydown', e => {
     if (e.code === 'Escape') {
       trailer.close();
-      // window.removeEventListener('keydown', trailer.close());
     }
   });
 }
@@ -70,19 +72,23 @@ function renderModal(movieById) {
     popularity,
     vote,
     votes,
-    imgUrl,
+    w300imgUrl,
+    w500imgUrl,
     genres,
     about,
   } = movieById;
 
-  const markup = `<div class="modal__image-wrapper"><img  
-  class="img modal__image"
-  src="${imgUrl}"
-  alt="${title}"
-  loading="lazy"
-/>
-
-<button class='btn-trailer' type='button' aria-label='play movie trailer'>
+  const markup = `<div class="modal__image-wrapper">
+  <img
+    srcset="${w300imgUrl} 300w, ${w500imgUrl} 500w"
+    sizes="(max-width: 767px) 300px, (min-width: 768px) 500px"
+    src="${w500imgUrl}"
+    alt="${title}"
+    class="img modal__image"
+    loading = "lazy"
+  />
+  
+  <button class='btn-trailer' type='button' aria-label='play movie trailer'>
       <svg class='btn-trailer__svg' width='68' height='48' viewBox='0 0 68 48'>
         <path
           class='btn-trailer__path'
@@ -91,7 +97,7 @@ function renderModal(movieById) {
         ></path>
         <path d='M 45,24 27,14 27,34' fill='#fff'></path>
       </svg>
-    </button>
+  </button>
 
 
 </div>
@@ -142,10 +148,11 @@ function onCloseModalMovie() {
   window.removeEventListener('keydown', onEscKeyPress);
 
   refs.modalMovie.classList.remove('show-modal');
+  document.querySelector('body').classList.remove('modal-open');
 
   //show stiky header
-  if (!refs.header.classList.contains('is-sticky')) {
-    refs.header.classList.add('is-sticky');
+  if (refs.header.classList.contains('is-sticky') && window.pageYOffset > 400) {
+    refs.header.classList.add('slide-down');
   }
 }
 
@@ -158,6 +165,7 @@ function onBackdropClick(e) {
 function onEscKeyPress(e) {
   const isEscKey = e.code === 'Escape';
   const trailerBox = document.querySelector('.basicLightbox');
+  document.querySelector('body').classList.remove('modal-open');
 
   if (isEscKey && !trailerBox) {
     onCloseModalMovie();

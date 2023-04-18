@@ -1,5 +1,6 @@
 import refs from "./refs";
 import { showPopularMovies } from "./render-functions";
+import { pagination } from './pagination';
 import { loadLibrary } from "./routing-library-pages";
 import { clearSearchInput } from "./search-by-query";
 
@@ -17,6 +18,7 @@ export function loadHomePage() {
         return
     };
     refs.moviesGallery.innerHTML = '';
+    refs.galleryOps.innerHTML = '';
     showSearchForm();
     removeFilmStatusFilter();
     makeInactiveLibraryButton();
@@ -26,11 +28,12 @@ export function loadHomePage() {
 }
 
 export function loadLibraryPage() {
-  refs.moviesGallery.innerHTML = '';
     clearSearchInput();
     if (currentPage === 'library') {
         return
     };
+    refs.moviesGallery.innerHTML = '';
+    refs.galleryOps.innerHTML = '';
     showFilmStatusFilter();
     removeSearchForm();
     makeInactiveHomeButton();

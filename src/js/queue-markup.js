@@ -12,6 +12,7 @@ const QUEUE_KEY = 'queue';
 
 
 export async function markupQueue() {
+  refs.galleryOps.innerHTML = '';
 
   const queueMoviesIds = loadFilms(QUEUE_KEY);
 
@@ -48,16 +49,17 @@ export async function markupQueue() {
   appendMovies(queueMovies);
 
   // placeholder (заглушка)
-  //     setTimeout(placeholderQueue,1000)
+      setTimeout(placeholderQueue,500)
 
-  //     function placeholderQueue(){
-  //   if (!queueMovies.length) {
-  //     refs.moviesGallery.innerHTML = ''
-  //     refs.moviesGallery.innerHTML = `<li class="empty">
-  //   <img class="empty-library-image" src="https://cdn.icon-icons.com/icons2/576/PNG/512/icon_imovie_icon-icons.com_54880.png" alt="Empty gallery.Add something)" />
-  //   <p class="empty-library-notification">No movies here. Please add something to queue.</p>
-  //   </li>`
-  //   }
-  // }
+      function placeholderQueue(){
+    if (!queueMovies.length) {
+      refs.galleryOps.innerHTML = ''
+      refs.galleryOps.innerHTML = `
+      <div>
+    <img class="empty-library-image" src="https://cdn.icon-icons.com/icons2/576/PNG/512/icon_imovie_icon-icons.com_54880.png" width="400" alt="Empty gallery.Add something)" />
+    </div>
+    <p class="empty-library-notification">No movies here. Please add something to queue.</p>`
+    }
+  }
 }
 

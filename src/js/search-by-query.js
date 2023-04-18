@@ -12,7 +12,9 @@ refs.searchInput.addEventListener('focus', clearSearchInput);
 
 function formSubmitHandler(event) {
 
-    event.preventDefault();
+    event.preventDefault();  
+  
+    updateCurrentPage('query');
     
     refs.moviesGallery.innerHTML = '';
 
@@ -26,7 +28,6 @@ function formSubmitHandler(event) {
         return
     };
     showMoviesByQuery(searchRequest);
-    updateCurrentPage('query');
 }
 
 async function showMoviesByQuery (query) {

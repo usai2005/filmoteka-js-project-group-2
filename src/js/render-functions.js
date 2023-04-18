@@ -21,8 +21,7 @@ export function appendMovies(movies) {
     if (movies.length === 0 || movies === undefined) {
 
       console.log('hello');
-    
-      refs.galleryContainer.innerHTML = '';
+      
       refs.galleryOps.innerHTML = '';
       
       refs.galleryContainer.insertAdjacentHTML(

@@ -12,38 +12,39 @@ export function loadLibrary() {
   loadQueuePage();
 }
 
-function loadWatchedPage() {
-  if (currentLibraryPage === 'watched') {
-    return;
-  }
-  refs.moviesGallery.innerHTML = '';
-  makeInactiveQueueButton();
-  makeActiveWatchedButton();
-  //-------------------------------------Тимчасовий try catch поки в повній мірі не запрацює markupWatched
-  try {
-    markupWatched();
-  } catch {
-    console.log('Error in watched-markup.js');
-  }
-  //-------------------------------------------------------------------------------------------------------
-  updateCurrentLibraryPage('watched');
+function loadWatchedPage() { 
+    // if (currentLibraryPage === 'watched') {
+    //     return
+    // };
+    refs.moviesGallery.innerHTML = '';
+    refs.galleryOps.innerHTML = '';
+    makeInactiveQueueButton();
+    makeActiveWatchedButton();
+    //-------------------------------------Тимчасовий try catch поки в повній мірі не запрацює markupWatched
+    try {
+        markupWatched();
+    } catch {
+        console.log('Error in watched-markup.js');
+    };
+    //-------------------------------------------------------------------------------------------------------
+    updateCurrentLibraryPage('watched');
 }
 
 function loadQueuePage() {
-  if (currentLibraryPage === 'queue') {
-    return;
-  }
-  refs.moviesGallery.innerHTML = '';
-  makeInactiveWatchedButton();
-  makeActiveQueueButton();
-  //--------------------------------------Тимчасовий try catch поки в повній мірі не запрацює markupQueue
-  try {
-    markupQueue();
-  } catch {
-    console.log('Error in queue-markup.js');
-  }
-  //------------------------------------------------------------------------------------------------------
-  updateCurrentLibraryPage('queue');
+    // if (currentLibraryPage === 'queue') {
+    //     return
+    // };
+    refs.moviesGallery.innerHTML = '';
+    makeInactiveWatchedButton();
+    makeActiveQueueButton();
+    //--------------------------------------Тимчасовий try catch поки в повній мірі не запрацює markupQueue
+    try {
+        markupQueue();
+    } catch {
+        console.log('Error in queue-markup.js');
+    };
+    //------------------------------------------------------------------------------------------------------
+    updateCurrentLibraryPage('queue');
 }
 
 function makeActiveWatchedButton() {

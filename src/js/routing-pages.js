@@ -12,11 +12,13 @@ refs.homeBtn.addEventListener('click', loadHomePage);
 refs.myLibraryBtn.addEventListener('click', loadLibraryPage);
 
 export function loadHomePage() {
+    refs.moviesGallery.innerHTML = '';
+    refs.galleryOps.innerHTML = '';
     clearSearchInput();
     if (currentPage === 'home') {
         return
     };
-    refs.moviesGallery.innerHTML = '';
+    
     showSearchForm();
     removeFilmStatusFilter();
     makeInactiveLibraryButton();
@@ -26,7 +28,7 @@ export function loadHomePage() {
 }
 
 export function loadLibraryPage() {
-  refs.moviesGallery.innerHTML = '';
+    refs.moviesGallery.innerHTML = '';
     clearSearchInput();
     if (currentPage === 'library') {
         return

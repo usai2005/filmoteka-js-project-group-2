@@ -4,6 +4,7 @@ import refs from './refs.js';
 import { showSpinnerIfPageLoads } from './loader.js';
 
 export async function showPopularMovies() {
+
   const movies = await apiClient.getPopularMovie();
 
   pagination.reset(apiClient.totalMovies);
@@ -15,11 +16,12 @@ export function appendMovies(movies) {
   refs.loader.classList.remove('preloader__loader--page-loaded');
 
   showSpinnerIfPageLoads();
-
+  
   setTimeout(() => {
-    if (movies.length === 0 || movies === undefined) {
-      refs.moviesGallery.insertAdjacentHTML(
-        'beforeend',
+
+if (movies.length === 0 || movies === undefined) {
+  refs.galleryContainer.innerHTML = '';
+  refs.galleryContainer.insertAdjacentHTML('beforeend',
         `<div class="main-gallery-oops">
       <div>
         <img src="https://cdn.icon-icons.com/icons2/576/PNG/512/icon_imovie_icon-icons.com_54880.png">

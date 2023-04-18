@@ -10,6 +10,7 @@ import { appendMovies } from './render-functions.js';
 const WATCHED_KEY = 'watched';
 
 export async function markupWatched() {
+  refs.galleryOps.innerHTML = ''
 
   const watchedMoviesIds = loadFilms(WATCHED_KEY);
 
@@ -30,18 +31,16 @@ export async function markupWatched() {
   appendMovies(watchedMovies);
 
   // //   placeholder (заглушка)
-  setTimeout(placeholderWatched,1000)
+  setTimeout(placeholderWatched,500)
 
   function placeholderWatched(){
     if (!watchedMovies.length) {
-      refs.galleryContainer.innerHTML = ''
+      refs.galleryOps.innerHTML = ''
 
-      refs.galleryContainer.innerHTML = `<div class="main-gallery-oops">
-      <div>
+      refs.galleryOps.innerHTML = `<div>
   <img class="empty-library-image" src="https://cdn.icon-icons.com/icons2/576/PNG/512/icon_imovie_icon-icons.com_54880.png" width="400" alt="Empty gallery.Add something)" />
   </div>
-  <p class="empty-library-notification">No movies here. Please mark something like watched.</p>
-  </div>`;
+  <p class="empty-library-notification">No movies here. Please mark something like watched.</p>`
     }
   }
 

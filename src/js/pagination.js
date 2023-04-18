@@ -19,9 +19,11 @@ pagination.on('beforeMove', async event => {
   // Get the page number that the user clicked on
   const pageNumber = event.page;
   // Використовую API, щоб отримати фільми для вибраного номера сторінки
-  const movies = await getMovies(pageNumber);
+
+const movies = await getMovies(pageNumber);
   //Повертає сторінку вгору при виборі іншої сторінки
   window.scroll({ top: 0, behavior: 'smooth' });
+
   // Відображаю фільми на сторінці
   appendMovies(movies);
 });

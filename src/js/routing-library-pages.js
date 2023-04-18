@@ -8,42 +8,29 @@ refs.queueBtn.addEventListener('click', loadQueuePage);
 let currentLibraryPage = '';
 
 export function loadLibrary() {
-  refs.moviesGallery.innerHTML = '';
-  loadQueuePage();
+   loadQueuePage();
 }
 
 function loadWatchedPage() { 
-    // if (currentLibraryPage === 'watched') {
-    //     return
-    // };
+    if (currentLibraryPage === 'watched') {
+        return
+    };
     refs.moviesGallery.innerHTML = '';
     refs.galleryOps.innerHTML = '';
     makeInactiveQueueButton();
     makeActiveWatchedButton();
-    //-------------------------------------Тимчасовий try catch поки в повній мірі не запрацює markupWatched
-    try {
-        markupWatched();
-    } catch {
-        console.log('Error in watched-markup.js');
-    };
-    //-------------------------------------------------------------------------------------------------------
+    markupWatched();
     updateCurrentLibraryPage('watched');
 }
 
 function loadQueuePage() {
-    // if (currentLibraryPage === 'queue') {
-    //     return
-    // };
+    if (currentLibraryPage === 'queue') {
+        return
+    };
     refs.moviesGallery.innerHTML = '';
     makeInactiveWatchedButton();
     makeActiveQueueButton();
-    //--------------------------------------Тимчасовий try catch поки в повній мірі не запрацює markupQueue
-    try {
-        markupQueue();
-    } catch {
-        console.log('Error in queue-markup.js');
-    };
-    //------------------------------------------------------------------------------------------------------
+    markupQueue();
     updateCurrentLibraryPage('queue');
 }
 

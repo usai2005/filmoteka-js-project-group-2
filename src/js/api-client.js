@@ -44,9 +44,12 @@ class ApiClient {
     }, []);
     //якщо жанр айді = пустий масив, то додає Інший жанр
     if (movieGenres.length === 0) {
-      movieGenres.push('Other');
+      return 'Other';
+    } else if (movieGenres.length <= 2) {
+      return movieGenres.join(', ');
+    } else {
+      return `${movieGenres.slice(0, 2).join(', ')}, Other`;
     }
-    return movieGenres;
   };
 
   //запит до серверу, що отримує дані популярних фільмів, повертає об'єкт готовий до рендеру

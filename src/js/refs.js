@@ -19,7 +19,8 @@ const refs = {
   addToQueue: document.querySelector('#add-to-queue-btn'),
   header: document.querySelector('.header'),
   footerLink: document.querySelector('.footer-link'),
-  galleryOps: document.querySelector('.main-gallery-oops')
+  galleryContainer: document.querySelector('.gallery-container'),
+  galleryOps: document.querySelector('.main-gallery-oops'),
 };
 
 export default refs;

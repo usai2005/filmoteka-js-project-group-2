@@ -14,6 +14,15 @@ export async function markupWatched() {
 
   const watchedMoviesIds = loadFilms(WATCHED_KEY);
 
+  console.log(watchedMoviesIds)
+
+  console.log(watchedMoviesIds.length)
+
+  if (watchedMoviesIds.length === 0) {
+    
+    refs.galleryContainer.style.display = "none";
+  }
+
   let watchedMovies = [];
 
   watchedMoviesIds.map(async ({ id }) => {
@@ -25,8 +34,6 @@ export async function markupWatched() {
       watchedMovies.push(chosenMovieByID);
     }
   });
-
-  console.log(watchedMovies);
 
   appendMovies(watchedMovies);
 

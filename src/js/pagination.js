@@ -12,6 +12,8 @@ export const pagination = new Pagination(refs.buttonsList, {
   centerAlign: true,
 });
 
+console.log(pagination)
+
 // Додаю слухач подій до екземпляра Pagination
 pagination.on('beforeMove', async event => {
   // Get the page number that the user clicked on

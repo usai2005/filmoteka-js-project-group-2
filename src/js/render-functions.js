@@ -13,7 +13,8 @@ export async function showPopularMovies() {
 }
 
 export function appendMovies(movies) {
-  refs.loader.classList.remove('preloader__loader--page-loaded');
+
+ refs.loader.classList.remove('preloader__loader--page-loaded');
 
   showSpinnerIfPageLoads();
   

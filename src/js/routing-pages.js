@@ -7,7 +7,6 @@ import { clearSearchInput } from "./search-by-query";
 let currentPage = '';
 loadHomePage();
 
-
 refs.logo.addEventListener('click', loadHomePage);
 refs.homeBtn.addEventListener('click', loadHomePage);
 refs.myLibraryBtn.addEventListener('click', loadLibraryPage);

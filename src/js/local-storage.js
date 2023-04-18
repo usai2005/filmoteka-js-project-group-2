@@ -34,12 +34,6 @@ export function addModalButtonListeners() {
     addToWatched.textContent = "Remove from Watched";
     addToWatched.classList.add('added');
   }
-  
-  // const filmData = {
-  //   id: filmId
-  // };
-
-  // addMovieToStorage('films', filmData);
 }
 
 function isMovieExist(id, key) {
@@ -57,14 +51,34 @@ export function removeListeners() {
 
 async function onAddToWatched() {
   const addToWatched = document.querySelector('#add-to-watched-btn');
+  const addToQueue = document.querySelector('#add-to-queue-btn');
   const filmId = document.querySelector('.backdrop').dataset.id;
   const film = await getMovieDetails(filmId);
 
   addToWatched.classList.toggle('added');
 
+  if (addToQueue.classList.contains("added")) {
+    addToQueue.classList.remove('added');
+    removeMovieFromStorage('queue', filmId);
+    addToQueue.textContent = "Add to Queue";
+  }
+
   if (addToWatched.classList.contains("added")) {
     addMovieToStorage('watched', film);
     addToWatched.textContent = "Remove from Watched";
+
+    addToWatched.textContent = "Added to watched";
+    addToWatched.disabled = true;
+    addToQueue.disabled = true;
+
+    function btnChangeText() {
+      addToWatched.disabled = false;
+      addToQueue.disabled = false;
+      addToWatched.textContent = "Remove from Watched";
+    };
+    
+    btnChangeText();
+
   } else {
     removeMovieFromStorage('watched', filmId);
     addToWatched.textContent = "Add to Watched";
@@ -73,19 +87,41 @@ async function onAddToWatched() {
 
 async function onAddToQueue() {
   const addToQueue = document.querySelector('#add-to-queue-btn');
+  const addToWatched = document.querySelector('#add-to-watched-btn');
   const filmId = document.querySelector('.backdrop').dataset.id;
   const film = await getMovieDetails(filmId);
 
   addToQueue.classList.toggle('added');
 
+  if (addToWatched.classList.contains("added")) {
+    addToWatched.classList.remove('added');
+    removeMovieFromStorage('watched', filmId);
+    addToWatched.textContent = "Add to Watched";
+  }
+
   if (addToQueue.classList.contains("added")) {
     addMovieToStorage('queue', film);
     addToQueue.textContent = "Remove from Queue";
+
+    addToQueue.textContent = "Added to Queue";
+    addToQueue.disabled = true;
+    addToWatched.disabled = true;
+
+    function btnChangeText() {
+    addToQueue.disabled = false;
+    addToWatched.disabled = false;
+    addToQueue.textContent = "Remove from Queue";
+  };
+
+  btnChangeText();
+
   } else {
     removeMovieFromStorage('queue', filmId);
     addToQueue.textContent = "Add to Queue";
   }
 }
+
+// Взяти більше данних з API
 
 async function getMovieDetails(id) {
   try {
@@ -95,26 +131,13 @@ async function getMovieDetails(id) {
       id: data.id, 
       title: data.title, 
       poster_path: data.poster_path, 
-      release_date: data.release_date 
+      release_date: data.release_date,
     };
     return film;
   } catch (error) {
     console.error('Get movie details error: ', error.message);
   }
 }
-
-// Завантажити фільм з лoкального сховища
-
-export function loadFilms(key) {
-  try {
-    const serializedState = JSON.parse(localStorage.getItem(key)) || [];
-    const filmIds = serializedState.map(film => ({ id: film.id }));
-    return filmIds;
-  } catch (error) {
-    console.error('Get state error: ', error.message);
-  }
-}
-
 
 // Додати новий елемент в локальне сховище
 
@@ -128,13 +151,25 @@ function addMovieToStorage(key, film) {
   }
 }
 
-// Видалити фільм
+// Видалити фільм з локального сховища
 
 function removeMovieFromStorage(key, id) {
   try {
     const serializedState = JSON.parse(localStorage.getItem(key)) || [];
     const newFilms = serializedState.filter(obj => obj.id != id);
     localStorage.setItem(key, JSON.stringify(newFilms));
+  } catch (error) {
+    console.error('Get state error: ', error.message);
+  }
+}
+
+// Завантажити фільм з лoкального сховища
+
+export function loadFilms(key) {
+  try {
+    const serializedState = JSON.parse(localStorage.getItem(key)) || [];
+    const filmIds = serializedState.map(film => ({ id: film.id }));
+    return filmIds;
   } catch (error) {
     console.error('Get state error: ', error.message);
   }

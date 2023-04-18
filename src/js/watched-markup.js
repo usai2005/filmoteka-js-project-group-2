@@ -10,50 +10,47 @@ import { appendMovies } from './render-functions.js';
 
 // local storage watched key
 const WATCHED_KEY = 'watched';
+const PER_PAGE = 20;
+
+
+export async function getWatchedMovies(page) {
+  const watchedMoviesIds = loadFilms(WATCHED_KEY);
+  const from = PER_PAGE * (page - 1);
+  const currentPageMoviesIds = watchedMoviesIds.slice(from, from + PER_PAGE);
+
+  const watchedMoviesPromise = currentPageMoviesIds.map(({ id }) => {
+    return api.getMovieById(id);
+  });
+  const movies = await Promise.all(watchedMoviesPromise);
+
+  return { movies, total: watchedMoviesIds.length };
+};
 
 export async function markupWatched() {
   refs.galleryOps.innerHTML = ''
+  const {movies, total} = await getWatchedMovies(1);
 
-  const watchedMoviesIds = loadFilms(WATCHED_KEY);
-
-  // console.log(watchedMoviesIds)
-
-  // console.log(watchedMoviesIds.length)
-
-  pagination.reset(watchedMoviesIds.length);
-
-  if (watchedMoviesIds.length === 0) {
-    
+  pagination.reset(total);
+  if (total === 0) {
     refs.galleryShowh.style.display = "none";
-  }
+  } else {
+    refs.galleryShowh.style.display = "initial";
+  };
 
-  let watchedMovies = [];
-
-  watchedMoviesIds.map(async ({ id }) => {
-    if (id) {
-      // console.log(id);
-
-      const chosenMovieByID = await api.getMovieById(id);
-
-      watchedMovies.push(chosenMovieByID);
-    }
-  });
-
-  appendMovies(watchedMovies);
-
-  // //   placeholder (заглушка)
+  appendMovies(movies);
+  //   placeholder (заглушка)
   setTimeout(placeholderWatched,500)
-
+  
   function placeholderWatched(){
-    if (!watchedMovies.length) {
+    if (!movies.length) {
       refs.galleryOps.innerHTML = ''
-
+  
       refs.galleryOps.innerHTML = `<div>
-  <img class="empty-library-image" src="https://cdn.icon-icons.com/icons2/576/PNG/512/icon_imovie_icon-icons.com_54880.png" width="400" alt="Empty gallery.Add something)" />
-  </div>
-  <p class="empty-library-notification">No movies here. Please mark something like watched.</p>`
+    <img class="empty-library-image" src="https://cdn.icon-icons.com/icons2/576/PNG/512/icon_imovie_icon-icons.com_54880.png" width="400" alt="Empty gallery.Add something)" />
+    </div>
+    <p class="empty-library-notification">No movies here. Please mark something like watched.</p>`
+      }
     }
-  }
 
-  }
+  };
 

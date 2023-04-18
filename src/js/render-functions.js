@@ -5,7 +5,7 @@ import { showSpinnerIfPageLoads } from './loader.js';
 
 export async function showPopularMovies() {
   const movies = await apiClient.getPopularMovie();
-  
+
   pagination.reset(apiClient.totalMovies);
 
   appendMovies(movies);
@@ -34,9 +34,6 @@ export function appendMovies(movies) {
 
     const markup = movies
       .map(({ title, w300imgUrl, w500imgUrl, genres, year, id }) => {
-        const moveiGenres =
-          typeof genres === 'string' ? genres : genres.join(', ');
-
         const shortTitle =
           title.length <= 30 ? title : `${title.slice(0, 30)} ...`;
 
@@ -51,7 +48,7 @@ export function appendMovies(movies) {
           />
           <div class="movie-info-wrapper">
            <p class="movie-item__title">${shortTitle}</p>
-           <p class="movie-info">${moveiGenres} | ${year}</p>
+           <p class="movie-info">${genres} | ${year}</p>
           </div>
           </li>`;
       })

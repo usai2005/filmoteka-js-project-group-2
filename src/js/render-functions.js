@@ -4,40 +4,33 @@ import refs from './refs.js';
 import { showSpinnerIfPageLoads } from './loader.js';
 
 export async function showPopularMovies() {
-
   const movies = await apiClient.getPopularMovie();
-  
+
   pagination.reset(apiClient.totalMovies);
 
   appendMovies(movies);
 }
 
 export function appendMovies(movies) {
-
- refs.loader.classList.remove('preloader__loader--page-loaded');
+  refs.loader.classList.remove('preloader__loader--page-loaded');
 
   showSpinnerIfPageLoads();
-  
+  console.log(movies.length);
   setTimeout(() => {
 
-if (movies.length === 0 || movies === undefined) {
-  refs.galleryContainer.innerHTML = '';
-  refs.galleryContainer.insertAdjacentHTML('beforeend',
-        `<div class="main-gallery-oops">
-      <div>
-        <img src="https://cdn.icon-icons.com/icons2/576/PNG/512/icon_imovie_icon-icons.com_54880.png">
-      </div>
-        <p><strong><span>Oops!</span> Something went wrong</strong></p>
-    </div>`
-      );
-      return;
-    }
+    if (movies.length === 0 || movies === undefined) {
+    
+      refs.galleryContainer.innerHTML = '';
+      refs.galleryOps.innerHTML = '';
+      
+      refs.galleryOps.insertAdjacentHTML(
+        'beforeend', `<div class="main-gallery-oops"><p><strong><span>Oops!</span> Something went wrong</strong></p><div><img src="https://cdn.icon-icons.com/icons2/576/PNG/512/icon_imovie_icon-icons.com_54880.png"></div></div>`
+    );
+    return;
+  }
 
     const markup = movies
       .map(({ title, w300imgUrl, w500imgUrl, genres, year, id }) => {
-        const moveiGenres =
-          typeof genres === 'string' ? genres : genres.join(', ');
-
         const shortTitle =
           title.length <= 30 ? title : `${title.slice(0, 30)} ...`;
 
@@ -52,7 +45,7 @@ if (movies.length === 0 || movies === undefined) {
           />
           <div class="movie-info-wrapper">
            <p class="movie-item__title">${shortTitle}</p>
-           <p class="movie-info">${moveiGenres} | ${year}</p>
+           <p class="movie-info">${genres} | ${year}</p>
           </div>
           </li>`;
       })

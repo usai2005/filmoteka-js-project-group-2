@@ -1,13 +1,13 @@
 import refs from './refs.js';
 
-const toggleClass = 'is-sticky';
+// const toggleClass = 'is-sticky';
 
 window.addEventListener('scroll', () => {
   const currentScroll = window.pageYOffset;
   if (currentScroll > 400) {
-    refs.header.classList.add(toggleClass);
+    refs.header.classList.add('is-sticky', 'slide-down');
   } else {
-    refs.header.classList.remove(toggleClass);
+    refs.header.classList.remove('is-sticky', 'slide-down');
   }
 });
 

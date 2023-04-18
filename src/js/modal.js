@@ -1,17 +1,17 @@
 import refs from './refs.js';
 import api from './api-client.js';
 import { addModalButtonListeners, removeListeners } from './local-storage.js';
-import { key } from './trailer.js';
-import onTrailerClick from './trailer';
+// import { key, watchTrailer } from './trailer.js';
+// import onTrailerClick from './trailer';
 import * as basicLightbox from 'basiclightbox';
 
-onTrailerClick();
+// onTrailerClick();
 
 refs.openModalMovieEl.addEventListener('click', onOpenModalMovie);
 refs.closeModalMovieBtn.addEventListener('click', onCloseModalMovie);
 refs.modalMovie.addEventListener('click', onBackdropClick);
 
-let currentId = null;
+export let currentId = null;
 
 async function onOpenModalMovie(e) {
   if (!e.target.closest('.movie-item')) {
@@ -24,12 +24,13 @@ async function onOpenModalMovie(e) {
   }
 
   const movieId = e.target.closest('.movie-item').dataset.id;
-
+  let trailerKey = '';
   if (currentId !== movieId) {
     currentId = movieId;
+    console.log(currentId);
 
     const filmDetailsById = await api.getMovieById(movieId);
-
+    trailerKey = await api.getMoviesTrailer(movieId);
     // add movie id to modalMovie
     refs.modalMovie.dataset.id = filmDetailsById.id;
 
@@ -39,17 +40,19 @@ async function onOpenModalMovie(e) {
   window.addEventListener('keydown', onEscKeyPress);
 
   refs.modalMovie.classList.add('show-modal');
+  document.querySelector('body').classList.add('modal-open'); //Віка
 
   // local storage
   addModalButtonListeners();
 
   // create video player
+
   const trailer = basicLightbox.create(`
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/${key}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/${trailerKey}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
   `);
 
   document.querySelector('.img.modal__image').onclick = () => {
-    console.log(key);
+    console.log(trailerKey);
     trailer.show();
   };
 
@@ -146,6 +149,7 @@ function onCloseModalMovie() {
   window.removeEventListener('keydown', onEscKeyPress);
 
   refs.modalMovie.classList.remove('show-modal');
+  document.querySelector('body').classList.remove('modal-open');
 
   //show stiky header
   if (
@@ -165,6 +169,7 @@ function onBackdropClick(e) {
 function onEscKeyPress(e) {
   const isEscKey = e.code === 'Escape';
   const trailerBox = document.querySelector('.basicLightbox');
+  document.querySelector('body').classList.remove('modal-open');
 
   if (isEscKey && !trailerBox) {
     onCloseModalMovie();

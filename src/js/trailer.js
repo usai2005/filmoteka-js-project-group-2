@@ -14,14 +14,15 @@ export let key = '';
 async function watchTrailer(e) {
   e.preventDefault();
   key = '';
-  if (
-    e.target.closest('.card__link')?.querySelector('movie-item__image') ===
-    undefined
-  ) {
-    return;
-  }
+  // if (
+  //   e.target
+  //     .closest('.backdrop.show-modal')
+  //     ?.querySelector('.img.modal__image') === undefined
+  // ) {
+  //   return;
+  // }
   await api
-    .getMoviesTrailer(e.target.closest('.card__link').id)
+    .getMoviesTrailer(e.target.parentNode.dataset.id)
     // fetchTrailer(e.target.closest('.card__link').id)
     .then(data => {
       console.log(data);
@@ -32,29 +33,3 @@ async function watchTrailer(e) {
       console.log(error);
     });
 }
-
-// Выбрать фильм по ID // Ключ API (v3 auth) 9218a8fe57d9a10810e7b861ea45534f //
-// function fetchTrailer(filmID, lang) {
-//   return axios
-//     .get(
-//       `https://api.themoviedb.org/3/movie/${filmID}/videos?api_key=9218a8fe57d9a10810e7b861ea45534f&language=${lang}`
-//     )
-//     .then(response => response.data)
-//     .then(data => {
-//       console.log(data.results); /////
-//       return data.results;
-//     });
-// }
-
-// Визуализировать модальный трейлер //
-
-// function renderTrailer(data) {
-//   data.forEach(obj => {
-//     console.log(obj);
-//     if (obj.name.includes('Official')) {
-//       key = obj.key;
-//     }
-//   });
-
-//   return key;
-// }

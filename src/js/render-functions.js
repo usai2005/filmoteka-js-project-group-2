@@ -20,8 +20,8 @@ export function appendMovies(movies) {
 
     if (movies.length === 0 || movies === undefined) {
     
-      refs.galleryContainer.innerHTML = '';
-      refs.galleryOps.innerHTML = '';
+      // refs.galleryContainer.innerHTML = '';
+      // refs.galleryOps.innerHTML = '';
       
       refs.galleryOps.insertAdjacentHTML(
         'beforeend', `<div class="main-gallery-oops"><p><strong><span>Oops!</span> Something went wrong</strong></p><div><img src="https://cdn.icon-icons.com/icons2/576/PNG/512/icon_imovie_icon-icons.com_54880.png"></div></div>`

@@ -20,13 +20,13 @@ export function appendMovies(movies) {
 
     if (movies.length === 0 || movies === undefined) {
 
-      console.log('hello');
+    //   console.log('hello');
       
-      refs.galleryOps.innerHTML = '';
+    //   refs.galleryOps.innerHTML = '';
       
-      refs.galleryOps.insertAdjacentHTML(
-        'beforeend', `<div class="main-gallery-oops"><p><strong><span>Oops!</span> THE LIBRARY IS EMPTY. ADD SOMETHING</strong></p><div><img src="https://cdn.icon-icons.com/icons2/576/PNG/512/icon_imovie_icon-icons.com_54880.png"></div></div>`
-    );
+    //   refs.galleryOps.insertAdjacentHTML(
+    //     'beforeend', `<div class="main-gallery-oops"><p><strong><span>Oops!</span> THE LIBRARY IS EMPTY. ADD SOMETHING</strong></p><div><img src="https://cdn.icon-icons.com/icons2/576/PNG/512/icon_imovie_icon-icons.com_54880.png"></div></div>`
+    // );
     return;
   }
 

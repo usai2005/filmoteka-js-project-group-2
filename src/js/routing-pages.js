@@ -29,7 +29,7 @@ export function loadHomePage() {
 }
 
 export function loadLibraryPage() {
-    refs.moviesGallery.innerHTML = '';
+    // refs.moviesGallery.innerHTML = '';
     clearSearchInput();
     if (currentPage === 'library') {
         return

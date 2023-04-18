@@ -6,7 +6,7 @@ import { showSpinnerIfPageLoads } from './loader.js';
 export async function showPopularMovies() {
 
   const movies = await apiClient.getPopularMovie();
-
+  
   pagination.reset(apiClient.totalMovies);
 
   appendMovies(movies);

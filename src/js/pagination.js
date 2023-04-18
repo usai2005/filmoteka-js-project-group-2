@@ -12,8 +12,6 @@ export const pagination = new Pagination(refs.buttonsList, {
   centerAlign: true,
 });
 
-console.log(pagination)
-
 // Додаю слухач подій до екземпляра Pagination
 pagination.on('beforeMove', async event => {
   // Get the page number that the user clicked on
@@ -22,10 +20,12 @@ pagination.on('beforeMove', async event => {
   // Використовую API, щоб отримати фільми для вибраного номера сторінки
   const movies = await apiClient.goToPage(pageNumber);
 
+  window.scroll({ top: 0, behavior: 'smooth' });
+
   // Відображаю фільми на сторінці
   appendMovies(movies);
 });
 pagination.on('afterMove', async ({ page }) => {
-  // window.scroll({ top: 0, behavior: 'smooth' });
+  
   refs.moviesGallery.innerHTML = '';
 });

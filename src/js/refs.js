@@ -20,7 +20,8 @@ const refs = {
   header: document.querySelector('.header'),
   footerLink: document.querySelector('.footer-link'),
   galleryContainer: document.querySelector('.gallery-container'),
-  galleryOps: document.querySelector('.main-gallery-oops'),
+  galleryOps: document.querySelector('.oops-wrapper'),
+  galleryShowh: document.querySelector('.gallery-container--showh'),
 };
 
 export default refs;

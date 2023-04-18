@@ -2,6 +2,8 @@ import refs from './refs.js';
 
 import api from './api-client.js';
 
+import { pagination } from './pagination.js';
+
 import { loadFilms } from './local-storage.js';
 
 import { appendMovies } from './render-functions.js';
@@ -14,13 +16,15 @@ export async function markupWatched() {
 
   const watchedMoviesIds = loadFilms(WATCHED_KEY);
 
-  console.log(watchedMoviesIds)
+  // console.log(watchedMoviesIds)
 
-  console.log(watchedMoviesIds.length)
+  // console.log(watchedMoviesIds.length)
+
+  pagination.reset(watchedMoviesIds.length);
 
   if (watchedMoviesIds.length === 0) {
     
-    refs.galleryContainer.style.display = "none";
+    refs.galleryShowh.style.display = "none";
   }
 
   let watchedMovies = [];

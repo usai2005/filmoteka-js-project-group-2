@@ -2,6 +2,8 @@ import refs from './refs.js';
 
 import api from './api-client.js';
 
+import { pagination } from './pagination.js';
+
 import { loadFilms } from './local-storage.js';
 
 import { appendMovies } from './render-functions.js';
@@ -16,27 +18,25 @@ export async function markupQueue() {
 
   const queueMoviesIds = loadFilms(QUEUE_KEY);
 
-  console.log(queueMoviesIds)
+  // console.log(queueMoviesIds)
 
-  console.log(queueMoviesIds.length)
+  // console.log(queueMoviesIds.length)
+
+  pagination.reset(queueMoviesIds.length);
 
   if (queueMoviesIds.length === 0) {
     
-    refs.galleryContainer.style.display = "none";
+    refs.galleryShowh.style.display = "none";
   }
 
   let queueMovies = [];
-
-  // refs.galleryContainer.style.display = "none";
-
-  // document.getElementById('pagination').classList.add('visually-hidden');
 
   queueMoviesIds.map(async ({ id }) => {
     if (id) {
 
       // document.getElementById('pagination').classList.remove('visually-hidden');
 
-      refs.galleryContainer.style.display = "initial";
+      refs.galleryShowh.style.display = "initial";
 
       const chosenMovieByID = await api.getMovieById(id);
 

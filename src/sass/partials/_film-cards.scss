@@ -122,7 +122,6 @@
   flex-direction: column;
 
   padding-top: 10px;
-  padding-bottom: 20px;
 
   color: #000000b7;
   font-family: sans-serif;
@@ -133,29 +132,26 @@
   text-align: center;
 
   @media screen and (min-width: 768px) {
-    padding-top: 60px;
-    padding-bottom: 80px;
+    padding-top: 0;
 
-    font-size: 24px;
+    font-size: 22px;
   }
 
   @media screen and (min-width: 1280px) {
-    padding-top: 80px;
-    padding-bottom: 120px;
-
-    font-size: 30px;
+    font-size: 26px;
   }
 }
 
 .main-gallery-oops img {
-  width: 140px;
+  width: 120px;
+  margin-top: 20px;
 
   @media screen and (min-width: 768px) {
-    width: 270px;
+    width: 200px;
   }
 
   @media screen and (min-width: 1280px) {
-    width: 320px;
+    width: 240px;
   }
 }
 

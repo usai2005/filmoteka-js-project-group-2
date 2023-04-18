@@ -21,7 +21,7 @@ const refs = {
   footerLink: document.querySelector('.footer-link'),
   galleryContainer: document.querySelector('.gallery-container'),
   galleryOps: document.querySelector('.main-gallery-oops'),
-  galleryShowh: document.querySelector('.gallery-container--showh'),
+  paginationButtons: document.querySelector('.paginationButtons'),
 };
 
 export default refs;

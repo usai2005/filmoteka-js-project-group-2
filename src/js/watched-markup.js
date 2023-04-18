@@ -32,9 +32,9 @@ export async function markupWatched() {
 
   pagination.reset(total);
   if (total === 0) {
-    refs.galleryShowh.style.display = "none";
+    refs.paginationButtons.style.display = "none";
   } else {
-    refs.galleryShowh.style.display = "initial";
+    refs.paginationButtons.style.display = "initial";
   };
 
   appendMovies(movies);

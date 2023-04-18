@@ -20,7 +20,7 @@ async function onOpenModalMovie(e) {
 
   //hide stiky header
   if (refs.header.classList.contains('is-sticky')) {
-    refs.header.classList.remove('is-sticky');
+    refs.header.classList.remove('slide-down');
   }
 
   const movieId = e.target.closest('.movie-item').dataset.id;
@@ -59,7 +59,6 @@ async function onOpenModalMovie(e) {
   window.addEventListener('keydown', e => {
     if (e.code === 'Escape') {
       trailer.close();
-      // window.removeEventListener('keydown', trailer.close());
     }
   });
 }
@@ -152,11 +151,8 @@ function onCloseModalMovie() {
   document.querySelector('body').classList.remove('modal-open');
 
   //show stiky header
-  if (
-    !refs.header.classList.contains('is-sticky') &&
-    window.pageYOffset > 400
-  ) {
-    refs.header.classList.add('is-sticky');
+  if (refs.header.classList.contains('is-sticky') && window.pageYOffset > 400) {
+    refs.header.classList.add('slide-down');
   }
 }
 

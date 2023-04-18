@@ -21,7 +21,10 @@ pagination.on('beforeMove', async event => {
 
   // Використовую API, щоб отримати фільми для вибраного номера сторінки
   const movies = await apiClient.goToPage(pageNumber);
-
+  
+  //Повертає сторінку вгору при виборі іншої сторінки  
+  window.scroll({ top: 0, behavior: 'smooth' });
+  
   // Відображаю фільми на сторінці
   appendMovies(movies);
 });

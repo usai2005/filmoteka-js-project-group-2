@@ -170,6 +170,15 @@ class ApiClient {
   // функція обробник повертає об"єкт з детальною інформацією по фільму, в інших файлах не використовується
   getMoviesDetails = movie => {
     let genres = movie.genres.map(elem => elem.name);
+    console.log(genres);
+    let cutGenres;
+    if (genres.length === 0) {
+      cutGenres = 'Other';
+    } else if (genres.length <= 2) {
+      cutGenres = genres.join(', ');
+    } else {
+      cutGenres = `${genres.slice(0, 2).join(', ')}, Other`;
+    }
     return {
       title: movie.title ? movie.title : movie.name, //назва
       titleOriginal: movie.original_title, // оригінальна назва
@@ -182,7 +191,7 @@ class ApiClient {
       w500imgUrl: movie.poster_path
         ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
         : DEFAULT_IMG, // постер, або дефолтна картинка за відсутності постера
-      genres: genres.length > 0 ? genres.join(', ') : 'Other', // жанри
+      genres: cutGenres, // жанри
       about: movie.overview,
       id: movie.id,
       year: movie.release_date
@@ -240,8 +249,8 @@ const getData = async () => {
   // const filmByQuery = await api.getMovieByQuery('cat'); // пошук за ім"ям
   // console.log('filmByQuery', filmByQuery);
 
-  // const filmDetailsById = await api.getMovieById('1027159'); // пошук за іd
-  // console.log('filmDetailsById', filmDetailsById);
+  const filmDetailsById = await api.getMovieById('1027159'); // пошук за іd
+  console.log('filmDetailsById', filmDetailsById);
 
   // const trailerInfo = await api.getMoviesTrailer('1027159'); // пошук трейлеру
   // console.log('trailerInfo', trailerInfo);

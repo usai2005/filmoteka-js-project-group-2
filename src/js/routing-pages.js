@@ -14,6 +14,9 @@ refs.myLibraryBtn.addEventListener('click', loadLibraryPage);
 
 export function loadHomePage() {
     clearSearchInput();
+  
+    refs.paginationButtons.style.display = "initial";
+  
     if (currentPage === 'home') {
         return
     };

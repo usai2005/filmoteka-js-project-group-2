@@ -8,7 +8,7 @@ refs.queueBtn.addEventListener('click', loadQueuePage);
 let currentLibraryPage = '';
 
 export function loadLibrary() {
-  refs.moviesGallery.innerHTML = '';
+  // refs.moviesGallery.innerHTML = '';
   loadQueuePage();
 }
 

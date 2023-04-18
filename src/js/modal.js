@@ -20,7 +20,7 @@ async function onOpenModalMovie(e) {
 
   //hide stiky header
   if (refs.header.classList.contains('is-sticky')) {
-    refs.header.classList.remove('slide-down');
+    refs.header.classList.add('slide-up');
   }
 
   const movieId = e.target.closest('.movie-item').dataset.id;
@@ -151,8 +151,12 @@ function onCloseModalMovie() {
   document.querySelector('body').classList.remove('modal-open');
 
   //show stiky header
-  if (refs.header.classList.contains('is-sticky') && window.pageYOffset > 400) {
-    refs.header.classList.add('slide-down');
+  if (
+    refs.header.classList.contains('is-sticky') &&
+    window.pageYOffset > 550 &&
+    refs.header.classList.contains('slide-up')
+  ) {
+    refs.header.classList.remove('slide-up');
   }
 }
 

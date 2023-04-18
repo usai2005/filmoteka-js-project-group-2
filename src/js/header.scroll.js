@@ -4,10 +4,15 @@ import refs from './refs.js';
 
 window.addEventListener('scroll', () => {
   const currentScroll = window.pageYOffset;
-  if (currentScroll > 400) {
-    refs.header.classList.add('is-sticky', 'slide-down');
+  if (currentScroll > 500) {
+    // refs.header.classList.add('is-sticky', 'slide-down');
+    refs.header.classList.add('is-sticky');
   } else {
-    refs.header.classList.remove('is-sticky', 'slide-down');
+    // refs.header.classList.add('slide-up');
+    // setTimeout(() => {
+    refs.header.classList.remove('is-sticky', 'slide-up');
+    // }, 350);
+    // refs.header.classList.remove('is-sticky', 'slide-up');
   }
 });
 

@@ -20,7 +20,7 @@ function formSubmitHandler(event) {
     
     if (searchRequest === '') {
 
-        refs.galleryShowh.style.display = "none";
+        refs.paginationButtons.style.display = "none";
 
         showFailureMessage();
         return
@@ -32,12 +32,12 @@ function formSubmitHandler(event) {
 async function showMoviesByQuery (query) {
     const moviesByQueryRequest = await ApiClient.getMovieByQuery(query);
 
-    refs.galleryShowh.style.display = "initial";
+    refs.paginationButtons.style.display = "initial";
 
 
     if (moviesByQueryRequest.length === 0) {
 
-        refs.galleryShowh.style.display = "none";
+        refs.paginationButtons.style.display = "none";
 
         showFailureMessage();
         return;

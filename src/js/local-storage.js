@@ -66,19 +66,6 @@ async function onAddToWatched() {
   if (addToWatched.classList.contains("added")) {
     addMovieToStorage('watched', film);
     addToWatched.textContent = "Remove from Watched";
-
-    addToWatched.textContent = "Added to watched";
-    addToWatched.disabled = true;
-    addToQueue.disabled = true;
-
-    function btnChangeText() {
-      addToWatched.disabled = false;
-      addToQueue.disabled = false;
-      addToWatched.textContent = "Remove from Watched";
-    };
-    
-    btnChangeText();
-
   } else {
     removeMovieFromStorage('watched', filmId);
     addToWatched.textContent = "Add to Watched";
@@ -102,19 +89,6 @@ async function onAddToQueue() {
   if (addToQueue.classList.contains("added")) {
     addMovieToStorage('queue', film);
     addToQueue.textContent = "Remove from Queue";
-
-    addToQueue.textContent = "Added to Queue";
-    addToQueue.disabled = true;
-    addToWatched.disabled = true;
-
-    function btnChangeText() {
-    addToQueue.disabled = false;
-    addToWatched.disabled = false;
-    addToQueue.textContent = "Remove from Queue";
-  };
-
-  btnChangeText();
-
   } else {
     removeMovieFromStorage('queue', filmId);
     addToQueue.textContent = "Add to Queue";

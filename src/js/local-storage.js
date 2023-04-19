@@ -1,3 +1,9 @@
+import {
+  loadLibrary,
+  updateWatchedMarkup,
+  updateQueueMarkup,
+} from './routing-library-pages';
+
 const dataStorage = {
   watched: [],
   queue: [],
@@ -9,8 +15,8 @@ let filmId = null;
 //Створити, якщо данні відсутні
 
 function checkLocalStorage() {
-  dataStorage.watched = JSON.parse(localStorage.getItem('watched') || "[]");
-  dataStorage.queue = JSON.parse(localStorage.getItem('queue') || "[]");
+  dataStorage.watched = JSON.parse(localStorage.getItem('watched') || '[]');
+  dataStorage.queue = JSON.parse(localStorage.getItem('queue') || '[]');
 }
 
 checkLocalStorage();
@@ -27,11 +33,11 @@ export function addModalButtonListeners() {
   addToQueue.addEventListener('click', onAddToQueue);
 
   if (isMovieExist(filmId, 'queue')) {
-    addToQueue.textContent = "Remove from Queue";
+    addToQueue.textContent = 'Remove from Queue';
     addToQueue.classList.add('added');
   }
   if (isMovieExist(filmId, 'watched')) {
-    addToWatched.textContent = "Remove from Watched";
+    addToWatched.textContent = 'Remove from Watched';
     addToWatched.classList.add('added');
   }
 }
@@ -57,18 +63,22 @@ async function onAddToWatched() {
 
   addToWatched.classList.toggle('added');
 
-  if (addToQueue.classList.contains("added")) {
+  if (addToQueue.classList.contains('added')) {
     addToQueue.classList.remove('added');
     removeMovieFromStorage('queue', filmId);
-    addToQueue.textContent = "Add to Queue";
+    addToQueue.textContent = 'Add to Queue';
   }
 
-  if (addToWatched.classList.contains("added")) {
+  if (addToWatched.classList.contains('added')) {
     addMovieToStorage('watched', film);
-    addToWatched.textContent = "Remove from Watched";
+    addToWatched.textContent = 'Remove from Watched';
+    // console.log('добавлено');
+    updateWatchedMarkup();
   } else {
     removeMovieFromStorage('watched', filmId);
-    addToWatched.textContent = "Add to Watched";
+    addToWatched.textContent = 'Add to Watched';
+    // console.log('удалено');
+    updateWatchedMarkup();
   }
 }
 
@@ -80,18 +90,22 @@ async function onAddToQueue() {
 
   addToQueue.classList.toggle('added');
 
-  if (addToWatched.classList.contains("added")) {
+  if (addToWatched.classList.contains('added')) {
     addToWatched.classList.remove('added');
     removeMovieFromStorage('watched', filmId);
-    addToWatched.textContent = "Add to Watched";
+    addToWatched.textContent = 'Add to Watched';
   }
 
-  if (addToQueue.classList.contains("added")) {
+  if (addToQueue.classList.contains('added')) {
     addMovieToStorage('queue', film);
-    addToQueue.textContent = "Remove from Queue";
+    addToQueue.textContent = 'Remove from Queue';
+    // console.log('добавлено');
+    updateQueueMarkup();
   } else {
     removeMovieFromStorage('queue', filmId);
-    addToQueue.textContent = "Add to Queue";
+    addToQueue.textContent = 'Add to Queue';
+    // console.log('удалено');
+    updateQueueMarkup();
   }
 }
 
@@ -99,12 +113,14 @@ async function onAddToQueue() {
 
 async function getMovieDetails(id) {
   try {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=ae38d5c8baf36c9c4ca14e9456f3c0fd`);
+    const response = await fetch(
+      `https://api.themoviedb.org/3/movie/${id}?api_key=ae38d5c8baf36c9c4ca14e9456f3c0fd`
+    );
     const data = await response.json();
-    const film = { 
-      id: data.id, 
-      title: data.title, 
-      poster_path: data.poster_path, 
+    const film = {
+      id: data.id,
+      title: data.title,
+      poster_path: data.poster_path,
       release_date: data.release_date,
     };
     return film;

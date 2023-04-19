@@ -15,21 +15,22 @@ export function appendMovies(movies) {
   refs.loader.classList.remove('preloader__loader--page-loaded');
 
   showSpinnerIfPageLoads();
+
   console.log(movies.length);
   setTimeout(() => {
-
     if (movies.length === 0 || movies === undefined) {
+      //   console.log('hello');
 
-    //   console.log('hello');
-      
-    //   refs.galleryOps.innerHTML = '';
-      
-    //   refs.galleryOps.insertAdjacentHTML(
-    //     'beforeend', `<div class="main-gallery-oops"><p><strong><span>Oops!</span> THE LIBRARY IS EMPTY. ADD SOMETHING</strong></p><div><img src="https://cdn.icon-icons.com/icons2/576/PNG/512/icon_imovie_icon-icons.com_54880.png"></div></div>`
-    // );
-    return;
-  }
+      //   refs.galleryOps.innerHTML = '';
 
+      //   refs.galleryOps.insertAdjacentHTML(
+      //     'beforeend', `<div class="main-gallery-oops"><p><strong><span>Oops!</span> THE LIBRARY IS EMPTY. ADD SOMETHING</strong></p><div><img src="https://cdn.icon-icons.com/icons2/576/PNG/512/icon_imovie_icon-icons.com_54880.png"></div></div>`
+      // );
+      return;
+    }
+  }, 500);
+
+  setTimeout(() => {
     const markup = movies
       .map(({ title, w300imgUrl, w500imgUrl, genres, year, id }) => {
         const shortTitle =
@@ -51,6 +52,7 @@ export function appendMovies(movies) {
           </li>`;
       })
       .join('');
+    refs.moviesGallery.innerHTML = '';
     refs.moviesGallery.insertAdjacentHTML('beforeend', markup);
   }, 300);
 }

@@ -170,7 +170,6 @@ class ApiClient {
   // функція обробник повертає об"єкт з детальною інформацією по фільму, в інших файлах не використовується
   getMoviesDetails = movie => {
     let genres = movie.genres.map(elem => elem.name);
-    console.log(genres);
     let cutGenres;
     if (genres.length === 0) {
       cutGenres = 'Other';
@@ -242,24 +241,24 @@ const api = new ApiClient(); //експортуємо екземпляр
 
 // приклад функції імітація запиту.  (у фінальному варіанті видалити)
 
-const getData = async () => {
-  //   const listOfPopularFilms = await api.getPopularMovie(); // популярні фільми
-  //   console.log('listOfPopularFilms', listOfPopularFilms);
+// const getData = async () => {
+//   const listOfPopularFilms = await api.getPopularMovie(); // популярні фільми
+//   console.log('listOfPopularFilms', listOfPopularFilms);
 
-  // const filmByQuery = await api.getMovieByQuery('cat'); // пошук за ім"ям
-  // console.log('filmByQuery', filmByQuery);
+// const filmByQuery = await api.getMovieByQuery('cat'); // пошук за ім"ям
+// console.log('filmByQuery', filmByQuery);
 
-  const filmDetailsById = await api.getMovieById('1027159'); // пошук за іd
-  console.log('filmDetailsById', filmDetailsById);
+// const filmDetailsById = await api.getMovieById('1027159'); // пошук за іd
+// console.log('filmDetailsById', filmDetailsById);
 
-  // const trailerInfo = await api.getMoviesTrailer('1027159'); // пошук трейлеру
-  // console.log('trailerInfo', trailerInfo);
+// const trailerInfo = await api.getMoviesTrailer('1027159'); // пошук трейлеру
+// console.log('trailerInfo', trailerInfo);
 
-  //   console.log(api.currentMoviesList);
+//   console.log(api.currentMoviesList);
 
-  const config = await api.getImgConfig(); // пошук трейлеру
-  console.log('config', api.config);
-};
-setTimeout(getData, 200);
+//   const config = await api.getImgConfig(); // пошук трейлеру
+//   console.log('config', api.config);
+// };
+// setTimeout(getData, 200);
 
 export default api;

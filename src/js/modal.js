@@ -27,8 +27,7 @@ async function onOpenModalMovie(e) {
   let trailerKey = '';
   if (currentId !== movieId) {
     currentId = movieId;
-    console.log(currentId);
-
+    
     const filmDetailsById = await api.getMovieById(movieId);
     trailerKey = await api.getMoviesTrailer(movieId);
     // add movie id to modalMovie
@@ -52,7 +51,7 @@ async function onOpenModalMovie(e) {
   `);
 
   document.querySelector('.img.modal__image').onclick = () => {
-    console.log(trailerKey);
+    
     trailer.show();
   };
 

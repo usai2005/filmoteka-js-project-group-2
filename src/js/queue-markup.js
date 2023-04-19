@@ -27,9 +27,13 @@ export async function getQueueMovies(page) {
 
 export async function markupQueue() {
   refs.galleryOps.innerHTML = '';
+
+  refs.paginationButtons.style.display = "none";
+  
   const {movies, total} = await getQueueMovies(1);
 
   pagination.reset(total);
+
   if (total === 0) {
     refs.paginationButtons.style.display = "none";
   } else {

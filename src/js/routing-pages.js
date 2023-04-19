@@ -43,8 +43,6 @@ export function loadHomePage() {
 }
 
 export function loadLibraryPage() {
-    console.log(currentPage);
-
 
     clearSearchInput();
     if (currentPage === 'library') {
@@ -118,5 +116,4 @@ function makeInactiveLibraryButton() {
 
 export function updateCurrentPage(pageName) {
     currentPage = pageName;
-    console.log(currentPage);
 }

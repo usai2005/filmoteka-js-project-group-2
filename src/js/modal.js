@@ -24,17 +24,21 @@ async function onOpenModalMovie(e) {
   }
 
   const movieId = e.target.closest('.movie-item').dataset.id;
-  let trailerKey = '';
+  // let trailerKey = '';
+
   if (currentId !== movieId) {
     currentId = movieId;
     
     const filmDetailsById = await api.getMovieById(movieId);
-    trailerKey = await api.getMoviesTrailer(movieId);
+    // trailerKey = await api.getMoviesTrailer(movieId);
+
     // add movie id to modalMovie
     refs.modalMovie.dataset.id = filmDetailsById.id;
 
     renderModal(filmDetailsById);
   }
+
+  const trailerKey = await api.getMoviesTrailer(movieId);
 
   window.addEventListener('keydown', onEscKeyPress);
 

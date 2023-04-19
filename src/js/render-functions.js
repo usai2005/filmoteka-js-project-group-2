@@ -28,9 +28,9 @@ export function appendMovies(movies) {
       // );
       return;
     }
+  }, 500);
 
   setTimeout(() => {
-  
     const markup = movies
       .map(({ title, w300imgUrl, w500imgUrl, genres, year, id }) => {
         const shortTitle =

@@ -22,9 +22,9 @@ const refs = {
   galleryContainer: document.querySelector('.gallery-container'),
   galleryOps: document.querySelector('.main-gallery-oops'),
   paginationButtons: document.querySelector('.paginationButtons'),
-  openModalBtn: document.querySelector("[open]"),
-  closeModalBtn: document.querySelector("[close]"),
-  modal: document.querySelector("[data-m]"),
+  openModalBtn: document.querySelector("[data-footer-modal-open]"),
+  closeModalBtn: document.querySelector("[data-footer-modal-close]"),
+  modal: document.querySelector("[data-footer-modal]"),
 };
 
 export default refs;

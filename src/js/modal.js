@@ -1,11 +1,7 @@
 import refs from './refs.js';
 import api from './api-client.js';
 import { addModalButtonListeners, removeListeners } from './local-storage.js';
-// import { key, watchTrailer } from './trailer.js';
-// import onTrailerClick from './trailer';
 import * as basicLightbox from 'basiclightbox';
-
-// onTrailerClick();
 
 refs.openModalMovieEl.addEventListener('click', onOpenModalMovie);
 refs.closeModalMovieBtn.addEventListener('click', onCloseModalMovie);
@@ -24,13 +20,11 @@ async function onOpenModalMovie(e) {
   }
 
   const movieId = e.target.closest('.movie-item').dataset.id;
-  // let trailerKey = '';
 
   if (currentId !== movieId) {
     currentId = movieId;
-    
+
     const filmDetailsById = await api.getMovieById(movieId);
-    // trailerKey = await api.getMoviesTrailer(movieId);
 
     // add movie id to modalMovie
     refs.modalMovie.dataset.id = filmDetailsById.id;
@@ -43,19 +37,17 @@ async function onOpenModalMovie(e) {
   window.addEventListener('keydown', onEscKeyPress);
 
   refs.modalMovie.classList.add('show-modal');
-  document.querySelector('body').classList.add('modal-open'); //Віка
+  document.querySelector('body').classList.add('modal-open');
 
   // local storage
   addModalButtonListeners();
 
   // create video player
-
   const trailer = basicLightbox.create(`
     <iframe width="560" height="315" src="https://www.youtube.com/embed/${trailerKey}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
   `);
 
   document.querySelector('.img.modal__image').onclick = () => {
-    
     trailer.show();
   };
 

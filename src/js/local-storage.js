@@ -57,17 +57,10 @@ export function removeListeners() {
 
 async function onAddToWatched() {
   const addToWatched = document.querySelector('#add-to-watched-btn');
-  const addToQueue = document.querySelector('#add-to-queue-btn');
   const filmId = document.querySelector('.backdrop').dataset.id;
   const film = await getMovieDetails(filmId);
 
   addToWatched.classList.toggle('added');
-
-  // if (addToQueue.classList.contains('added')) {
-  //   addToQueue.classList.remove('added');
-  //   removeMovieFromStorage('queue', filmId);
-  //   addToQueue.textContent = 'Add to Queue';
-  // }
 
   if (addToWatched.classList.contains('added')) {
     addMovieToStorage('watched', film);
@@ -84,17 +77,10 @@ async function onAddToWatched() {
 
 async function onAddToQueue() {
   const addToQueue = document.querySelector('#add-to-queue-btn');
-  const addToWatched = document.querySelector('#add-to-watched-btn');
   const filmId = document.querySelector('.backdrop').dataset.id;
   const film = await getMovieDetails(filmId);
 
   addToQueue.classList.toggle('added');
-
-  // if (addToWatched.classList.contains('added')) {
-  //   addToWatched.classList.remove('added');
-  //   removeMovieFromStorage('watched', filmId);
-  //   addToWatched.textContent = 'Add to Watched';
-  // }
 
   if (addToQueue.classList.contains('added')) {
     addMovieToStorage('queue', film);

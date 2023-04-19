@@ -8,41 +8,57 @@ import { loadFilms } from './local-storage.js';
 let currentPage = '';
 loadHomePage();
 
-refs.logo.addEventListener('click', loadHomePage);
+
+
+refs.logo.addEventListener('click', loadHomePageByLogoClick);
+
 refs.homeBtn.addEventListener('click', loadHomePage);
 refs.myLibraryBtn.addEventListener('click', loadLibraryPage);
 
+function loadHomePageByLogoClick(e) {
+    e.preventDefault();
+    loadHomePage();
+}
+
 export function loadHomePage() {
-  clearSearchInput();
+ 
+    clearSearchInput();
+  
+    refs.paginationButtons.style.display = "initial";
+    
+    if (currentPage === 'home') {
+        
+        return
+    };
+    
+    refs.moviesGallery.innerHTML = '';
+    refs.galleryOps.innerHTML = '';
 
-  refs.paginationButtons.style.display = 'initial';
 
-  if (currentPage === 'home') {
-    return;
-  }
-  refs.moviesGallery.innerHTML = '';
-  refs.galleryOps.innerHTML = '';
-  showSearchForm();
-  removeFilmStatusFilter();
-  makeInactiveLibraryButton();
-  makeActiveHomeButton();
-  showPopularMovies();
-  updateCurrentPage('home');
+    showSearchForm();
+    removeFilmStatusFilter();
+    makeInactiveLibraryButton();
+    makeActiveHomeButton();
+    showPopularMovies();
+    updateCurrentPage('home');
+
+    // refs.paginationButtons.style.display = "none";
 }
 
 export function loadLibraryPage() {
-  clearSearchInput();
-  if (currentPage === 'library') {
-    return;
-  }
-  refs.moviesGallery.innerHTML = '';
-  refs.galleryOps.innerHTML = '';
-  showFilmStatusFilter();
-  removeSearchForm();
-  makeInactiveHomeButton();
-  makeActiveLibraryButton();
-  loadLibrary();
-  updateCurrentPage('library');
+
+    clearSearchInput();
+    if (currentPage === 'library') {
+        return
+    };
+    refs.moviesGallery.innerHTML = '';
+    refs.galleryOps.innerHTML = '';
+    showFilmStatusFilter();
+    removeSearchForm();
+    makeInactiveHomeButton();
+    makeActiveLibraryButton();
+    loadLibrary();
+    updateCurrentPage('library');
 }
 
 function showSearchForm() {

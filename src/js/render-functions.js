@@ -15,6 +15,7 @@ export function appendMovies(movies) {
   refs.loader.classList.remove('preloader__loader--page-loaded');
 
   showSpinnerIfPageLoads();
+
   console.log(movies.length);
   setTimeout(() => {
     if (movies.length === 0 || movies === undefined) {
@@ -28,6 +29,8 @@ export function appendMovies(movies) {
       return;
     }
 
+  setTimeout(() => {
+  
     const markup = movies
       .map(({ title, w300imgUrl, w500imgUrl, genres, year, id }) => {
         const shortTitle =

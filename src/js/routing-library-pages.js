@@ -3,35 +3,48 @@ import { markupWatched } from './watched-markup';
 import { markupQueue } from './queue-markup';
 
 refs.watchedBtn.addEventListener('click', loadWatchedPage);
-refs.queueBtn.addEventListener('click', loadQueuePage);
+refs.queueBtn.addEventListener('click', loadQueuePageHandler);
 
 let currentLibraryPage = '';
 
 export function loadLibrary() {
-  loadQueuePage();
+
+   refs.paginationButtons.style.display = "none";
+
+   loadQueuePage();
 }
 
-function loadWatchedPage() {
-  if (currentLibraryPage === 'watched') {
-    return;
-  }
-  refs.moviesGallery.innerHTML = '';
-  refs.galleryOps.innerHTML = '';
-  makeInactiveQueueButton();
-  makeActiveWatchedButton();
-  markupWatched();
-  updateCurrentLibraryPage('watched');
+function loadWatchedPage() { 
+
+    if (currentLibraryPage === 'watched') {
+        return
+    };
+    refs.moviesGallery.innerHTML = '';
+    refs.galleryOps.innerHTML = '';
+    makeInactiveQueueButton();
+    makeActiveWatchedButton();
+    markupWatched();
+    updateCurrentLibraryPage('watched');
 }
+
+function loadQueuePageHandler() {
+    if (currentLibraryPage === 'queue') {
+      
+    return;
+
+    };
+    loadQueuePage()
+};
+
 
 function loadQueuePage() {
-  // if (currentLibraryPage === 'queue') {
-  //   return;
-  // }
-  refs.moviesGallery.innerHTML = '';
-  makeInactiveWatchedButton();
-  makeActiveQueueButton();
-  markupQueue();
-  updateCurrentLibraryPage('queue');
+
+    refs.moviesGallery.innerHTML = '';
+
+    makeInactiveWatchedButton();
+    makeActiveQueueButton();
+    markupQueue();
+    updateCurrentLibraryPage('queue');
 }
 
 function makeActiveWatchedButton() {

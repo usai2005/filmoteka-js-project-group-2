@@ -16,10 +16,18 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// show-modal
-//
-refs.footerLink.addEventListener('click', () => {
-  if (refs.header.classList.contains('is-sticky')) {
-    refs.header.classList.remove('is-sticky');
+export function showHeader() {
+  if (
+    refs.header.classList.contains('is-sticky') &&
+    window.pageYOffset > 550 &&
+    refs.header.classList.contains('slide-up')
+  ) {
+    refs.header.classList.remove('slide-up');
   }
-});
+}
+
+export function hideHeader() {
+  if (refs.header.classList.contains('is-sticky')) {
+    refs.header.classList.add('slide-up');
+  }
+}

@@ -217,11 +217,6 @@ class ApiClient {
           const trailerObj = result.find(({ name }) =>
             name.toLowerCase().includes('trailer')
           );
-          // if (trailerObj) {
-          //   return `https://www.youtube.com/watch?v=${trailerObj.key}`; //якщо є трейлер, то повертає рядок з адресою трейлера
-          // } else {
-          //   return `https://www.youtube.com/watch?v=${result[0].key}`; //якщо тільки тизер, то відповідно адресу тизера
-          // }
 
           if (trailerObj) {
             return trailerObj.key; //якщо є трейлер, то повертає рядок з адресою трейлера
@@ -238,27 +233,5 @@ class ApiClient {
   };
 }
 const api = new ApiClient(); //експортуємо екземпляр
-
-// приклад функції імітація запиту.  (у фінальному варіанті видалити)
-
-// const getData = async () => {
-//   const listOfPopularFilms = await api.getPopularMovie(); // популярні фільми
-//   console.log('listOfPopularFilms', listOfPopularFilms);
-
-// const filmByQuery = await api.getMovieByQuery('cat'); // пошук за ім"ям
-// console.log('filmByQuery', filmByQuery);
-
-// const filmDetailsById = await api.getMovieById('1027159'); // пошук за іd
-// console.log('filmDetailsById', filmDetailsById);
-
-// const trailerInfo = await api.getMoviesTrailer('1027159'); // пошук трейлеру
-// console.log('trailerInfo', trailerInfo);
-
-//   console.log(api.currentMoviesList);
-
-//   const config = await api.getImgConfig(); // пошук трейлеру
-//   console.log('config', api.config);
-// };
-// setTimeout(getData, 200);
 
 export default api;

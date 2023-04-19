@@ -16,7 +16,6 @@ export function appendMovies(movies) {
 
   showSpinnerIfPageLoads();
 
-  console.log(movies.length);
   setTimeout(() => {
     if (movies.length === 0 || movies === undefined) {
       //   console.log('hello');

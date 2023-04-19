@@ -2,6 +2,7 @@ import refs from './refs.js';
 import api from './api-client.js';
 import { addModalButtonListeners, removeListeners } from './local-storage.js';
 import * as basicLightbox from 'basiclightbox';
+import { showHeader, hideHeader } from './header.scroll.js';
 
 refs.openModalMovieEl.addEventListener('click', onOpenModalMovie);
 refs.closeModalMovieBtn.addEventListener('click', onCloseModalMovie);
@@ -15,9 +16,7 @@ async function onOpenModalMovie(e) {
   }
 
   //hide stiky header
-  if (refs.header.classList.contains('is-sticky')) {
-    refs.header.classList.add('slide-up');
-  }
+  hideHeader();
 
   const movieId = e.target.closest('.movie-item').dataset.id;
 
@@ -146,13 +145,7 @@ function onCloseModalMovie() {
   document.querySelector('body').classList.remove('modal-open');
 
   //show stiky header
-  if (
-    refs.header.classList.contains('is-sticky') &&
-    window.pageYOffset > 550 &&
-    refs.header.classList.contains('slide-up')
-  ) {
-    refs.header.classList.remove('slide-up');
-  }
+  showHeader();
 }
 
 function onBackdropClick(e) {

@@ -99,12 +99,10 @@ async function onAddToQueue() {
   if (addToQueue.classList.contains('added')) {
     addMovieToStorage('queue', film);
     addToQueue.textContent = 'Remove from Queue';
-    // console.log('добавлено');
     updateQueueMarkup();
   } else {
     removeMovieFromStorage('queue', filmId);
     addToQueue.textContent = 'Add to Queue';
-    // console.log('удалено');
     updateQueueMarkup();
   }
 }

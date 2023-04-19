@@ -8,30 +8,30 @@ refs.queueBtn.addEventListener('click', loadQueuePage);
 let currentLibraryPage = '';
 
 export function loadLibrary() {
-   loadQueuePage();
+  loadQueuePage();
 }
 
-function loadWatchedPage() { 
-    if (currentLibraryPage === 'watched') {
-        return
-    };
-    refs.moviesGallery.innerHTML = '';
-    refs.galleryOps.innerHTML = '';
-    makeInactiveQueueButton();
-    makeActiveWatchedButton();
-    markupWatched();
-    updateCurrentLibraryPage('watched');
+function loadWatchedPage() {
+  if (currentLibraryPage === 'watched') {
+    return;
+  }
+  refs.moviesGallery.innerHTML = '';
+  refs.galleryOps.innerHTML = '';
+  makeInactiveQueueButton();
+  makeActiveWatchedButton();
+  markupWatched();
+  updateCurrentLibraryPage('watched');
 }
 
 function loadQueuePage() {
-    if (currentLibraryPage === 'queue') {
-        return
-    };
-    refs.moviesGallery.innerHTML = '';
-    makeInactiveWatchedButton();
-    makeActiveQueueButton();
-    markupQueue();
-    updateCurrentLibraryPage('queue');
+  // if (currentLibraryPage === 'queue') {
+  //   return;
+  // }
+  refs.moviesGallery.innerHTML = '';
+  makeInactiveWatchedButton();
+  makeActiveQueueButton();
+  markupQueue();
+  updateCurrentLibraryPage('queue');
 }
 
 function makeActiveWatchedButton() {
@@ -64,4 +64,21 @@ function makeInactiveQueueButton() {
 
 function updateCurrentLibraryPage(pageName) {
   currentLibraryPage = pageName;
+}
+
+///// перевірка і оновлення бабліотеки
+
+export async function updateWatchedMarkup() {
+  if (currentLibraryPage !== 'watched') {
+    return;
+  }
+  refs.moviesGallery.innerHTML = '';
+  markupWatched();
+}
+export async function updateQueueMarkup() {
+  if (currentLibraryPage !== 'queue') {
+    return;
+  }
+  refs.moviesGallery.innerHTML = '';
+  markupQueue();
 }

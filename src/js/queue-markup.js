@@ -23,34 +23,34 @@ export async function getQueueMovies(page) {
   const movies = await Promise.all(queueMoviesPromise);
 
   return { movies, total: queueMoviesIds.length };
-};
+}
 
 export async function markupQueue() {
   refs.galleryOps.innerHTML = '';
 
-  refs.paginationButtons.style.display = "none";
-  
-  const {movies, total} = await getQueueMovies(1);
+  refs.paginationButtons.style.display = 'none';
+
+  const { movies, total } = await getQueueMovies(1);
 
   pagination.reset(total);
 
-  if (total === 0) {
-    refs.paginationButtons.style.display = "none";
+  if (total <= 20) {
+    refs.paginationButtons.style.display = 'none';
   } else {
-    refs.paginationButtons.style.display = "initial";
-  };
+    refs.paginationButtons.style.display = 'initial';
+  }
 
   appendMovies(movies);
 
-  setTimeout(placeholderQueue,500)
-  function placeholderQueue(){
+  setTimeout(placeholderQueue, 500);
+  function placeholderQueue() {
     if (!movies.length) {
-      refs.galleryOps.innerHTML = ''
+      refs.galleryOps.innerHTML = '';
       refs.galleryOps.innerHTML = `
       <div>
     <img class="empty-library-image" src="https://cdn.icon-icons.com/icons2/576/PNG/512/icon_imovie_icon-icons.com_54880.png" width="400" alt="Empty gallery.Add something)" />
     </div>
-    <p class="empty-library-notification">No movies here. Please add something to queue.</p>`
-    };
-  };
-};
+    <p class="empty-library-notification">No movies here. Please add something to queue.</p>`;
+    }
+  }
+}

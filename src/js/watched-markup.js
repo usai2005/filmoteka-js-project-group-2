@@ -31,7 +31,7 @@ export async function markupWatched() {
   const { movies, total } = await getWatchedMovies(1);
 
   pagination.reset(total);
-  if (total === 0) {
+  if (total <= 20) {
     refs.paginationButtons.style.display = 'none';
   } else {
     refs.paginationButtons.style.display = 'initial';

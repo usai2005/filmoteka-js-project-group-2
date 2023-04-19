@@ -11,45 +11,43 @@ refs.searchForm.addEventListener('submit', formSubmitHandler);
 refs.searchInput.addEventListener('focus', clearSearchInput);
 
 function formSubmitHandler(event) {
+  event.preventDefault();
 
-    event.preventDefault();  
-  
-    updateCurrentPage('query');
-    
-    refs.moviesGallery.innerHTML = '';
+  updateCurrentPage('query');
 
-    searchRequest = refs.searchForm.searchQuery.value.toLowerCase().trim();
-    
-    if (searchRequest === '') {
+  refs.moviesGallery.innerHTML = '';
 
-        refs.paginationButtons.style.display = "none";
+  searchRequest = refs.searchForm.searchQuery.value.toLowerCase().trim();
 
-        showFailureMessage();
-        return
-    };
-    showMoviesByQuery(searchRequest);
+  if (searchRequest === '') {
+    refs.paginationButtons.style.display = 'none';
+
+    showFailureMessage();
+    return;
+  }
+  showMoviesByQuery(searchRequest);
 }
 
-async function showMoviesByQuery (query) {
-    const moviesByQueryRequest = await ApiClient.getMovieByQuery(query);
+async function showMoviesByQuery(query) {
+  const moviesByQueryRequest = await ApiClient.getMovieByQuery(query);
 
-    refs.paginationButtons.style.display = "initial";
+  refs.paginationButtons.style.display = 'initial';
 
+  if (ApiClient.totalMovies <= 20) {
+    refs.paginationButtons.style.display = 'none';
+  }
+  if (moviesByQueryRequest.length === 0) {
+    refs.paginationButtons.style.display = 'none';
 
-    if (moviesByQueryRequest.length === 0) {
+    showFailureMessage();
+    return;
+  }
 
-        refs.paginationButtons.style.display = "none";
+  pagination.reset(ApiClient.totalMovies);
 
-        showFailureMessage();
-        return;
-    }
-
-    pagination.reset(ApiClient.totalMovies);
-    
-    appendMovies(moviesByQueryRequest);
+  appendMovies(moviesByQueryRequest);
 }
 
 export function clearSearchInput() {
-
-    refs.searchForm.searchQuery.value ='';
+  refs.searchForm.searchQuery.value = '';
 }

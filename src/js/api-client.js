@@ -87,6 +87,7 @@ class ApiClient {
     if (this.genres.length === 0) {
       await this.getGenres();
     }
+    console.log('перевірка');
     // якщо запит оновлено, йде скидання до початкових значень
     if (query !== this.query) {
       this.query = query;

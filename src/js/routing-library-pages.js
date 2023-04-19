@@ -3,15 +3,21 @@ import { markupWatched } from './watched-markup';
 import { markupQueue } from './queue-markup';
 
 refs.watchedBtn.addEventListener('click', loadWatchedPage);
-refs.queueBtn.addEventListener('click', loadQueuePage);
+refs.queueBtn.addEventListener('click', loadQueuePageHandler);
 
 let currentLibraryPage = '';
 
 export function loadLibrary() {
+
+   refs.paginationButtons.style.display = "none";
+
    loadQueuePage();
 }
 
 function loadWatchedPage() { 
+
+  console.log('hi', currentLibraryPage);
+
     if (currentLibraryPage === 'watched') {
         return
     };
@@ -23,11 +29,27 @@ function loadWatchedPage() {
     updateCurrentLibraryPage('watched');
 }
 
-function loadQueuePage() {
+function loadQueuePageHandler() {
     if (currentLibraryPage === 'queue') {
-        return
+      
+    return;
+
     };
+    loadQueuePage()
+};
+
+
+function loadQueuePage() {
+
+  console.log('hey', currentLibraryPage);
+
+//   if (currentLibraryPage === 'queue') {
+      
+//     return
+// };
+
     refs.moviesGallery.innerHTML = '';
+
     makeInactiveWatchedButton();
     makeActiveQueueButton();
     markupQueue();

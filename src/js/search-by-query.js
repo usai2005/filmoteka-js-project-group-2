@@ -23,6 +23,7 @@ function formSubmitHandler(event) {
     refs.paginationButtons.style.display = 'none';
 
     showFailureMessage();
+    showFailureImage();
     return;
   }
   showMoviesByQuery(searchRequest);
@@ -40,6 +41,7 @@ async function showMoviesByQuery(query) {
     refs.paginationButtons.style.display = 'none';
 
     showFailureMessage();
+    showFailureImage();
     return;
   }
 
@@ -51,3 +53,11 @@ async function showMoviesByQuery(query) {
 export function clearSearchInput() {
   refs.searchForm.searchQuery.value = '';
 }
+
+function showFailureImage() {
+    refs.galleryOps.innerHTML = '';
+    refs.galleryOps.innerHTML = `<div>
+  <img class="empty-library-image" src="https://pixabay.com/get/g87ce8a9ea045fc1f4d1f97a036419dcd32558ebaa3f275c3ae197f0026170be970aedd3474831d89eef633ede7df588f87bbf8d8a0f850c4b38b97cfd0b07323_1280.jpg" width="400" alt="404 error" />
+  </div>`;
+}
+

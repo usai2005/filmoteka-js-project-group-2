@@ -7,29 +7,45 @@ import { clearSearchInput } from "./search-by-query";
 let currentPage = '';
 loadHomePage();
 
-refs.logo.addEventListener('click', loadHomePage);
+
+refs.logo.addEventListener('click', loadHomePageByLogoClick);
 refs.homeBtn.addEventListener('click', loadHomePage);
 refs.myLibraryBtn.addEventListener('click', loadLibraryPage);
 
+function loadHomePageByLogoClick(e) {
+    e.preventDefault();
+    loadHomePage();
+}
+
 export function loadHomePage() {
+    
     clearSearchInput();
   
     refs.paginationButtons.style.display = "initial";
-  
+    
     if (currentPage === 'home') {
+        
         return
     };
+    
     refs.moviesGallery.innerHTML = '';
     refs.galleryOps.innerHTML = '';
+
+
     showSearchForm();
     removeFilmStatusFilter();
     makeInactiveLibraryButton();
     makeActiveHomeButton();
     showPopularMovies();
     updateCurrentPage('home');
+
+    // refs.paginationButtons.style.display = "none";
 }
 
 export function loadLibraryPage() {
+    console.log(currentPage);
+
+
     clearSearchInput();
     if (currentPage === 'library') {
         return
@@ -102,4 +118,5 @@ function makeInactiveLibraryButton() {
 
 export function updateCurrentPage(pageName) {
     currentPage = pageName;
+    console.log(currentPage);
 }

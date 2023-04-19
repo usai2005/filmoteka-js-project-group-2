@@ -22,6 +22,9 @@ const refs = {
   galleryContainer: document.querySelector('.gallery-container'),
   galleryOps: document.querySelector('.main-gallery-oops'),
   paginationButtons: document.querySelector('.paginationButtons'),
+  openModalBtn: document.querySelector("[open]"),
+  closeModalBtn: document.querySelector("[close]"),
+  modal: document.querySelector("[data-m]"),
 };
 
 export default refs;

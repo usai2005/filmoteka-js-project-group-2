@@ -1,40 +1,63 @@
-.popup {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  top: 0;
-  left: 0;
+.hidden {
   opacity: 0;
+  pointer-events: none;
   visibility: hidden;
-  transition: all 0.8s ease 0s;
-  overflow-y: auto;
-  overflow-x: hidden;
-  z-index: 155;
-}
-.popup:target {
-  opacity: 1;
-  visibility: visible;
-}
-.popup:target .popup-content {
-  transform: translate(0px, 0px);
-  opacity: 1;
 }
 
-.popup-area {
-  position: absolute;
-  width: 100%;
-  height: 100%;
+.backdrop1 {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
   top: 0;
-  left: 0;
-}
-.popup-body {
-  min-height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  transition: opacity 400ms, visibility 400ms;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 30px 10px;
+  
+  z-index: 155;
+ 
 }
+
+
+.modal1 {
+  // width: 100%;  
+  height: 100%;
+  max-height: 609px;
+  overflow-y: auto;
+  background-color: #ffffff;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  // transition: transform 500ms;
+  // transform: translate(-50%, -50%) scale(1) rotate(0);
+  // position: absolute;
+  // top: 50%;
+  // left: 50%;
+  // transition: transform 500ms;
+  // transform: translate(-50%, -50%) scale(1) rotate(0);
+ 
+  @media screen and (min-width: 1200px) {
+    // max-width: 528px;
+    // max-height: 581px;
+  background-color: wheat;  
+  }
+  @media screen and (min-width: 1200px) {
+    // max-width: 528px;
+    // max-height: 581px;
+  }
+  @media screen and (max-height: 581px) {
+    // max-width: 528px;
+    // max-height: 609px;
+  }
+}
+
+// .backdrop1.hidden .modal1 {
+//   transform: scale(0.5) rotate(-100deg);
+// }
+
+
+
 .popup-content {
   background-color: white;
   color: black;
@@ -43,9 +66,8 @@
   // height: 950px;
   padding: 10px;
   position: relative;
-  border-radius: 15px;
-  opacity: 0;
-  transform: translate(-100%, 0px);
+  border-radius: 15px; 
+  
   transition: all 0.8s ease 0s;
 }
 @media screen and (min-width: 768px) and (max-width: 1023px) {

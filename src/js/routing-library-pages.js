@@ -78,3 +78,20 @@ function makeInactiveQueueButton() {
 function updateCurrentLibraryPage(pageName) {
   currentLibraryPage = pageName;
 }
+
+///// перевірка і оновлення бабліотеки
+
+export async function updateWatchedMarkup() {
+  if (currentLibraryPage !== 'watched') {
+    return;
+  }
+  refs.moviesGallery.innerHTML = '';
+  markupWatched();
+}
+export async function updateQueueMarkup() {
+  if (currentLibraryPage !== 'queue') {
+    return;
+  }
+  refs.moviesGallery.innerHTML = '';
+  markupQueue();
+}

@@ -16,8 +16,6 @@ export function loadLibrary() {
 
 function loadWatchedPage() { 
 
-  console.log('hi', currentLibraryPage);
-
     if (currentLibraryPage === 'watched') {
         return
     };
@@ -40,13 +38,6 @@ function loadQueuePageHandler() {
 
 
 function loadQueuePage() {
-
-  console.log('hey', currentLibraryPage);
-
-//   if (currentLibraryPage === 'queue') {
-      
-//     return
-// };
 
     refs.moviesGallery.innerHTML = '';
 
